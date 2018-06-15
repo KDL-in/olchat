@@ -1,0 +1,357 @@
+@charset "UTF-8";
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+ol,ul{
+  list-style: none;
+}
+img{
+  display: block;
+}
+input{
+  outline: none;
+  border: none;
+}
+.wrapper{
+  width: 852px;
+  height: 590px;
+  margin: 25px auto;
+  border: 1px solid #000;
+  &::before{
+    content: '';
+    display: block;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+    clear: both;
+  }
+  /*左侧工具栏*/
+  .sidebar{
+    width: 60px;
+    float: left;
+    height: 100%;
+    background-color: #28292b;
+    padding-top: 20px;
+    ul{
+      li{
+        cursor: pointer;
+
+      }
+
+      li:first-child{
+        width: 34px;
+        height: 34px;
+        border-radius: 3px;
+        margin: 0 auto;
+        overflow: hidden;
+        img{
+          width: 34px;
+          margin: 0 auto;
+        }
+      }
+      li:nth-child(2),li:nth-child(3),li:nth-child(4){
+        font-size: 24px;
+        color:#fff;
+        opacity: 0.5;
+        margin-top: 28px;
+        text-align: center;
+        &:hover{
+          opacity: 0.8;
+        }
+      }
+      li:last-child{
+        margin-top: 326px;
+        font-size: 16px;
+        color:#fff;
+        opacity: 0.5;
+        text-align: center;
+      }
+    }
+  }
+/*左边的tab栏内容*/
+  .tabs{
+    height: 100%;
+    width: 250px;
+    float: left;
+    padding-top: 25px;
+    background-color: #eeebe8;
+    display: flex;
+    flex-direction: column;
+
+
+    /*搜索框*/
+    .search{
+      width: 100%;
+      height: 25px;
+      padding: 0 12px;
+      position: relative;
+      input{
+        height: 25px;
+        width: 190px;
+        border: 1px solid #d9d7d6;
+        padding: 6px 26px 6px 3px;
+        background-color: #e5e3e2;
+      }
+      span.icon-search{
+        position: absolute;
+        width: 26px;
+        height: 25px;
+        right: 44px;
+        top: 5px;
+        color: #666;
+      }
+      span.plus{
+        display: inline-block;
+        text-align: center;
+        height: 25px;
+        width: 25px;
+        border: 1px solid #d9d7d6;
+        background-color: #e5e3e2;
+        margin-left: 4px;
+        font-size: 22px;
+        line-height: 23px;
+        font-weight: 100;
+        font-family: "simsun";
+        vertical-align: middle;
+        cursor: pointer;
+      }
+    }
+    /*对话列表*/
+    .talk{
+      overflow-y: scroll;
+      width: 100%;
+      height: 100%;
+      margin-top: 12px;
+      flex: 1;
+
+      li{
+        width: 100%;
+        height: 64px;
+        padding: 13px 0 13px 13px;
+        background-color: #e7e6e6;
+        a{
+          display: block;
+          width: 38px;
+          height: 38px;
+          float: left;
+          margin-right: 12px;
+        }
+        .content{
+          line-height: 20px;
+
+          h3{
+            font-size: 14px;
+
+          }
+          p{
+            font-size: 12px;
+            color: #999;
+          }
+        }
+
+      }
+    }
+  }
+  .main{
+    background-color: #eee;
+    width: 540px;
+    float: right;
+    .top{
+      height: 20px;
+      width: 100%;
+      padding-left: 440px;
+      display: flex;
+      justify-content: flex-end;
+      >div{
+        width: 32px;
+        height: 26px;
+        cursor: pointer;
+        color: #5e5e5e;
+        text-align: center;
+        line-height: 26px;
+      }
+      .mini{
+        font-size: 18px;
+        &:hover{
+          background-color: rgb(227, 227, 227);
+        }
+      }
+      .max{
+        &:hover{
+          background-color: rgb(227, 227, 227);
+        }
+      }
+      .close{
+        font-family: "microsoft Yahei";
+        &:hover{
+          background-color: rgb(244,84,84);
+          color: white;
+        }
+      }
+    }
+    .name{
+      height: 36px;
+      width: 100%;
+      font-size: 17px;
+      padding-top: 2px;
+      padding-left: 30px;
+      padding-right: 12px;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #e7e7e7;
+      .user{
+      }
+      .more{
+        font-size: 32px;
+        color: #5e5e5e;
+        cursor: default;
+        &:hover{
+          color:#09bb07;
+          font-weight: 100;
+        }
+        
+      }
+    }
+    .dialouges{
+      height: 384px;
+      border-bottom: 1px solid #ececec;
+      overflow-y: scroll;
+      .person{
+        width: 100%;
+        height: 40px;
+        display: flex;
+        justify-content: flex-start;
+        padding: 3px 0 3px 30px;
+
+        span{
+          display: flex;
+          height: 34px;
+          background-color: #fff;
+          position: relative;
+          line-height: 34px;
+          text-align: center;
+          margin-left: 10px;
+          border-radius: 2px;
+          padding: 0 11px;
+          &::before{
+            content: '';
+            position: absolute;
+            border-right: 10px solid #fff;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            left: -6px;
+            top: 7px;
+          }
+        }
+        img{
+          width: 34px;
+          cursor: pointer;
+        }
+      }
+      .self{
+        width: 100%;
+        height: 40px;
+        display: flex;
+        justify-content: flex-end;
+        padding: 3px 30px 3px 0;
+
+        span{
+          display: flex;
+          height: 34px;
+          background-color: #9eea6a;
+          position: relative;
+          line-height: 34px;
+          text-align: center;
+          margin-right: 10px;
+          border-radius: 2px;
+          padding: 0 11px;
+          &::before{
+            content: '';
+            position: absolute;
+            border-left: 10px solid #9eea6a;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            right: -6px;
+            top: 7px;
+          }
+        }
+        img{
+          width: 34px;
+          cursor: pointer;
+        }
+      }
+
+    }
+    .message{
+      .menu{
+        width: 100%;
+        height: 46px;
+        >div{
+          height: 46px;
+          font-size: 20px;
+          width: 30px;
+          padding-left: 7px;
+          padding-right: 21px;
+          color: #7c7c7c;
+          line-height: 46px;
+          cursor: pointer;
+          &:hover{
+            color: #1aad19;
+          }
+        }
+        .smile{
+          float: left;
+
+        }
+        .doc{
+          float: left;
+        }
+        .snap{
+          float: left;
+        }
+        .speak{
+          float: right;
+        }
+        .video{
+          float: right;
+          font-size: 30px;
+          margin-right: 18px;
+        }
+      }
+      textarea{
+        height: 62px;
+        width: 100%;
+        padding-left: 25px;
+        font-size: 16px;
+        border: none;
+        outline: none;
+        resize: none;
+        font-family: "microsoft Yahei";
+        background-color: #eee;
+
+      }
+      .send{
+        width: 100%;
+        height: 26px;
+        padding-right: 30px;
+        span{
+          display: block;
+          width: 68px;
+          height: 26px;
+          border: 1px solid #e1e1e1;
+          float: right;
+          text-align: center;
+          line-height: 24px;
+          color:#606060;
+          font-size: 14px;
+          cursor: pointer;
+        }
+      }
+
+    }
+
+  }
+  
+}
