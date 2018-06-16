@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/index.css"/>
 </head>
 <body id="chat_bg">
+<input name="uid" type="hidden" value="${curUser.id}">
 <div class="wrapper">
     <div class="sidebar">
         <ul>
@@ -34,18 +35,7 @@
             <span class="plus">+</span>
         </div>
         <div class="talk">
-            <ul>
-                <li>
-                    <input name="id" type="hidden" value="1">
-                    <a href="#"><img src="${pageContext.request.contextPath}/assets/images/1.png" alt=""/></a>
-                    <div class="content">
-                        <h3>前端大神群</h3>
-                        <p>：[动画表情]</p>
-                    </div>
-                </li>
 
-
-            </ul>
         </div>
     </div>
     <!-- 右侧的主要区域-->
@@ -92,3 +82,4 @@
 </html>
 <script src="${pageContext.request.contextPath}/assets/js/jquery-2.1.0.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/index.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/userRoom.js"></script>

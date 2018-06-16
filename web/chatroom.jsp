@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/index.css"/>
 </head>
 <body id="chat_bg">
-<input class="data" name="cid" type="hidden" value="${cid}">
+<input class="data" name="cid" type="hidden" value="${param.cid}">
 <div class="wrapper">
     <div class="sidebar">
         <ul>

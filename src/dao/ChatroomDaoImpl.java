@@ -1,5 +1,7 @@
 package dao;
 
+import action.ChatroomServlet;
+import entity.Chatroom;
 import entity.User;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
@@ -8,15 +10,15 @@ import utils.JDBCUtils;
 import java.sql.SQLException;
 import java.util.List;
 
-public class UserRoomDaoImpl implements UserRoomDao {
+public class ChatroomDaoImpl implements ChatroomDao {
     @Override
-    public List<User> getMembers(String cid) {
+    public List<Chatroom> getRooms(String user_id) {
         QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
-        String sql = "SELECT user.* FROM `user`,user_room WHERE `user`.id=user_id and room_id = ?";
-        List<User>members;
+        String sql = "SELECT chatroom.* FROM chatroom,user_room WHERE chatroom.id=room_id and user_id = ?";
+        List<Chatroom>rooms;
         try {
-            members = queryRunner.query(sql, new BeanListHandler<User>(User.class),cid);
-            return members;
+            rooms = queryRunner.query(sql, new BeanListHandler<Chatroom>(Chatroom.class),user_id);
+            return rooms;
         } catch (SQLException e) {
             e.printStackTrace();
         }

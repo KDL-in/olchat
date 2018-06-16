@@ -1,9 +1,12 @@
 package action;
 
+import entity.Chatroom;
 import entity.User;
+import service.ChatroomService;
 import service.UserRoomService;
 import utils.BaseServlet;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -17,6 +20,16 @@ public class ChatroomServlet extends BaseServlet {
         String cid = req.getParameter("cid");
         List<User> members= service.getMembers(cid);
         req.getSession().setAttribute("members", members);
+        return null;
+    }
+
+    //显示已加入聊天室
+    public String showRoomList(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        //用service获得所有聊天室
+        ChatroomService service = new ChatroomService();
+        List<Chatroom>rooms = service.getRooms(req.getParameter("user_id"));
+        req.getSession().setAttribute("roomList",rooms);
+        req.getRequestDispatcher("/showRoomList.jsp").forward(req, res);
         return null;
     }
 }
