@@ -1,4 +1,16 @@
-body{
+#chat_bg{
     background-image: url("../images/bg.jpg");
     background-size:cover
+}
+/*login*/
+.login-container{
+    margin: auto;
+}
+.login-box{
+    margin: 20px auto;
+}
+.warning-span{
+    width: 150px;
+    margin: auto;
+    color: green;
 }
