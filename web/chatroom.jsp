@@ -16,12 +16,13 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/index.css"/>
 </head>
 <body id="chat_bg">
+<input class="data" name="cid" type="hidden" value="${cid}">
 <div class="wrapper">
     <div class="sidebar">
         <ul>
             <li><img src="${pageContext.request.contextPath}/assets/images/1.jpg" alt=""/></li>
-            <li class="iconfont icon-liaotian1 lt"></li>
-            <li class="iconfont active icon-tongxunlu txl"></li>
+            <li class="iconfont active icon-liaotian1 lt"></li>
+            <li class="iconfont icon-tongxunlu txl"></li>
             <li class="iconfont icon-shoucang sc"></li>
             <li class="iconfont icon-101 more"></li>
         </ul>
@@ -34,9 +35,9 @@
             <span class="plus">+</span>
         </div>
         <div class="talk">
-            <ul>
+    <%--        <ul>
                 <li>
-                    <input name="id" type="hidden" value="1">
+                    <input name="id" type="hidden" value="0">
                     <a href="#"><img src="${pageContext.request.contextPath}/assets/images/1.png" alt=""/></a>
                     <div class="content">
                         <h3>前端大神群</h3>
@@ -45,7 +46,7 @@
                 </li>
 
 
-            </ul>
+            </ul>--%>
         </div>
     </div>
     <!-- 右侧的主要区域-->
@@ -92,3 +93,4 @@
 </html>
 <script src="${pageContext.request.contextPath}/assets/js/jquery-2.1.0.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/index.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/chatroom.js"></script>

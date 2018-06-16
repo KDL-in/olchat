@@ -53,3 +53,17 @@ $(document).keydown(function(event){
     }
 
 });
+/*custom*/
+function prepareEvents() {
+    $(".talk>ul>li").each(function (key, li) {
+        $(li).click(function () {
+            window.location.href="chatroom.jsp?cid="+$(this).children("input").val();
+        });
+    });
+}
+$(function () {
+    // 默认选中
+    $(".sidebar .active").click();
+    //事件绑定
+    prepareEvents();
+});

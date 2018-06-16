@@ -1,16 +1,40 @@
-#chat_bg{
+#chat_bg {
     background-image: url("../images/bg.jpg");
-    background-size:cover
+    background-size: cover;
 }
+
 /*login*/
-.login-container{
+.login-container {
     margin: auto;
 }
-.login-box{
+
+.login-box {
     margin: 20px auto;
 }
-.warning-span{
+
+.warning-span {
     width: 150px;
     margin: auto;
     color: green;
+}
+/*chat room*/
+.wrapper > .tabs > .talk > ul > li:hover {
+    background-color: #d1cfce;
+}
+
+.wrapper > .tabs > .talk > ul > li {
+    background-color: #e4e5e6;
+    cursor: pointer;
+}
+.wrapper .talk a>img{
+    width: 34px;
+}
+.wrapper>.tabs>.talk{
+    background-color: #e4e5e6;
+}
+.onlineMember{
+    color: black;
+}
+.offlineMember{
+    color: #a9abb0;
 }

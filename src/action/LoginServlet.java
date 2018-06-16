@@ -29,7 +29,7 @@ public class LoginServlet extends BaseServlet {
         Map<String, String[]> map = req.getParameterMap();
         User user = new User();
         try {
-            resp.getWriter().println("login");
+
             // userService 对象是否存在
             BeanUtils.populate(user, map);
             UserService us = new UserService();
@@ -40,6 +40,8 @@ public class LoginServlet extends BaseServlet {
                 return "/login.jsp";
             } else {//成功
                 //重置session
+
+
                 req.getSession().invalidate();
                 //同一个用户重复登陆，应该清除之前的session，使得对方下线
                 //-原理是在共享的 userMap中，用user可以得到相应的session引用
@@ -50,7 +52,6 @@ public class LoginServlet extends BaseServlet {
                     HttpSession session = userMap.get(curUser);
                     session.invalidate();
                 }
-
                 req.getSession().setAttribute("curUser", curUser);
 /*                ServletContext application = getServletContext();
 
@@ -64,7 +65,6 @@ public class LoginServlet extends BaseServlet {
                 sourceMessage += "系统公告：<font color='gray'>"
                         + curUser.getUser_name() + "走进了聊天室！</font><br>";
                 application.setAttribute("message", sourceMessage);*/
-
                 resp.sendRedirect(req.getContextPath() + "/main.jsp");
                 return null;
             }
