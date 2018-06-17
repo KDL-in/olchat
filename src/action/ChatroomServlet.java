@@ -1,7 +1,9 @@
 package action;
 
+import entity.ChatRecord;
 import entity.Chatroom;
 import entity.User;
+import service.ChatRecordService;
 import service.ChatroomService;
 import service.UserRoomService;
 import utils.BaseServlet;
@@ -10,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -17,8 +20,8 @@ public class ChatroomServlet extends BaseServlet {
     public String updateData(HttpServletRequest req, HttpServletResponse res) throws IOException {
         //使用service层访问获取某id聊天室所有成员
         UserRoomService service = new UserRoomService();
-        String cid = req.getParameter("cid");
-        List<User> members= service.getMembers(cid);
+        String cid = req.getParameter("room_id");
+        List<User> members = service.getMembers(cid);
         req.getSession().setAttribute("members", members);
         return null;
     }
@@ -27,17 +30,46 @@ public class ChatroomServlet extends BaseServlet {
     public String showRoomList(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         //用service获得所有聊天室
         ChatroomService service = new ChatroomService();
-        List<Chatroom>rooms = service.getRooms(req.getParameter("user_id"));
-        req.getSession().setAttribute("roomList",rooms);
+        List<Chatroom> rooms = service.getRooms(req.getParameter("user_id"));
+        req.getSession().setAttribute("roomList", rooms);
         req.getRequestDispatcher("/showRoomList.jsp").forward(req, res);
         return null;
     }
+
     //主页点击进入相应聊天室
     public String enterChatroom(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         ChatroomService service = new ChatroomService();
-        Chatroom room = service.getRoom(req.getParameter("cid"));
-        req.getSession().setAttribute("curChatroom",room);
-        res.sendRedirect(req.getContextPath()+"/chatroom.jsp");
+        Chatroom room = service.getRoom(req.getParameter("room_id"));
+        req.getSession().setAttribute("curChatroom", room);
+        res.sendRedirect(req.getContextPath() + "/chatroom.jsp");
+        return null;
+    }
+
+    //显示某聊天室聊天记录
+    public String showChatRecords(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        ChatRecordService service = new ChatRecordService();
+        List<ChatRecord> records = service.getRecentlyRecords(req.getParameter("room_id"));
+        req.getSession().setAttribute("records", records);
+        req.getRequestDispatcher("/showChatRecords.jsp").forward(req, res);
+        return null;
+    }
+
+    //发送消息，插入数据库
+    public String sendMessage(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        //构造实体
+        Chatroom c= (Chatroom) req.getSession().getAttribute("curChatroom");
+        User u= (User) req.getSession().getAttribute("curUser");
+        ChatRecord cr = new ChatRecord();
+        cr.setContent(req.getParameter("txt"));
+        cr.setTime(new Timestamp(System.currentTimeMillis()));
+        cr.setRoom_id(c.getId());
+        cr.setType(Integer.parseInt(req.getParameter("type")));
+        cr.setTarget_name(req.getParameter("target_name"));
+        cr.setUser_id(u.getId());
+        cr.setUser(u.getUser_name());
+        //用service插入数据
+        ChatRecordService service = new ChatRecordService();
+        service.insertMessage(cr);
         return null;
     }
 }

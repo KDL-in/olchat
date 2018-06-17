@@ -13,10 +13,10 @@
     <title>高仿微信</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/font/iconfont.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/index.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/room_share.css"/>
 </head>
 <body id="chat_bg">
-<input class="data" name="cid" type="hidden" value="${curChatroom.id}">
+<input class="data" name="room_id" type="hidden" value="${curChatroom.id}">
 <div class="wrapper">
     <div class="sidebar">
         <ul>
@@ -83,6 +83,8 @@
                 <div class="speak iconfont icon-dianhua"></div>
             </div>
             <textarea name="" id="txt" cols="30" rows="10"></textarea>
+            <input name="type" type="hidden" value="0">
+            <input name="target_name" type="hidden" value="">
             <div class="send"><span>发送(S)</span></div>
 
         </div>
@@ -92,5 +94,5 @@
 </body>
 </html>
 <script src="${pageContext.request.contextPath}/assets/js/jquery-2.1.0.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/index.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/room_share.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/chatroom.js"></script>

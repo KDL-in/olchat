@@ -1,10 +1,10 @@
 function updateRoomList() {
     // alert($("input[name='uid']").val());
-    $.post("visit",{"method":"showRoomList","user_id":$("input[name='uid']").val()},function (data) {
+    $.post("visit",{"method":"showRoomList","user_id":$("input[name='user_id']").val()},function (data) {
         $(".talk").html(data);
         $(".talk>ul>li").each(function (key, li) {
             $(li).click(function () {
-                window.location.href="visit?method=enterChatroom&cid="+$(this).children("input").val();
+                window.location.href="visit?method=enterChatroom&room_id="+$(this).children("input").val();
             });
         });
     });

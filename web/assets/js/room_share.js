@@ -25,7 +25,7 @@ $(".sidebar .sc").on("click",function(){
     $(".lt").removeClass("icon-liaotian").addClass("icon-liaotian1");
     $(".txl").removeClass("icon-tongxunlu_tongxunlu").addClass("icon-tongxunlu");
 })
-//机器人对话
+/*//机器人对话
 $(".send span").click(function(){
     //通过获得输入框的文本生成对话
     var self= $('<div class="self"><span>'+$("#txt").val()+'</span><img src="assets/images/1.jpg" alt=""/></div>')
@@ -48,8 +48,11 @@ $(".send span").click(function(){
     //清空输入框的内容
     $("#txt").val("");
 
+})*/
+/*
+发送对话
+ */
 
-})
 $(document).keydown(function(event){
     if(event.keyCode==13){
         $(".send span").click();
@@ -59,8 +62,39 @@ $(document).keydown(function(event){
 });
 /*custom*/
 
+function showChatRecords() {
+    var cid = $("input[name='room_id']").val();
+    // alert(cid);
+    if(cid=="")return;
+    $.post("visit?"+new Date().getTime(),{"method":"showChatRecords","room_id":cid},function (data) {
+        $(".container").html(data);
+        var heightdis = $(".container").height() - $(".dialouges").height();
+        console.log(heightdis);
+        if(heightdis >=0){
+            $(".dialouges").scrollTop(heightdis+10);
+        }
+    });
+}
+
+function sendMessage() {
+    if($("input[name='room_id']").val()=="") return;
+    // alert($("input[name='type']").val());
+    $.post("visit?"+new Date().getTime(),
+        {"method":"sendMessage","txt":$("#txt").val(),"type":$("input[name='type']").val(), "target_name":$("input[name='target_name']").val()},
+        function () {
+            showChatRecords();
+    });
+    $("#txt").val("");
+}
+
 $(function () {
     // 默认选中
     $(".sidebar .active").click();
+    //进入加载最近聊天记录
+    showChatRecords();
+    //长时间线程更新当前聊天
+    window.setInterval("showChatRecords()", 2000);
+    //发送消息
+    $(".send span").click(sendMessage);
 
 });

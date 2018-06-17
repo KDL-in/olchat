@@ -2,7 +2,7 @@
 <c3p0-config>
 	<default-config>
 		<property name="driverClass">com.mysql.jdbc.Driver</property>
-		<property name="jdbcUrl">jdbc:mysql:///olchat</property>
+		<property name="jdbcUrl">jdbc:mysql:///olchat?useUnicode=true&amp;characterEncoding=UTF8</property>
 		<property name="user">root</property>
 		<property name="password">admin</property>
 	</default-config> 
