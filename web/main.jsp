@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/font/iconfont.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/room_share.css"/>
+    <link rel="stylesheet" href="assets/utils/webuploader/webuploader.css" type="text/css" />
 </head>
 <body id="chat_bg">
 <input name="room_id" type="hidden" value="${curChatroom.id}">
@@ -89,35 +90,36 @@
                 <div class="video iconfont icon-shipin"></div>
                 <div class="speak iconfont icon-dianhua"></div>
             </div>
-            <textarea name="" id="txt" cols="30" rows="10"></textarea>
+            <div id="uploadPanel"class="am-panel am-panel-success">
+                <div class="am-panel-hd">
+                    选择图片或文件
+                </div>
+                <div class="am-panel-bd">
+                    <div id="thelist" class="uploader-list"></div>
+                    <div class="btns">
+                        <div id="picker">选择文件</div>
+                        <%--<button id="ctlBtn" class="btn btn-default">开始上传</button>--%>
+                    </div>
+                </div>
+            </div>
+
+
+            <textarea name="" id="txt" cols="30" rows="10">
+            </textarea>
             <input name="type" type="hidden" value="0">
             <input name="target_name" type="hidden" value="">
             <div class="send"><span>发送(S)</span></div>
-        </div>
-        <%--        <div class="message">
-                    <div class="menu">
-                        <div class="smile iconfont icon-biaoqing"></div>
-                        <div class="doc iconfont icon-wenjian"></div>
-                        <div class="snap iconfont icon-jieping  "></div>
-                        <div class="video iconfont icon-shipin"></div>
-                        <div class="speak iconfont icon-dianhua"></div>
-                    </div>
-                    <textarea name="" id="txt" cols="30" rows="10"></textarea>
-                    <form action="visit" method="post">&lt;%&ndash;隐藏字段，用于提交消息到数据库&ndash;%&gt;
-                        <input name="content" type="hidden" value="">
-                        <input name="time" type="hidden" value="<%new Timestamp(System.currentTimeMillis());%>">
-                        <input name="room_id" type="hidden" value="${curChatroom.id}">
-                        <input name="type"type="hidden"value=""
-                        <input name="user_id" type="hidden" value="${curUser.id}">
 
-                    </form>
-                    <div class="send"><span>发送(S)</span></div>
-                </div>--%>
+        </div>
 
     </div>
 </div>
 </body>
-</html>
 <script src="${pageContext.request.contextPath}/assets/js/jquery-2.1.0.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/room_share.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/userRoom.js"></script>
+<script type="text/javascript" src="assets/utils/webuploader/webuploader.js"></script>
+<script type="text/javascript" src="assets/utils/webuploader/webuploader.min.js"></script>
+<script type="text/javascript" src="assets/js/upload.js"></script>
+<script type="text/javascript" src="assets/js/amazeui.js"></script>
+</html>

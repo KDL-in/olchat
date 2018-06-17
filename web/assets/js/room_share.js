@@ -113,7 +113,10 @@ $(function () {
     //注销绑定
     $("#chat_bg .offline").click(exit);
     //选择图片面板
+    var flag = false;
     $(".doc").click(function () {
+        if (flag&&$("input[name='room_id']").val() == "") return;
+        flag = true;
         $("#uploadPanel").toggle(200);
     });
     $(".doc").click();
