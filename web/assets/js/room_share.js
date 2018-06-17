@@ -2,26 +2,26 @@
  * Created by Administrator on 2017/6/29.
  */
 //最左侧sidebar切换时的变化
-$(".sidebar .lt").on("click",function(){
+$(".sidebar .lt").on("click", function () {
     $(this).addClass("icon-liaotian").removeClass("icon-liaotian1");
-    $(this).css("color","rgb(9,187,7)").siblings().css("color","white");
+    $(this).css("color", "rgb(9,187,7)").siblings().css("color", "white");
     $(".txl").removeClass("icon-tongxunlu_tongxunlu").addClass("icon-tongxunlu");
     $(".sc").removeClass("icon-shoucang").addClass("icon-iconfont");
-    if($(this).hasClass("active")==false)
+    if ($(this).hasClass("active") == false)
         window.location.href = "chatroom.jsp";
 
 })
-$(".sidebar .txl").on("click",function(){
+$(".sidebar .txl").on("click", function () {
     $(this).addClass("icon-tongxunlu_tongxunlu").removeClass("icon-tongxunlu");
-    $(this).css("color","rgb(9,187,7)").siblings().css("color","white");
+    $(this).css("color", "rgb(9,187,7)").siblings().css("color", "white");
     $(".sc").removeClass("icon-shoucang").addClass("icon-iconfont");
     $(".lt").removeClass("icon-liaotian").addClass("icon-liaotian1");
-    if(!$(this).hasClass("active"))
-         window.location.href = "main.jsp";
+    if (!$(this).hasClass("active"))
+        window.location.href = "main.jsp";
 })
-$(".sidebar .sc").on("click",function(){
+$(".sidebar .sc").on("click", function () {
     $(this).addClass("icon-iconfont").removeClass("icon-shoucang");
-    $(this).css("color","rgb(9,187,7)").siblings().css("color","white");
+    $(this).css("color", "rgb(9,187,7)").siblings().css("color", "white");
     $(".lt").removeClass("icon-liaotian").addClass("icon-liaotian1");
     $(".txl").removeClass("icon-tongxunlu_tongxunlu").addClass("icon-tongxunlu");
 })
@@ -53,42 +53,52 @@ $(".send span").click(function(){
 发送对话
  */
 
-$(document).keydown(function(event){
-    if(event.keyCode==13){
+$(document).keydown(function (event) {
+    if (event.keyCode == 13) {
         $(".send span").click();
         event.preventDefault();
     }
 
 });
+
 /*custom*/
 
 function showChatRecords() {
     var cid = $("input[name='room_id']").val();
     // alert(cid);
-    if(cid=="")return;
-    $.post("visit?"+new Date().getTime(),{"method":"showChatRecords","room_id":cid},function (data) {
+    if (cid == "") return;
+    $.post("visit?" + new Date().getTime(), {"method": "showChatRecords", "room_id": cid}, function (data) {
         $(".container").html(data);
         var heightdis = $(".container").height() - $(".dialouges").height();
         console.log(heightdis);
-        if(heightdis >=0){
-            $(".dialouges").scrollTop(heightdis+10);
+        if (heightdis >= 0) {
+            $(".dialouges").scrollTop(heightdis + 10);
         }
     });
 }
 
 function sendMessage() {
-    if($("input[name='room_id']").val()=="") return;
+    if ($("input[name='room_id']").val() == "") return;
+
     // alert($("input[name='type']").val());
-    $.post("visit?"+new Date().getTime(),
-        {"method":"sendMessage","txt":$("#txt").val(),"type":$("input[name='type']").val(), "target_name":$("input[name='target_name']").val()},
+    $.post("visit?" + new Date().getTime(),
+        {
+            "method": "sendMessage",
+            "txt": $("#txt").val(),
+            "type": $("input[name='type']").val(),
+            "target_name": $("input[name='target_name']").val()
+        },
         function () {
             showChatRecords();
-    });
+        });
     $("#txt").val("");
+    $("input[name='type']").val(0);
+    $("input[name='target_name']").val("");
+
 }
 
 function exit() {
-    window.location.href = "login?"+new Date().getTime()+"&method=exit";
+    window.location.href = "login?" + new Date().getTime() + "&method=exit";
 }
 
 $(function () {
@@ -97,11 +107,16 @@ $(function () {
     //进入加载最近聊天记录
     showChatRecords();
     //长时间线程更新当前聊天
-    window.setInterval("showChatRecords()", 200000);
+    window.setInterval("showChatRecords()", 2000);
     //发送消息
     $(".send span").click(sendMessage);
     //注销绑定
     $("#chat_bg .offline").click(exit);
+    //选择图片面板
+    $(".doc").click(function () {
+        $("#uploadPanel").toggle(200);
+    });
+    $(".doc").click();
 
 
 });

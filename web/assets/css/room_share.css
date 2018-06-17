@@ -291,7 +291,7 @@ input {
     text-align: center;
     margin-left: 10px;
     border-radius: 2px;
-    padding: 0 11px;
+    padding: 11px;
     /*自动换行*/
     /*display: -moz-inline-box;*/
     display: block;
@@ -349,7 +349,7 @@ input {
     text-align: center;
     margin-right: 10px;
     border-radius: 2px;
-    padding: 0 11px;
+    padding: 11px;
     display: block;
     max-width: 350px;
     word-wrap: break-word;
@@ -369,6 +369,15 @@ input {
     width: 34px;
     height: 34px;
     cursor: pointer;
+}
+/*聊天图片*/
+.wrapper .main .dialouges .self span .chatImg {
+    width: 250px;
+    height: auto;
+}
+.wrapper .main .dialouges .person span .chatImg {
+    width: 250px;
+    height: auto;
 }
 
 .wrapper .main .message .menu {
@@ -450,4 +459,24 @@ input {
 /*覆盖amaze一些样式*/
 #chat_bg p,#chat_bg h3{
     margin: 0px;
+}
+/*图片选择面板*/
+#uploadPanel {
+    width: 200px;
+    position: absolute;
+    top:340px;
+    /*background-color: #0a6999;*/
+    /*position: absolute;*/
+}
+#uploadPanel>div{
+    text-align: center;
+}
+#thelist img{
+    margin: auto;
+    width: 137px;
+}
+#uploadPanel .progress{
+    background-color: #1cc6f2;
+    height: 3px;
+    margin: 5px;
 }

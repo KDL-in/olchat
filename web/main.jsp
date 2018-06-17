@@ -54,21 +54,21 @@
         </div>
         <div class="dialouges">
             <div class="container">
-                <%--            <div class="person">
-                                <img src="assets/images/1.jpg" alt="">
-                                <div>
-                                    <p>测试</p>
-                                    <span>sdalksdjlasdjklfjaklsdjflajldfjlajfaaaaaaaaaaaaaaaljkjaldjflkajldjlajlfjaljlfajllajlfjaldjlfajlajldjflajlfjasaafsdalksdjlasdjklfjaklsdjflajldfjlajfaaaaaaaaaaaaaaaljkjaldjflkajldjlajlfjaljlfajllajlfjaldjlfajlajldjflajlfjasaafsdalksdjlasdjklfjaklsdjflajldfjlajfaaaaaaaaaaaaaaaljkjaldjflkajldjlajlfjaljlfajllajlfjaldjlfajlajldjflajlfjasaaf</span>
-                                </div>
+   <%--             <div class="person">
+                    <img src="assets/images/1.jpg" alt="">
+                    <div>
+                        <p>测试</p>
+                        <span>sdalksdjlasdjklfjaklsdjflajldfjlajfaaaaaaaaaaaaaaaljkjaldjflkajldjlajlfjaljlfajllajlfjaldjlfajlajldjflajlfjasaafsdalksdjlasdjklfjaklsdjflajldfjlajfaaaaaaaaaaaaaaaljkjaldjflkajldjlajlfjaljlfajllajlfjaldjlfajlajldjflajlfjasaafsdalksdjlasdjklfjaklsdjflajldfjlajfaaaaaaaaaaaaaaaljkjaldjflkajldjlajlfjaljlfajllajlfjaldjlfajlajldjflajlfjasaaf</span>
+                    </div>
 
-                            </div>
-                            <div class="self">
-                                <div>
-                                    <span>sdalksdjlasdjklfjaklsdjflajldfjlajfaaaaaaaaaaaaaaaljkjaldjflkajldjlajlfjaljlfajllajlfjaldjlfajlajldjflajlfjasaafsdalksdjlasdjklfjaklsdjflajldfjlajfaaaaaaaaaaaaaaaljkjaldjflkajldjlajlfjaljlfajllajlfjaldjlfajlajldjflajlfjasaafsdalksdjlasdjklfjaklsdjflajldfjlajfaaaaaaaaaaaaaaaljkjaldjflkajldjlajlfjaljlfajllajlfjaldjlfajlajldjflajlfjasaaf</span>
-                                </div>
-                                <img src="assets/images/1.jpg" alt="">
+                </div>--%>
+        <%--        <div class="self">
+                    <div>
+                        <span><img class ="chatImg"src="uploadDir/img/P60223-171600.jpg"></span>
+                    </div>
+                    <img src="assets/images/1.jpg" alt="">
 
-                            </div>--%>
+                </div>--%>
 
 
             </div>

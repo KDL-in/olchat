@@ -14,6 +14,10 @@
         <servlet-name>ChatroomServlet</servlet-name>
         <servlet-class>action.ChatroomServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UploadTestServlet</servlet-name>
+        <servlet-class>action.UploadTestServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -22,6 +26,10 @@
     <servlet-mapping>
         <servlet-name>ChatroomServlet</servlet-name>
         <url-pattern>/visit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadTestServlet</servlet-name>
+        <url-pattern>/upload</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>

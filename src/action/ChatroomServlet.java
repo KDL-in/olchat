@@ -9,8 +9,11 @@ import service.UserRoomService;
 import utils.BaseServlet;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.List;
@@ -72,4 +75,5 @@ public class ChatroomServlet extends BaseServlet {
         service.insertMessage(cr);
         return null;
     }
+
 }

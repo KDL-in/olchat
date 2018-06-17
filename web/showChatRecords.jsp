@@ -19,25 +19,50 @@
 </div>
 <c:forEach var="record" items="${records}">
     <c:choose>
-        <c:when test="${record.user_id==curUser.id}">
-            <div class="self">
-                <div>
-                    <span>${record.content}</span>
-                </div>
-                <img src="assets/images/1.jpg" alt="">
-
-            </div>
+        <c:when test="${record.user_id==curUser.id}"><%--我的消息--%>
+            <c:choose>
+                <c:when test="${record.type==1}"><%--内容为图片--%>
+                    <div class="self">
+                        <div>
+                            <span><img class="chatImg" src="${record.content}"></span>
+                        </div>
+                        <img src="assets/images/1.jpg" alt="">
+                    </div>
+                </c:when>
+                <c:otherwise><%--内容为文字--%>
+                    <div class="self">
+                        <div>
+                            <span>${record.content}</span>
+                        </div>
+                        <img src="assets/images/1.jpg" alt="">
+                    </div>
+                </c:otherwise>
+            </c:choose>
             <%--<div class="self"><span></span><img src="assets/images/1.jpg" alt=""></div>--%>
         </c:when>
-        <c:otherwise>
-            <div class="person">
-                <img src="assets/images/1.jpg" alt="">
-                <div>
-                    <p>${record.user}</p>
-                    <span>${record.content}</span>
-                </div>
+        <c:otherwise><%--对方的消息--%>
+            <c:choose>
+                <c:when test="${record.type==1}"><%--内容为图片--%>
+                    <div class="person">
+                        <img src="assets/images/1.jpg" alt="">
+                        <div>
+                            <p>${record.user}</p>
+                            <span><img class="chatImg" src="${record.content}"></span>
+                        </div>
 
-            </div>
+                    </div>
+                </c:when>
+                <c:otherwise><%--内容为文字--%>
+                    <div class="person">
+                        <img src="assets/images/1.jpg" alt="">
+                        <div>
+                            <p>${record.user}</p>
+                            <span>${record.content}</span>
+                        </div>
+
+                    </div>
+                </c:otherwise>
+            </c:choose>
             <%--<div class="person"><img src="assets/images/1.jpg" alt=""><span>${record.content}</span></div>--%>
         </c:otherwise>
     </c:choose>

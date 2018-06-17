@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/font/iconfont.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/room_share.css"/>
+    <link rel="stylesheet" href="assets/utils/webuploader/webuploader.css" type="text/css" />
 </head>
 <body id="chat_bg">
 <input class="data" name="room_id" type="hidden" value="${curChatroom.id}">
@@ -72,7 +73,22 @@
                 <div class="video iconfont icon-shipin"></div>
                 <div class="speak iconfont icon-dianhua"></div>
             </div>
-            <textarea name="" id="txt" cols="30" rows="10"></textarea>
+            <div id="uploadPanel"class="am-panel am-panel-success">
+                <div class="am-panel-hd">
+                    选择图片或文件
+                </div>
+                <div class="am-panel-bd">
+                    <div id="thelist" class="uploader-list"></div>
+                    <div class="btns">
+                        <div id="picker">选择文件</div>
+                        <%--<button id="ctlBtn" class="btn btn-default">开始上传</button>--%>
+                    </div>
+                </div>
+            </div>
+
+
+            <textarea name="" id="txt" cols="30" rows="10">
+            </textarea>
             <input name="type" type="hidden" value="0">
             <input name="target_name" type="hidden" value="">
             <div class="send"><span>发送(S)</span></div>
@@ -86,3 +102,7 @@
 <script src="${pageContext.request.contextPath}/assets/js/jquery-2.1.0.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/room_share.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/chatroom.js"></script>
+<script type="text/javascript" src="assets/utils/webuploader/webuploader.js"></script>
+<script type="text/javascript" src="assets/utils/webuploader/webuploader.min.js"></script>
+<script type="text/javascript" src="assets/js/upload.js"></script>
+<script type="text/javascript" src="assets/js/amazeui.js"></script>
