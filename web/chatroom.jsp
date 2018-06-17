@@ -11,6 +11,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>高仿微信</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/amazeui.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/font/iconfont.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/room_share.css"/>
@@ -24,7 +25,7 @@
             <li class="iconfont active icon-liaotian1 lt"></li>
             <li class="iconfont icon-tongxunlu txl"></li>
             <li class="iconfont icon-shoucang sc"></li>
-            <li class="iconfont icon-101 more"></li>
+            <li class="am-icon-power-off offline"></li>
         </ul>
     </div>
     <!-- 中间的tab栏-->
@@ -35,18 +36,7 @@
             <span class="plus">+</span>
         </div>
         <div class="talk">
-    <%--        <ul>
-                <li>
-                    <input name="id" type="hidden" value="0">
-                    <a href="#"><img src="${pageContext.request.contextPath}/assets/images/1.png" alt=""/></a>
-                    <div class="content">
-                        <h3>前端大神群</h3>
-                        <p>：[动画表情]</p>
-                    </div>
-                </li>
 
-
-            </ul>--%>
         </div>
     </div>
     <!-- 右侧的主要区域-->

@@ -11,6 +11,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>在线聊天室</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/amazeui.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/font/iconfont.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/room_share.css"/>
@@ -25,7 +26,7 @@
             <li class="iconfont icon-liaotian1 lt"></li>
             <li class="iconfont active icon-tongxunlu txl"></li>
             <li class="iconfont icon-shoucang sc"></li>
-            <li class="iconfont icon-101 more"></li>
+            <li class="am-icon-power-off offline"></li>
         </ul>
     </div>
     <!-- 中间的tab栏-->

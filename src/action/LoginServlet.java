@@ -73,4 +73,13 @@ public class LoginServlet extends BaseServlet {
         }
         return null;
     }
+    /**
+     *  退出聊天室
+     */
+    public String exit(HttpServletRequest request,HttpServletResponse response) throws IOException{
+        HttpSession session = request.getSession();
+        session.invalidate();
+        response.sendRedirect(request.getContextPath()+"/login.jsp");
+        return null;
+    }
 }

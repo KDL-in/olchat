@@ -38,3 +38,9 @@
 .offlineMember{
     color: #a9abb0;
 }
+/*注销按钮*/
+.offline {
+    width: 60px;
+    height: 28px;
+    line-height: 28px;
+}

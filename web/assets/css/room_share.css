@@ -300,7 +300,7 @@ input {
 }
 
 /*发送方备注*/
-.wrapper .main .dialouges .person p {
+#chat_bg .wrapper .main .dialouges .person p {
     font-size: 0.75em;
     color: #9c9ea3;
     margin: -5px 10px 5px 5px;
@@ -414,7 +414,7 @@ input {
 }
 
 .wrapper .main .message textarea {
-    height: 72px;
+    height: 75px;
     width: 100%;
     padding-left: 25px;
     font-size: 16px;
@@ -446,4 +446,8 @@ input {
 
 .message {
     background-color: #eee;
+}
+/*覆盖amaze一些样式*/
+#chat_bg p,#chat_bg h3{
+    margin: 0px;
 }

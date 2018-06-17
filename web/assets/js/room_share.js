@@ -87,14 +87,21 @@ function sendMessage() {
     $("#txt").val("");
 }
 
+function exit() {
+    window.location.href = "login?"+new Date().getTime()+"&method=exit";
+}
+
 $(function () {
     // 默认选中
     $(".sidebar .active").click();
     //进入加载最近聊天记录
     showChatRecords();
     //长时间线程更新当前聊天
-    window.setInterval("showChatRecords()", 2000);
+    window.setInterval("showChatRecords()", 200000);
     //发送消息
     $(".send span").click(sendMessage);
+    //注销绑定
+    $("#chat_bg .offline").click(exit);
+
 
 });
