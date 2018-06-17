@@ -7,6 +7,8 @@ $(".sidebar .lt").on("click",function(){
     $(this).css("color","rgb(9,187,7)").siblings().css("color","white");
     $(".txl").removeClass("icon-tongxunlu_tongxunlu").addClass("icon-tongxunlu");
     $(".sc").removeClass("icon-shoucang").addClass("icon-iconfont");
+    if($(this).hasClass("active")==false)
+        window.location.href = "chatroom.jsp";
 
 })
 $(".sidebar .txl").on("click",function(){
@@ -14,6 +16,8 @@ $(".sidebar .txl").on("click",function(){
     $(this).css("color","rgb(9,187,7)").siblings().css("color","white");
     $(".sc").removeClass("icon-shoucang").addClass("icon-iconfont");
     $(".lt").removeClass("icon-liaotian").addClass("icon-liaotian1");
+    if(!$(this).hasClass("active"))
+         window.location.href = "main.jsp";
 })
 $(".sidebar .sc").on("click",function(){
     $(this).addClass("icon-iconfont").removeClass("icon-shoucang");
@@ -54,15 +58,9 @@ $(document).keydown(function(event){
 
 });
 /*custom*/
-/*
-function prepareEvents() {
-    $(".talk>ul>li").each(function (key, li) {
-        $(li).click(function () {
-            window.location.href="chatroom.jsp?cid="+$(this).children("input").val();
-        });
-    });
-}*/
+
 $(function () {
     // Ä¬ÈÏÑ¡ÖÐ
     $(".sidebar .active").click();
+
 });

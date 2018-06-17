@@ -32,4 +32,12 @@ public class ChatroomServlet extends BaseServlet {
         req.getRequestDispatcher("/showRoomList.jsp").forward(req, res);
         return null;
     }
+    //主页点击进入相应聊天室
+    public String enterChatroom(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        ChatroomService service = new ChatroomService();
+        Chatroom room = service.getRoom(req.getParameter("cid"));
+        req.getSession().setAttribute("curChatroom",room);
+        res.sendRedirect(req.getContextPath()+"/chatroom.jsp");
+        return null;
+    }
 }

@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/index.css"/>
 </head>
 <body id="chat_bg">
-<input class="data" name="cid" type="hidden" value="${param.cid}">
+<input class="data" name="cid" type="hidden" value="${curChatroom.id}">
 <div class="wrapper">
     <div class="sidebar">
         <ul>
@@ -58,7 +58,7 @@
 
         </div>
         <div class="name">
-            <div class="user">高</div>
+            <div class="user">${curChatroom.name}</div>
             <div class="more">···</div>
         </div>
         <div class="dialouges">

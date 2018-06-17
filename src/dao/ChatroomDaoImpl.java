@@ -4,6 +4,7 @@ import action.ChatroomServlet;
 import entity.Chatroom;
 import entity.User;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import utils.JDBCUtils;
 
@@ -19,6 +20,20 @@ public class ChatroomDaoImpl implements ChatroomDao {
         try {
             rooms = queryRunner.query(sql, new BeanListHandler<Chatroom>(Chatroom.class),user_id);
             return rooms;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public Chatroom getRoom(String cid) {
+        QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+        String sql = "SELECT * FROM chatroom WHERE id = ?";
+        Chatroom room;
+        try {
+            room = queryRunner.query(sql, new BeanHandler<Chatroom>(Chatroom.class),cid);
+            return room;
         } catch (SQLException e) {
             e.printStackTrace();
         }

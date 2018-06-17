@@ -4,7 +4,7 @@ function updateRoomList() {
         $(".talk").html(data);
         $(".talk>ul>li").each(function (key, li) {
             $(li).click(function () {
-                window.location.href="chatroom.jsp?cid="+$(this).children("input").val();
+                window.location.href="visit?method=enterChatroom&cid="+$(this).children("input").val();
             });
         });
     });

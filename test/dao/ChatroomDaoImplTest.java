@@ -19,4 +19,11 @@ public class ChatroomDaoImplTest {
 
         }
     }
+
+    @Test
+    public void getRoom() {
+        ChatroomDao dao = new ChatroomDaoImpl();
+        Chatroom chatroom = dao.getRoom(1+"");
+        System.out.println(chatroom);
+    }
 }
