@@ -26,4 +26,11 @@ public class ChatroomDaoImplTest {
         Chatroom chatroom = dao.getRoom(1+"");
         System.out.println(chatroom);
     }
+
+    @Test
+    public void find() {
+        ChatroomDao dao = new ChatroomDaoImpl();
+        Chatroom chatroom = dao.find("案例聊天室一");
+        System.out.println(chatroom);
+    }
 }

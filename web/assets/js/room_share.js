@@ -53,13 +53,7 @@ $(".send span").click(function(){
 发送对话
  */
 
-$(document).keydown(function (event) {
-    if (event.keyCode == 13) {
-        $(".send span").click();
-        event.preventDefault();
-    }
 
-});
 
 /*custom*/
 
@@ -79,7 +73,6 @@ function showChatRecords() {
 
 function sendMessage() {
     if ($("input[name='room_id']").val() == "") return;
-
     // alert($("input[name='type']").val());
     $.post("visit?" + new Date().getTime(),
         {
@@ -101,6 +94,37 @@ function exit() {
     window.location.href = "login?" + new Date().getTime() + "&method=exit";
 }
 
+var flag = false;
+
+function toggleUpload() {
+    if (flag && $("input[name='room_id']").val() == "") return;
+    flag = true;
+    $("#uploadPanel").toggle(200);
+}
+
+function searchChatroom(o) {
+    $.post("visit?"+new Date().getTime(),
+        {"method":"searchChatroom","keyWord":$(".searchRoom").val()},
+        function (data) {
+            if(data=="false"){
+                alert("NO RESULT");
+                return;
+            }
+            var psw = prompt("Enter Password", "");
+            //搜索正确，加入请求
+            $.post("visit?"+new Date().getTime(),
+                {
+                    "method":"addToChatroom",
+                    "user_id":$("input[name='user_id']").val(),
+                    "room_psw":psw
+                },
+                function (data) {
+                    alert(data);
+            });
+    });
+    $(o).val("");
+}
+
 $(function () {
     // 默认选中
     $(".sidebar .active").click();
@@ -113,13 +137,18 @@ $(function () {
     //注销绑定
     $("#chat_bg .offline").click(exit);
     //选择图片面板
-    var flag = false;
-    $(".doc").click(function () {
-        if (flag&&$("input[name='room_id']").val() == "") return;
-        flag = true;
-        $("#uploadPanel").toggle(200);
-    });
+    $(".doc").click(toggleUpload);
     $(".doc").click();
+    //搜索
+    $('.searchRoom').on('keypress', function (event) {if (event.keyCode == 13) {searchChatroom(this);}});
 
 
 });
+/*
+$(document).keydown(function (event) {
+    if (event.keyCode == 13&&!$(this).hasClass("searchRoom")) {
+        $(".send span").click();
+        event.preventDefault();
+    }
+
+});*/

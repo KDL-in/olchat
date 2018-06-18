@@ -1,5 +1,6 @@
 package service;
 
+import dao.ChatroomDao;
 import dao.ChatroomDaoImpl;
 import entity.Chatroom;
 
@@ -16,4 +17,10 @@ public class ChatroomService {
         ChatroomDaoImpl dao = new ChatroomDaoImpl();
         return dao.getRoom(cid);
     }
+
+    public Chatroom search(String keyWord) {
+        ChatroomDao dao = new ChatroomDaoImpl();
+        return dao.find(keyWord);
+    }
+
 }

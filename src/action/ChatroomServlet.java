@@ -3,6 +3,7 @@ package action;
 import entity.ChatRecord;
 import entity.Chatroom;
 import entity.User;
+import entity.UserRoom;
 import service.ChatRecordService;
 import service.ChatroomService;
 import service.UserRoomService;
@@ -75,5 +76,39 @@ public class ChatroomServlet extends BaseServlet {
         service.insertMessage(cr);
         return null;
     }
+
+    //搜索群
+    public String searchChatroom(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        ChatroomService service = new ChatroomService();
+        Chatroom chatroom =service.search(req.getParameter("keyWord"));
+        if (chatroom != null) {
+            req.getSession().setAttribute("existRoom", chatroom);
+            res.getWriter().write("true");
+        }
+        res.getWriter().write("false");
+        return null;
+    }
+    //尝试加入群
+    public String addToChatroom(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        Chatroom existRoom = (Chatroom) req.getSession().getAttribute("existRoom");
+        String psw = req.getParameter("room_psw");
+        req.getSession().setAttribute("existRoom", null);
+        //校对密码
+        if (psw.compareTo(existRoom.getPassword()) != 0) {
+            res.getWriter().write("Wrong Password");
+            return null;
+        }
+        //检测是否已在聊天室中
+        UserRoomService service  = new UserRoomService();
+        int user_id = Integer.parseInt(req.getParameter("user_id"));
+        if (service.isExisted(user_id, existRoom.getId())) {
+            res.getWriter().write("Had been a member!");
+            return null;
+        }
+        service.addToChatroom(user_id,existRoom.getId());
+        res.getWriter().write("Wecome to join " + existRoom.getName());
+        return null;
+    }
+
 
 }

@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </style>
 </head>
 <body>
-
+<input class="testipnut">
 <div id="uploader" class="wu-example">
     <!--用来存放文件信息-->
     <div id="thelist" class="uploader-list"></div>

@@ -18,7 +18,8 @@
     <link rel="stylesheet" href="assets/utils/webuploader/webuploader.css" type="text/css" />
 </head>
 <body id="chat_bg">
-<input class="data" name="room_id" type="hidden" value="${curChatroom.id}">
+<input name="room_id" type="hidden" value="${curChatroom.id}">
+<input name="user_id" type="hidden" value="${curUser.id}">
 <div class="wrapper">
     <div class="sidebar">
         <ul>

@@ -39,4 +39,18 @@ public class ChatroomDaoImpl implements ChatroomDao {
         }
         return null;
     }
+
+    @Override
+    public Chatroom find(String keyWord) {
+        QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+        String sql = "SELECT * FROM chatroom WHERE id = ? or name=?";
+        Chatroom room;
+        try {
+            room = queryRunner.query(sql, new BeanHandler<Chatroom>(Chatroom.class),keyWord,keyWord);
+            return room;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
