@@ -20,6 +20,7 @@
 <body id="chat_bg">
 <input name="room_id" type="hidden" value="${curChatroom.id}">
 <input name="user_id" type="hidden" value="${curUser.id}">
+<input name="user_name" type="hidden" value="${curUser.user_name}">
 <div class="wrapper">
     <div class="sidebar">
         <ul>
@@ -88,8 +89,7 @@
             </div>
 
 
-            <textarea name="" id="txt" cols="30" rows="10">
-            </textarea>
+            <textarea name="" id="txt" cols="30" rows="10"></textarea>
             <input name="type" type="hidden" value="0">
             <input name="target_name" type="hidden" value="">
             <div class="send"><span>发送(S)</span></div>
@@ -106,4 +106,4 @@
 <script type="text/javascript" src="assets/utils/webuploader/webuploader.js"></script>
 <script type="text/javascript" src="assets/utils/webuploader/webuploader.min.js"></script>
 <script type="text/javascript" src="assets/js/upload.js"></script>
-<script type="text/javascript" src="assets/js/amazeui.js"></script>
+<%--<script type="text/javascript" src="assets/js/amazeui.js"></script>--%>

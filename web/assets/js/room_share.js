@@ -54,7 +54,6 @@ $(".send span").click(function(){
  */
 
 
-
 /*custom*/
 
 function showChatRecords() {
@@ -73,6 +72,12 @@ function showChatRecords() {
 
 function sendMessage() {
     if ($("input[name='room_id']").val() == "") return;
+    if($("#txt").val().trim()=="") {
+        $("#txt").val("");
+        $("input[name='type']").val(0);
+        $("input[name='target_name']").val("");
+        return;
+    }
     // alert($("input[name='type']").val());
     $.post("visit?" + new Date().getTime(),
         {
@@ -103,26 +108,26 @@ function toggleUpload() {
 }
 
 function searchChatroom(o) {
-    $.post("visit?"+new Date().getTime(),
-        {"method":"searchChatroom","keyWord":$(".searchRoom").val()},
+    $.post("visit?" + new Date().getTime(),
+        {"method": "searchChatroom", "keyWord": $(".searchRoom").val()},
         function (data) {
-            if(data=="false"){
+            if (data == "false") {
                 alert("NO RESULT");
                 return;
             }
             var psw = prompt("Enter Password", "");
             //搜索正确，加入请求
-            $.post("visit?"+new Date().getTime(),
+            $.post("visit?" + new Date().getTime(),
                 {
-                    "method":"addToChatroom",
-                    "user_id":$("input[name='user_id']").val(),
-                    "room_psw":psw
+                    "method": "addToChatroom",
+                    "user_id": $("input[name='user_id']").val(),
+                    "room_psw": psw
                 },
                 function (data) {
                     alert(data);
                     updateRoomList();
-            });
-    });
+                });
+        });
     $(o).val("");
 }
 
@@ -141,8 +146,19 @@ $(function () {
     $(".doc").click(toggleUpload);
     $(".doc").click();
     //搜索
-    $('.searchRoom').on('keypress', function (event) {if (event.keyCode == 13) {searchChatroom(this);}});
-    //创建群
+    $('.searchRoom').on('keypress', function (event) {
+        if (event.keyCode == 13) {
+            searchChatroom(this);
+        }
+    });
+    //enter 发送
+    $("#txt").keydown(function (e) {
+        if (e.keyCode == 13) {
+            $(".send span").click();
+            e.preventDefault();
+        }
+
+    });
 
 });
 /*

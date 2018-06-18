@@ -104,8 +104,7 @@
             </div>
 
 
-            <textarea name="" id="txt" cols="30" rows="10">
-            </textarea>
+            <textarea name="" id="txt" cols="30" rows="10"></textarea>
             <input name="type" type="hidden" value="0">
             <input name="target_name" type="hidden" value="">
             <div class="send"><span>发送(S)</span></div>
