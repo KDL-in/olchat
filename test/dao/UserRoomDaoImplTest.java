@@ -25,7 +25,7 @@ public class UserRoomDaoImplTest {
         UserRoomDaoImpl dao = new UserRoomDaoImpl();
         UserRoom ur=new UserRoom();
         ur.setUser_id(3);
-        ur.setRoom_id(1);
+        ur.setRoom_id(2);
         System.out.println(dao.insert(ur));
     }
 
@@ -36,5 +36,14 @@ public class UserRoomDaoImplTest {
         ur.setUser_id(2);
         ur.setRoom_id(3);
         System.out.println(dao.select(ur));
+    }
+
+    @Test
+    public void delete() {
+        UserRoomDaoImpl dao = new UserRoomDaoImpl();
+        UserRoom ur=new UserRoom();
+        ur.setUser_id(3);
+        ur.setRoom_id(2);
+        System.out.println(dao.delete(ur));
     }
 }

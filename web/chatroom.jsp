@@ -16,9 +16,12 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/room_share.css"/>
     <link rel="stylesheet" href="assets/utils/webuploader/webuploader.css" type="text/css" />
+    <link rel="stylesheet" href="assets/utils/contextMenu/contextMenu.css"/>
+
 </head>
 <body id="chat_bg">
 <input name="room_id" type="hidden" value="${curChatroom.id}">
+<input name="admin_id" type="hidden" value="${curChatroom.admin_id}">
 <input name="user_id" type="hidden" value="${curUser.id}">
 <input name="user_name" type="hidden" value="${curUser.user_name}">
 <div class="wrapper">
@@ -106,4 +109,5 @@
 <script type="text/javascript" src="assets/utils/webuploader/webuploader.js"></script>
 <script type="text/javascript" src="assets/utils/webuploader/webuploader.min.js"></script>
 <script type="text/javascript" src="assets/js/upload.js"></script>
+<script type="text/javascript" src="assets/utils/contextMenu/contextMenu.js"></script>
 <%--<script type="text/javascript" src="assets/js/amazeui.js"></script>--%>

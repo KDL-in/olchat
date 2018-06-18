@@ -11,4 +11,6 @@ public interface UserRoomDao {
     boolean insert(UserRoom dao);
 
     UserRoom select(UserRoom userRoom);
+
+    boolean delete(UserRoom userRoom);
 }

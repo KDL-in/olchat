@@ -30,7 +30,7 @@ public class UserRoomDaoImpl implements UserRoomDao {
         QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
         String sql = "INSERT INTO `user_room` (user_id,room_id)VALUES (?, ?)";
         try {
-            queryRunner.update(sql, new Object[]{ur.getUser_id(),ur.getRoom_id()});
+            queryRunner.update(sql, new Object[]{ur.getUser_id(), ur.getRoom_id()});
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -44,11 +44,24 @@ public class UserRoomDaoImpl implements UserRoomDao {
         String sql = "SELECT * FROM user_room WHERE user_id= ? and room_id = ?";
         UserRoom ur;
         try {
-            ur = queryRunner.query(sql, new BeanHandler<UserRoom>(UserRoom.class), userRoom.getUser_id(),userRoom.getRoom_id());
+            ur = queryRunner.query(sql, new BeanHandler<UserRoom>(UserRoom.class), userRoom.getUser_id(), userRoom.getRoom_id());
             return ur;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public boolean delete(UserRoom userRoom) {
+        QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+        String sql = "DELETE FROM user_room WHERE user_id= ? and room_id=?";
+        try {
+            queryRunner.update(sql, new Object[]{userRoom.getUser_id(),userRoom.getRoom_id()});
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

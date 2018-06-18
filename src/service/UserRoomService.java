@@ -30,4 +30,11 @@ public class UserRoomService {
         return dao.select(userRoom)!=null;
     }
 
+    public boolean removeUserFrom(String user_id, String room_id) {
+        UserRoom userRoom = new UserRoom();
+        userRoom.setUser_id(Integer.parseInt(user_id));
+        userRoom.setRoom_id(Integer.parseInt(room_id));
+        UserRoomDao dao = new UserRoomDaoImpl();
+        return dao.delete(userRoom);
+    }
 }
