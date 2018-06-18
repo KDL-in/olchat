@@ -62,11 +62,6 @@ function showChatRecords() {
     if (cid == "") return;
     $.post("visit?" + new Date().getTime(), {"method": "showChatRecords", "room_id": cid}, function (data) {
         $(".container").html(data);
-        var heightdis = $(".container").height() - $(".dialouges").height();
-        console.log(heightdis);
-        if (heightdis >= 0) {
-            $(".dialouges").scrollTop(heightdis + 10);
-        }
     });
 }
 
@@ -130,7 +125,13 @@ function searchChatroom(o) {
         });
     $(o).val("");
 }
-
+function scrollBottom() {
+    var heightdis = $(".container").height() - $(".dialouges").height();
+    if (heightdis >= 0) {
+        $(".dialouges").scrollTop(heightdis + 10);
+    }
+}
+var scrollHandler;
 $(function () {
     // 默认选中
     $(".sidebar .active").click();
@@ -138,6 +139,8 @@ $(function () {
     showChatRecords();
     //长时间线程更新当前聊天
     window.setInterval("showChatRecords()", 2000);
+    //长时间线程滚动底部
+    scrollHandler = window.setInterval("scrollBottom()", 1300);
     //发送消息
     $(".send span").click(sendMessage);
     //注销绑定
@@ -157,7 +160,16 @@ $(function () {
             $(".send span").click();
             e.preventDefault();
         }
-
+    });
+    //滚动取消聊天自动滚动
+    console.log("here");
+    $(".dialouges").scroll(function () {
+        console.log("scroll");
+        window.clearInterval(scrollHandler);
+    });
+    $(".dialouges").mouseout(function () {
+        console.log("out");
+        scrollHandler = window.setInterval("scrollBottom()", 1300);
     });
 
 });
