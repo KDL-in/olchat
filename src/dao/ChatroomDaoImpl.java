@@ -16,9 +16,9 @@ public class ChatroomDaoImpl implements ChatroomDao {
     public List<Chatroom> getRooms(String user_id) {
         QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
         String sql = "SELECT chatroom.* FROM chatroom,user_room WHERE chatroom.id=room_id and user_id = ?";
-        List<Chatroom>rooms;
+        List<Chatroom> rooms;
         try {
-            rooms = queryRunner.query(sql, new BeanListHandler<Chatroom>(Chatroom.class),user_id);
+            rooms = queryRunner.query(sql, new BeanListHandler<Chatroom>(Chatroom.class), user_id);
             return rooms;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -32,7 +32,7 @@ public class ChatroomDaoImpl implements ChatroomDao {
         String sql = "SELECT * FROM chatroom WHERE id = ?";
         Chatroom room;
         try {
-            room = queryRunner.query(sql, new BeanHandler<Chatroom>(Chatroom.class),cid);
+            room = queryRunner.query(sql, new BeanHandler<Chatroom>(Chatroom.class), cid);
             return room;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -46,11 +46,25 @@ public class ChatroomDaoImpl implements ChatroomDao {
         String sql = "SELECT * FROM chatroom WHERE id = ? or name=?";
         Chatroom room;
         try {
-            room = queryRunner.query(sql, new BeanHandler<Chatroom>(Chatroom.class),keyWord,keyWord);
+            room = queryRunner.query(sql, new BeanHandler<Chatroom>(Chatroom.class), keyWord, keyWord);
             return room;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public boolean insert(Chatroom chatroom) {
+        QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+        String sql = "INSERT INTO `chatroom`(admin_id,`name`,total_num,password) VALUES " +
+                "(?, ?,?, ?)";
+        try {
+            queryRunner.update(sql, new Object[]{chatroom.getAdmin_id(),chatroom.getName(),chatroom.getTotal_num(),chatroom.getPassword()});
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

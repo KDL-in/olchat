@@ -480,3 +480,6 @@ input {
     height: 3px;
     margin: 5px;
 }
+.wrapper .tabs .search span.plus:hover{
+    background-color: #eeebe8;
+}

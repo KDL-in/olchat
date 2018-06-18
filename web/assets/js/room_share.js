@@ -120,6 +120,7 @@ function searchChatroom(o) {
                 },
                 function (data) {
                     alert(data);
+                    updateRoomList();
             });
     });
     $(o).val("");
@@ -141,7 +142,7 @@ $(function () {
     $(".doc").click();
     //ËÑË÷
     $('.searchRoom').on('keypress', function (event) {if (event.keyCode == 13) {searchChatroom(this);}});
-
+    //´´½¨Èº
 
 });
 /*

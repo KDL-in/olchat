@@ -10,4 +10,6 @@ public interface ChatroomDao {
     Chatroom getRoom(String cid);
 
     Chatroom find(String keyWord);
+
+    boolean insert(Chatroom chatroom);
 }

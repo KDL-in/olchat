@@ -33,7 +33,7 @@
     <!-- 中间的tab栏-->
     <div class="tabs">
         <div class="search">
-            <input type="text" placeholder="搜索"/>
+            <input type="text" class="searchRoom"placeholder="搜索"/>
             <span class="iconfont icon-search"></span>
             <span class="plus">+</span>
         </div>

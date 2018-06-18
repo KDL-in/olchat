@@ -4,6 +4,7 @@ import entity.ChatRecord;
 import entity.Chatroom;
 import entity.User;
 import entity.UserRoom;
+import org.apache.commons.beanutils.BeanUtils;
 import service.ChatRecordService;
 import service.ChatroomService;
 import service.UserRoomService;
@@ -16,8 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 
 public class ChatroomServlet extends BaseServlet {
@@ -107,6 +110,25 @@ public class ChatroomServlet extends BaseServlet {
         }
         service.addToChatroom(user_id,existRoom.getId());
         res.getWriter().write("Wecome to join " + existRoom.getName());
+        return null;
+    }
+
+    //创建群
+    public String createChatroom(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        //创建实体,创建群
+        Chatroom chatroom = new Chatroom();
+        Map<String, String[]> map = req.getParameterMap();
+        try {
+            BeanUtils.populate(chatroom,map);
+            ChatroomService service = new ChatroomService();
+            service.create(chatroom);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+
+
         return null;
     }
 

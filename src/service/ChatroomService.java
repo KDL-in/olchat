@@ -5,6 +5,7 @@ import dao.ChatroomDaoImpl;
 import entity.Chatroom;
 
 import java.util.List;
+import java.util.Map;
 
 public class ChatroomService {
 
@@ -23,4 +24,14 @@ public class ChatroomService {
         return dao.find(keyWord);
     }
 
+
+    public boolean create(Chatroom chatroom) {
+        boolean r = new ChatroomDaoImpl().insert(chatroom);
+        //管理员加入群
+        ChatroomService cs = new ChatroomService();
+        Chatroom fc = cs.search(chatroom.getName());
+        UserRoomService urs = new UserRoomService();
+        urs.addToChatroom(fc.getAdmin_id(), fc.getId());
+        return r;
+    }
 }
