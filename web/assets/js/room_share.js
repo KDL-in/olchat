@@ -60,14 +60,21 @@ function showChatRecords() {
     var cid = $("input[name='room_id']").val();
     // alert(cid);
     if (cid == "") return;
-    $.post("visit?" + new Date().getTime(), {"method": "showChatRecords", "room_id": cid}, function (data) {
-        $(".container").html(data);
-    });
+    $.post("visit?" + new Date().getTime(),
+        {
+            "method": "showChatRecords",
+            "room_id": cid,
+            "startDate":startDate.getTime(),
+            "endDate":endDate.getTime()
+        },
+        function (data) {
+            $(".container").html(data);
+        });
 }
 
 function sendMessage() {
     if ($("input[name='room_id']").val() == "") return;
-    if($("#txt").val().trim()=="") {
+    if ($("#txt").val().trim() == "") {
         $("#txt").val("");
         $("input[name='type']").val(0);
         $("input[name='target_name']").val("");
@@ -125,12 +132,14 @@ function searchChatroom(o) {
         });
     $(o).val("");
 }
+
 function scrollBottom() {
     var heightdis = $(".container").height() - $(".dialouges").height();
     if (heightdis >= 0) {
         $(".dialouges").scrollTop(heightdis + 10);
     }
 }
+
 var scrollHandler;
 $(function () {
     // 默认选中
@@ -140,7 +149,7 @@ $(function () {
     //长时间线程更新当前聊天
     window.setInterval("showChatRecords()", 2000);
     //长时间线程滚动底部
-    scrollHandler = window.setInterval("scrollBottom()", 1300);
+    scrollHandler = window.setInterval("scrollBottom()", 2000);
     //发送消息
     $(".send span").click(sendMessage);
     //注销绑定
@@ -163,14 +172,15 @@ $(function () {
     });
     //滚动取消聊天自动滚动
     console.log("here");
-    $(".dialouges").scroll(function () {
-        console.log("scroll");
+    $(".dialouges").mouseenter(function () {
+        console.log("enter");
         window.clearInterval(scrollHandler);
     });
-    $(".dialouges").mouseout(function () {
-        console.log("out");
-        scrollHandler = window.setInterval("scrollBottom()", 1300);
+    $(".dialouges").mouseleave(function () {
+        console.log("leave");
+        scrollHandler = setInterval("scrollBottom()", 3000);
     });
+
 
 });
 /*
@@ -179,5 +189,59 @@ $(document).keydown(function (event) {
         $(".send span").click();
         event.preventDefault();
     }
-
 });*/
+/*日期选择*/
+var startDate = new Date();
+var endDate = new Date();
+startDate.setTime(startDate.getTime() - 7 * 24 * 60 * 60 * 1000);
+
+$(function () {
+    $('#my-startDate').text(startDate.format("yyyy-M-d"));
+    $('#my-endDate').text(endDate.format("yyyy-M-d"));
+    console.log(startDate);
+    console.log(endDate);
+    var $alert = $('#my-alert');
+    $('#my-start').datepicker().on('changeDate.datepicker.amui', function (event) {
+        if (event.date.valueOf() > endDate.valueOf()) {
+            $alert.find('p').text('The start date should be less than the end date').end().show();
+        } else {
+            $alert.hide();
+            startDate = new Date(event.date);
+            $('#my-startDate').text($('#my-start').data('date'));
+        }
+        /*在这里对时间段进行查询*/
+        $(this).datepicker('close');
+    });
+
+    $('#my-end').datepicker().on('changeDate.datepicker.amui', function (event) {
+        // alert("");
+        if (event.date.valueOf() < startDate.valueOf()) {
+            $alert.find('p').text('结束日期应大于开始日期！').end().show();
+        } else {
+            $alert.hide();
+            endDate = new Date(event.date);
+            $('#my-endDate').text($('#my-end').data('date'));
+        }
+        $(this).datepicker('close');
+    });
+    $("#my-end").datepicker();
+});
+/*日期格式化*/
+Date.prototype.format = function (format) {
+    var o = {
+        "M+": this.getMonth() + 1, //month
+        "d+": this.getDate(),    //day
+        "h+": this.getHours(),   //hour
+        "m+": this.getMinutes(), //minute
+        "s+": this.getSeconds(), //second
+        "q+": Math.floor((this.getMonth() + 3) / 3),  //quarter
+        "S": this.getMilliseconds() //millisecond
+    }
+    if (/(y+)/.test(format)) format = format.replace(RegExp.$1,
+        (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o) if (new RegExp("(" + k + ")").test(format))
+        format = format.replace(RegExp.$1,
+            RegExp.$1.length == 1 ? o[k] :
+                ("00" + o[k]).substr(("" + o[k]).length));
+    return format;
+}

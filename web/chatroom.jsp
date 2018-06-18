@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/font/iconfont.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/room_share.css"/>
-    <link rel="stylesheet" href="assets/utils/webuploader/webuploader.css" type="text/css" />
+    <link rel="stylesheet" href="assets/utils/webuploader/webuploader.css" type="text/css"/>
     <link rel="stylesheet" href="assets/utils/contextMenu/contextMenu.css"/>
 
 </head>
@@ -37,7 +37,7 @@
     <!-- 中间的tab栏-->
     <div class="tabs">
         <div class="search">
-            <input type="text" class="searchRoom"placeholder="搜索"/>
+            <input type="text" class="searchRoom" placeholder="搜索"/>
             <span class="iconfont icon-search"></span>
             <span class="plus">+</span>
         </div>
@@ -58,6 +58,24 @@
             <div class="more">···</div>
         </div>
         <div class="dialouges">
+            <div class="dateseletor">
+                <div class="am-alert am-alert-danger" id="my-alert" style="display: none">
+                    <p>开始日期应小于结束日期！</p>
+                </div>
+                <div class="am-g">
+                    <div class="am-u-sm-6">
+                        <button type="button" class="am-btn am-btn-xs am-btn-primary am-margin-right" id="my-start">
+                            开始日期
+                        </button>
+                        <span id="my-startDate">2014-12-20</span>
+                    </div>
+                    <div class="am-u-sm-6">
+                        <button type="button" class="am-btn am-btn-xs am-btn-primary am-margin-right" id="my-end">结束日期
+                        </button>
+                        <span id="my-endDate">2014-12-25</span>
+                    </div>
+                </div>
+            </div>
             <div class="container">
 
             </div>
@@ -78,7 +96,7 @@
                 <div class="video iconfont icon-shipin"></div>
                 <div class="speak iconfont icon-dianhua"></div>
             </div>
-            <div id="uploadPanel"class="am-panel am-panel-success">
+            <div id="uploadPanel" class="am-panel am-panel-success">
                 <div class="am-panel-hd">
                     选择图片或文件
                 </div>
@@ -110,4 +128,4 @@
 <script type="text/javascript" src="assets/utils/webuploader/webuploader.min.js"></script>
 <script type="text/javascript" src="assets/js/upload.js"></script>
 <script type="text/javascript" src="assets/utils/contextMenu/contextMenu.js"></script>
-<%--<script type="text/javascript" src="assets/js/amazeui.js"></script>--%>
+<script type="text/javascript" src="assets/js/amazeui.js"></script>

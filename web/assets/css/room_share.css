@@ -483,3 +483,15 @@ input {
 .wrapper .tabs .search span.plus:hover{
     background-color: #eeebe8;
 }
+/*历史记录*/
+.historyDiv {
+    position: absolute;
+    width: 540px;
+    background-color: #fff;
+    top: 58px;
+}
+.dateseletor{
+    background-color: #eeeeee;
+    padding: 10px;
+
+}

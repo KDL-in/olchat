@@ -3,7 +3,6 @@ package action;
 import entity.ChatRecord;
 import entity.Chatroom;
 import entity.User;
-import entity.UserRoom;
 import org.apache.commons.beanutils.BeanUtils;
 import service.ChatRecordService;
 import service.ChatroomService;
@@ -11,11 +10,8 @@ import service.UserRoomService;
 import utils.BaseServlet;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Timestamp;
@@ -54,8 +50,11 @@ public class ChatroomServlet extends BaseServlet {
 
     //显示某聊天室聊天记录
     public String showChatRecords(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        String start=req.getParameter("startDate");
+        String end = req.getParameter("endDate");
+        String room_id = req.getParameter("room_id");
         ChatRecordService service = new ChatRecordService();
-        List<ChatRecord> records = service.getRecentlyRecords(req.getParameter("room_id"));
+        List<ChatRecord> records = service.getRecordsBetween(room_id,start,end);
         req.getSession().setAttribute("records", records);
         req.getRequestDispatcher("/showChatRecords.jsp").forward(req, res);
         return null;

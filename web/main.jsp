@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/font/iconfont.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/room_share.css"/>
-    <link rel="stylesheet" href="assets/utils/webuploader/webuploader.css" type="text/css" />
+    <link rel="stylesheet" href="assets/utils/webuploader/webuploader.css" type="text/css"/>
 </head>
 <body id="chat_bg">
 <input name="room_id" type="hidden" value="${curChatroom.id}">
@@ -33,7 +33,7 @@
     <!-- 中间的tab栏-->
     <div class="tabs">
         <div class="search">
-            <input type="text" class ="searchRoom"placeholder="搜索"/>
+            <input type="text" class="searchRoom" placeholder="搜索"/>
             <span class="iconfont icon-search"></span>
             <span class="plus">+</span>
         </div>
@@ -54,34 +54,45 @@
             <div class="more">···</div>
         </div>
         <div class="dialouges">
+            <div class="dateseletor">
+                <div class="am-alert am-alert-danger" id="my-alert" style="display: none">
+                    <p>开始日期应小于结束日期！</p>
+                </div>
+                <div class="am-g">
+                    <div class="am-u-sm-6">
+                        <button type="button" class="am-btn am-btn-xs am-btn-primary am-margin-right" id="my-start">开始日期</button><span id="my-startDate">2014-12-20</span>
+                    </div>
+                    <div class="am-u-sm-6">
+                        <button type="button" class="am-btn am-btn-xs am-btn-primary am-margin-right" id="my-end">结束日期</button><span id="my-endDate">2014-12-25</span>
+                    </div>
+                </div>
+            </div>
             <div class="container">
-   <%--             <div class="person">
-                    <img src="assets/images/1.jpg" alt="">
-                    <div>
-                        <p>测试</p>
-                        <span>sdalksdjlasdjklfjaklsdjflajldfjlajfaaaaaaaaaaaaaaaljkjaldjflkajldjlajlfjaljlfajllajlfjaldjlfajlajldjflajlfjasaafsdalksdjlasdjklfjaklsdjflajldfjlajfaaaaaaaaaaaaaaaljkjaldjflkajldjlajlfjaljlfajllajlfjaldjlfajlajldjflajlfjasaafsdalksdjlasdjklfjaklsdjflajldfjlajfaaaaaaaaaaaaaaaljkjaldjflkajldjlajlfjaljlfajllajlfjaldjlfajlajldjflajlfjasaaf</span>
-                    </div>
+                <%--             <div class="person">
+                                 <img src="assets/images/1.jpg" alt="">
+                                 <div>
+                                     <p>测试</p>
+                                     <span>sdalksdjlasdjklfjaklsdjflajldfjlajfaaaaaaaaaaaaaaaljkjaldjflkajldjlajlfjaljlfajllajlfjaldjlfajlajldjflajlfjasaafsdalksdjlasdjklfjaklsdjflajldfjlajfaaaaaaaaaaaaaaaljkjaldjflkajldjlajlfjaljlfajllajlfjaldjlfajlajldjflajlfjasaafsdalksdjlasdjklfjaklsdjflajldfjlajfaaaaaaaaaaaaaaaljkjaldjflkajldjlajlfjaljlfajllajlfjaldjlfajlajldjflajlfjasaaf</span>
+                                 </div>
 
-                </div>--%>
-        <%--        <div class="self">
-                    <div>
-                        <span><img class ="chatImg"src="uploadDir/img/P60223-171600.jpg"></span>
-                    </div>
-                    <img src="assets/images/1.jpg" alt="">
+                             </div>--%>
+                <%--        <div class="self">
+                            <div>
+                                <span><img class ="chatImg"src="uploadDir/img/P60223-171600.jpg"></span>
+                            </div>
+                            <img src="assets/images/1.jpg" alt="">
 
-                </div>--%>
+                        </div>--%>
 
 
             </div>
-            <!--<div class="person">-->
-            <!--<img src="images/1.jpg" alt=""/>-->
-            <!--<span>好的</span>-->
-            <!--</div>-->
-            <!--<div class="self">-->
-            <!--<span>好的</span>-->
-            <!--<img src="images/1.jpg" alt=""/>-->
-            <!--</div>-->
         </div>
+<%--        <div class="dialouges historyDiv">
+            <div class="container">
+
+            </div>
+
+        </div>--%>
         <div class="message">
             <div class="menu">
                 <div class="smile iconfont icon-biaoqing"></div>
@@ -90,7 +101,7 @@
                 <div class="video iconfont icon-shipin"></div>
                 <div class="speak iconfont icon-dianhua"></div>
             </div>
-            <div id="uploadPanel"class="am-panel am-panel-success">
+            <div id="uploadPanel" class="am-panel am-panel-success">
                 <div class="am-panel-hd">
                     选择图片或文件
                 </div>
