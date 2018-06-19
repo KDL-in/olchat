@@ -134,6 +134,12 @@ public class ChatroomServlet extends BaseServlet {
     public String deleteMember(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         UserRoomService service = new UserRoomService();
         service.removeUserFrom(req.getParameter("user_id"), req.getParameter("room_id"));
+
+        return null;
+    }
+    //被t出群
+    public String exitChatroom(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        req.getSession().setAttribute("curChatroom", null);
         return null;
     }
 

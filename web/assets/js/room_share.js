@@ -59,7 +59,10 @@ $(".send span").click(function(){
 function showChatRecords() {
     var cid = $("input[name='room_id']").val();
     // alert(cid);
-    if (cid == "") return;
+    if (cid == "") {
+        return;
+    }
+
     $.post("visit?" + new Date().getTime(),
         {
             "method": "showChatRecords",
@@ -90,6 +93,7 @@ function sendMessage() {
         },
         function () {
             showChatRecords();
+            scrollBottom();
         });
     $("#txt").val("");
     $("input[name='type']").val(0);
@@ -117,7 +121,7 @@ function searchChatroom(o) {
                 alert("NO RESULT");
                 return;
             }
-            var psw = prompt("Enter Password", "");
+            var psw = prompt("Welcome to enter our chatroom : "+"\nEnter Password", "");
             //搜索正确，加入请求
             $.post("visit?" + new Date().getTime(),
                 {
@@ -136,7 +140,7 @@ function searchChatroom(o) {
 function scrollBottom() {
     var heightdis = $(".container").height() - $(".dialouges").height();
     if (heightdis >= 0) {
-        $(".dialouges").scrollTop(heightdis + 10);
+        $(".dialouges").scrollTop(heightdis+100);
     }
 }
 
@@ -178,7 +182,7 @@ $(function () {
     });
     $(".dialouges").mouseleave(function () {
         console.log("leave");
-        scrollHandler = setInterval("scrollBottom()", 3000);
+        scrollHandler = setInterval("scrollBottom()", 2000);
     });
 
 
@@ -191,8 +195,17 @@ $(document).keydown(function (event) {
     }
 });*/
 /*日期选择*/
-var startDate = new Date();
-var endDate = new Date();
+function getToday() {
+    var today = new Date();
+    today.setDate(today.getDate() + 1);
+    today.setHours(0);
+    today.setMinutes(0);
+    today.setSeconds(0);
+    today.setMilliseconds(-1);
+    return today;
+}
+var startDate = getToday();
+var endDate = getToday();
 startDate.setTime(startDate.getTime() - 7 * 24 * 60 * 60 * 1000);
 
 $(function () {
@@ -220,6 +233,7 @@ $(function () {
         } else {
             $alert.hide();
             endDate = new Date(event.date);
+            endDate.setTime(endDate.getTime()+24 * 60 * 60 * 1000-1)
             $('#my-endDate').text($('#my-end').data('date'));
         }
         $(this).datepicker('close');
