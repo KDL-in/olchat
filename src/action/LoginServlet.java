@@ -5,7 +5,6 @@ import org.apache.commons.beanutils.BeanUtils;
 import service.UserService;
 import utils.BaseServlet;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -33,7 +32,7 @@ public class LoginServlet extends BaseServlet {
             // userService 对象是否存在
             BeanUtils.populate(user, map);
             UserService us = new UserService();
-            User curUser = us.login(user);
+            User curUser = us.getUser(user);
 
             if (curUser == null) {// 失败
                 req.setAttribute("msg", "用户名或密码错误!");
@@ -53,18 +52,6 @@ public class LoginServlet extends BaseServlet {
                     session.invalidate();
                 }
                 req.getSession().setAttribute("curUser", curUser);
-/*                ServletContext application = getServletContext();
-
-                String sourceMessage = "";
-
-                if (null != application.getAttribute("message")) {
-                    sourceMessage = application.getAttribute("message")
-                            .toString();
-                }
-
-                sourceMessage += "系统公告：<font color='gray'>"
-                        + curUser.getUser_name() + "走进了聊天室！</font><br>";
-                application.setAttribute("message", sourceMessage);*/
                 resp.sendRedirect(req.getContextPath() + "/main.jsp");
                 return null;
             }
@@ -73,6 +60,7 @@ public class LoginServlet extends BaseServlet {
         }
         return null;
     }
+
     /**
      *  退出聊天室
      */
@@ -80,6 +68,20 @@ public class LoginServlet extends BaseServlet {
         HttpSession session = request.getSession();
         session.invalidate();
         response.sendRedirect(request.getContextPath()+"/login.jsp");
+        return null;
+    }
+    /**
+     *  注册
+     */
+    public String register(HttpServletRequest request,HttpServletResponse response) throws IOException{
+        UserService service = new UserService();
+        boolean suc = service.register(request.getParameter("user_name"), request.getParameter("password"));
+        if (suc) {
+            login(request, response);
+        } else {
+            request.setAttribute("msg", "注册失败");
+            return "/register.jsp";
+        }
         return null;
     }
 }

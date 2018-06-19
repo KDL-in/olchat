@@ -1,0 +1,79 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: KundaLin
+  Date: 18/6/19
+  Time: 11:36
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link rel="stylesheet" href="assets/css/amazeui.css"/>
+    <link rel="stylesheet" href="assets/css/login.css"/>
+    <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+<body class="register-container">
+<div class="warning-span">${ msg }</div>
+<div class="layout">
+    <!--===========layout-container================-->
+    <div class="register-box">
+        <form action="login" class="am-form" data-am-validator>
+            <input type="hidden" name="method" value="register">
+            <fieldset>
+                <legend>注册用户<p class="register-info">账号可以使用手机或者邮箱注册，但是仔细核对后，填入正确信息。</p></legend>
+
+                <div class="am-form-group">
+                    <div class="am-g">
+                        <div class="am-u-md-2 am-padding-0 am-text-right">
+                            <label for="doc-vld-name-2" class="register-name">账号</label>
+                        </div>
+                        <div class="am-u-md-10">
+                            <input type="text" name="user_name" id="doc-vld-name-2" minlength="3"
+                                   placeholder="输入用户名（至少 3 个字符）" required/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <div class="am-g">
+                        <div class="am-u-md-2 am-padding-0 am-text-right">
+                            <label for="doc-vld-pwd-1" class="register-pwd">密码</label>
+                        </div>
+                        <div class="am-u-md-10">
+                            <input type="password" name="password" id="doc-vld-pwd-1" placeholder="3 位密码" pattern="^\d{3}$"
+                                   required/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <div class="am-g">
+                        <div class="am-u-md-2 am-padding-0 am-text-right">
+                            <label for="doc-vld-pwd-2">确认密码</label>
+                        </div>
+                        <div class="am-u-md-10">
+                            <input type="password" id="doc-vld-pwd-2" placeholder="请与上面输入的值一致"
+                                   data-equal-to="#doc-vld-pwd-1" required/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="am-g">
+                    <div class="am-u-md-10">
+                        <button class="am-btn am-btn-secondary" type="submit">注册</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+</div>
+
+
+<script src="assets/js/jquery-2.1.0.js" charset="utf-8"></script>
+<script src="assets/js/amazeui.js" charset="utf-8"></script>
+</body>
+
+</html>

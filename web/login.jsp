@@ -21,7 +21,7 @@
 <div class="warning-span">${ msg }</div>
 <div class="login-box">
     <div class="logo-img">
-        <img src="${pageContext.request.contextPath }/assets/images/logo2_03.png" alt=""/>
+        <img src="assets/images/logo2_03.png" alt=""/>
     </div>
     <form class="am-form" action="${pageContext.request.contextPath }/login" method="post" data-am-validator>
         <input type="hidden" name="method" value="login">
@@ -29,12 +29,15 @@
             <label for="doc-vld-name-2"><i class="am-icon-user"></i></label>
             <input type="text" id="doc-vld-name-2" name="user_name" minlength="3" placeholder="输入用户名（至少 3 个字符）" required/>
         </div>
-
         <div class="am-form-group">
             <label for="doc-vld-psw"><i class="am-icon-key"></i></label>
             <input type="password" id="doc-vld-psw" name="password" placeholder="输入密码" required/>
         </div>
-        <button class="am-btn am-btn-secondary" type="submit">登录</button>
+        <div class="am-g">
+            <div class="am-u-sm-6"><button class="am-btn am-btn-secondary" type="submit">登录</button></div>
+            <div class="am-u-sm-6"><a class="am-btn am-btn-secondary" href="register.jsp">注册</a></div>
+
+        </div>
     </form>
 </div>
 </body>

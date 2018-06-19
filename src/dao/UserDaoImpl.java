@@ -7,7 +7,7 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import utils.JDBCUtils;
 
-public class UserDaoImple implements UserDao {
+public class UserDaoImpl implements UserDao {
 
 	public User login(User user) {
 		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
@@ -20,6 +20,19 @@ public class UserDaoImple implements UserDao {
 			throw new RuntimeException("用户登录失败!");
 		}
 		return existUser;
+	}
+
+	@Override
+	public boolean insert(User user) {
+		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+		String sql = "INSERT INTO `user` (user_name,password)VALUES (?, ?)";
+		try {
+			queryRunner.update(sql, new Object[]{user.getUser_name(), user.getPassword()});
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }
