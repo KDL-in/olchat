@@ -17,6 +17,7 @@
     margin: auto;
     color: green;
 }
+
 /*chat room*/
 .wrapper > .tabs > .talk > ul > li:hover {
     background-color: #d1cfce;
@@ -26,21 +27,47 @@
     background-color: #e4e5e6;
     cursor: pointer;
 }
-.wrapper .talk a>img{
+
+.wrapper .talk a > img {
     width: 34px;
 }
-.wrapper>.tabs>.talk{
+
+.wrapper > .tabs > .talk {
     background-color: #e4e5e6;
 }
-.onlineMember{
+
+.onlineMember {
     color: black;
 }
-.offlineMember{
+
+.offlineMember {
     color: #a9abb0;
 }
+
 /*注销按钮*/
 .offline {
     width: 60px;
     height: 28px;
     line-height: 28px;
 }
+
+.logo-img img {
+    width: 290px;
+    height: 250px;
+}
+
+/*图片相关*/
+.login-container .login-box .logo-img {
+    width: 159px;
+    margin: auto 30px;
+}
+.wrapper .talk a>img {
+    width: 40px;
+    height: 40px;
+}
+.wrapper .sidebar ul li:first-child img {
+    /* width: 34px; */
+    width: 34px;
+    height: 34px;
+}
+

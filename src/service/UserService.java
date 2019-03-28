@@ -13,10 +13,11 @@ public class UserService {
     }
 
 
-    public boolean register(String user_name, String password) {
+    public boolean register(String user_name, String password, String img_url) {
         User user = new User();
         user.setUser_name(user_name);
         user.setPassword(password);
+        user.setImg_url(img_url);
         User r = getUser(user);
         if(r!=null) return false;
         UserDao dao = new UserDaoImpl();

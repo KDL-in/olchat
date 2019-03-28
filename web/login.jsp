@@ -21,7 +21,7 @@
 <div class="warning-span">${ msg }</div>
 <div class="login-box">
     <div class="logo-img">
-        <img src="assets/images/logo2_03.png" alt=""/>
+        <img src="assets/images/logo2.png" alt=""/>
     </div>
     <form class="am-form" action="${pageContext.request.contextPath }/login" method="post" data-am-validator>
         <input type="hidden" name="method" value="login">

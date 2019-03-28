@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Random;
 
 
 public class LoginServlet extends BaseServlet {
@@ -75,7 +76,8 @@ public class LoginServlet extends BaseServlet {
      */
     public String register(HttpServletRequest request,HttpServletResponse response) throws IOException{
         UserService service = new UserService();
-        boolean suc = service.register(request.getParameter("user_name"), request.getParameter("password"));
+        String img_url = String.format("assets/images/header/%d.png", new Random().nextInt(30) + 1);
+        boolean suc = service.register(request.getParameter("user_name"), request.getParameter("password"),img_url);
         if (suc) {
             login(request, response);
         } else {

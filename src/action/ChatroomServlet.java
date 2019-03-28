@@ -27,7 +27,7 @@ public class ChatroomServlet extends BaseServlet {
         List<User> members = service.getMembers(cid);
         req.getSession().setAttribute("members", members);
         return null;
-    }
+}
 
     //显示已加入聊天室
     public String showRoomList(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {

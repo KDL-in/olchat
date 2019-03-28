@@ -20,7 +20,9 @@
             </c:otherwise>
         </c:choose>
         <input name="cur_user_id" type="hidden" value="${user.id}">
-        <a href="#"><img src="${pageContext.request.contextPath}/assets/images/1.jpg" alt=""/></a>
+        <a href="#">
+            <img class="am-radius" src="${user.img_url}"/>
+        </a>
         <div class="content">
             <h3>${user.user_name}</h3>
             <p>：[动画表情]</p>

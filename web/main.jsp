@@ -24,7 +24,7 @@
 <div class="wrapper">
     <div class="sidebar">
         <ul>
-            <li><img src="${pageContext.request.contextPath}/assets/images/1.jpg" alt=""/></li>
+            <li><img class="am-circle" src="${curUser.img_url}"/></li>
             <li class="iconfont icon-liaotian1 lt"></li>
             <li class="iconfont active icon-tongxunlu txl"></li>
             <li class="iconfont icon-shoucang sc"></li>

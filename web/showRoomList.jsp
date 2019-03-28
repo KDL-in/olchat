@@ -10,10 +10,15 @@
 <html>
 <body>
 <ul>
+    <% int i = 0;%>
     <c:forEach var="room" items="${roomList}">
+        <%
+            String img_url = String.format("assets/images/chatroom_%d.png", i++ % 3 + 1);
+//            System.out.println(img_url);
+        %>
         <li>
             <input name="cid" type="hidden" value="${room.id}">
-            <a href="#"><img src="${pageContext.request.contextPath}/assets/images/1.png" alt=""/></a>
+            <a href="#"><img class="am-radius" src="<%=img_url%>" alt=""/></a>
             <div class="content">
                 <h3>${room.name}</h3>
                 <p>：[动画表情]</p>

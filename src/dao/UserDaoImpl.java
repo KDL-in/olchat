@@ -25,9 +25,9 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public boolean insert(User user) {
 		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
-		String sql = "INSERT INTO `user` (user_name,password)VALUES (?, ?)";
+		String sql = "INSERT INTO `user` (user_name,password,img_url)VALUES (?, ?, ?)";
 		try {
-			queryRunner.update(sql, new Object[]{user.getUser_name(), user.getPassword()});
+			queryRunner.update(sql, new Object[]{user.getUser_name(), user.getPassword(),user.getImg_url()});
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();

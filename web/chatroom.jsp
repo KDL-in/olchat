@@ -11,7 +11,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>高仿微信</title>
+    <title>聊天室</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/amazeui.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/font/iconfont.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
@@ -28,7 +28,7 @@
 <div class="wrapper">
     <div class="sidebar">
         <ul>
-            <li><img src="${pageContext.request.contextPath}/assets/images/1.jpg" alt=""/></li>
+            <li><img class="am-circle" src="${curUser.img_url}"/></li>
             <li class="iconfont active icon-liaotian1 lt"></li>
             <li class="iconfont icon-tongxunlu txl"></li>
             <li class="iconfont icon-shoucang sc"></li>
