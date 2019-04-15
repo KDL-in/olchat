@@ -1,6 +1,7 @@
 /**
  * Created by Administrator on 2017/6/29.
  */
+//todo 长时进程8000
 //最左侧sidebar切换时的变化
 $(".sidebar .lt").on("click", function () {
     $(this).addClass("icon-liaotian").removeClass("icon-liaotian1");
@@ -151,9 +152,9 @@ $(function () {
     //进入加载最近聊天记录
     showChatRecords();
     //长时间线程更新当前聊天
-    window.setInterval("showChatRecords()", 2000);
+    window.setInterval("showChatRecords()", 8000);
     //长时间线程滚动底部
-    scrollHandler = window.setInterval("scrollBottom()", 2000);
+    scrollHandler = window.setInterval("scrollBottom()", 8000);
     //发送消息
     $(".send span").click(sendMessage);
     //注销绑定
@@ -182,7 +183,7 @@ $(function () {
     });
     $(".dialouges").mouseleave(function () {
         console.log("leave");
-        scrollHandler = setInterval("scrollBottom()", 2000);
+        scrollHandler = setInterval("scrollBottom()", 8000);
     });
 
 
