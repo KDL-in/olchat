@@ -1,10 +1,13 @@
 package dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import entity.User;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 import utils.JDBCUtils;
 
 public class UserDaoImpl implements UserDao {
@@ -33,6 +36,19 @@ public class UserDaoImpl implements UserDao {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	@Override
+	public List<User> listUsers() {
+		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+		String sql = "select * from user";
+		List<User> users = null;
+		try {
+			users = queryRunner.query(sql, new BeanListHandler<>(User.class));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return users;
 	}
 
 }
