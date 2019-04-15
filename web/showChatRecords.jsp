@@ -35,7 +35,7 @@
                         <div>
                             <span>${record.content}</span>
                         </div>
-                        <img src="${imgBuf[record.user_id]}" alt="">
+                        <img src="${usersBuf[record.user_id].img_url}" alt="">
                     </div>
                 </c:otherwise>
             </c:choose>
@@ -45,9 +45,9 @@
             <c:choose>
                 <c:when test="${record.type==1}"><%--内容为图片--%>
                     <div class="person">
-                        <img src="${imgBuf[record.user_id]}" alt="">
+                        <img src="${usersBuf[record.user_id].img_url}" alt="">
                         <div>
-                            <p>${record.user}</p>
+                            <p>${usersBuf[record.user_id].nickname!=""?usersBuf[record.user_id].nickname:record.user}</p>
                             <span><img class="chatImg" src="${record.content}"></span>
                         </div>
 
@@ -55,9 +55,10 @@
                 </c:when>
                 <c:otherwise><%--内容为文字--%>
                     <div class="person">
-                        <img src="${imgBuf[record.user_id]}" alt="">
+                        <img src="${usersBuf[record.user_id].img_url}" alt="">
                         <div>
-                            <p>${record.user}</p>
+                            <%--todo 也许需要隐藏一个真实名--%>
+                            <p>${usersBuf[record.user_id].nickname!=""?usersBuf[record.user_id].nickname:record.user}</p>
                             <span>${record.content}</span>
                         </div>
 

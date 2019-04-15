@@ -22,17 +22,17 @@ public class MyServletContextListener implements ServletContextListener{
 		sce.getServletContext().setAttribute("userMap", userMap);
 		//维护用户列表
 		List<User> users = new UserDaoImpl().listUsers();
-		Map<Integer, String> imgBuf = new HashMap<>();
+		Map<Integer,User> usersBuf = new HashMap<>();
 		for (User u :
 				users) {
 //			userBuf.put(u.getId(), u);
-			imgBuf.put(u.getId(), u.getImg_url());
+			usersBuf.put(u.getId(), u);
 		}
-		sce.getServletContext().setAttribute("imgBuf",imgBuf);
+		sce.getServletContext().setAttribute("usersBuf",usersBuf);
 	}
-	
+
 	public void contextDestroyed(ServletContextEvent sce) {
-		
+
 	}
 
 

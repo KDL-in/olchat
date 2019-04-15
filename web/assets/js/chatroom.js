@@ -33,12 +33,12 @@ function showOnline() {//重新加载在线学生
         $(".talk").html(data);
         isExistedInThisChat = false;
         $(".talk>ul>li").each(function (key, li) {
-            if ($(li).find(".content>h3").html() == $("input[name='user_name']").val()) {
+            if ($(li).find(".content>input").val() == $("input[name='user_name']").val()) {
                 isExistedInThisChat = true;
             }
             //绑定头像点击事件
             $(li).click(function () {//点击设置 @ 对象
-                var tar = $(li).find(".content>h3").html();
+                var tar = $(li).find(".content>input").val();
                 if (tar == $("input[name='user_name']").val()) {
                     return;
                 }

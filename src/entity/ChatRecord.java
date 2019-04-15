@@ -9,6 +9,8 @@ public class ChatRecord {
     private int room_id;
     private int type;
     private String target_name;
+    private int user_id;
+    private String user;
 
     public int getUser_id() {
         return user_id;
@@ -25,9 +27,6 @@ public class ChatRecord {
     public void setUser(String user) {
         this.user = user;
     }
-
-    private int user_id;
-    private String user;
 
     @Override
     public String toString() {

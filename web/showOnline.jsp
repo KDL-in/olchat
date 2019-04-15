@@ -24,7 +24,9 @@
             <img class="am-radius" src="${user.img_url}"/>
         </a>
         <div class="content">
-            <h3>${user.user_name}</h3>
+            <%--<h3>${user.user_name}</h3>--%>
+            <h3>${(user.nickname=="")?user.user_name:user.nickname}</h3>
+            <input type="hidden" value="${user.user_name}">
             <p>：[动画表情]</p>
         </div>
         </li>
