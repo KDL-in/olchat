@@ -11,4 +11,6 @@ public interface UserDao {
     boolean insert(User user);
 
     List<User> listUsers();
+
+    User select(int id);
 }

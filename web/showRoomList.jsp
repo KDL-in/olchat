@@ -16,11 +16,22 @@
             String img_url = String.format("assets/images/chatroom_%d.png", i++ % 3 + 1);
 //            System.out.println(img_url);
         %>
-        <li>
+        <li class="room-li">
             <input name="cid" type="hidden" value="${room.id}">
             <a href="#"><img class="am-radius" src="<%=img_url%>" alt=""/></a>
             <div class="content">
                 <h3>${room.name}</h3>
+                <%--todo z最近聊天记录--%>
+                <p>：[动画表情]</p>
+            </div>
+        </li>
+    </c:forEach>
+    <c:forEach var="friend" items="${friends}">
+        <li class="friend-li">
+            <input name="uid" type="hidden" value="${friend.id}">
+            <a href="#"><img  src="${friend.img_url}" alt=""/></a>
+            <div class="content">
+                <h3>${(friend.nickname=="")?friend.user_name:friend.nickname}</h3>
                 <p>：[动画表情]</p>
             </div>
         </li>

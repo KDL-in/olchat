@@ -23,4 +23,8 @@ public class UserService {
         UserDao dao = new UserDaoImpl();
         return dao.insert(user);
     }
+
+    public User getUser(int id) {
+        return new UserDaoImpl().select(id);
+    }
 }

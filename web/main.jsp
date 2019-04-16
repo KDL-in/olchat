@@ -51,7 +51,8 @@
 
         </div>
         <div class="name">
-            <div class="user">${curChatroom==null?"欢迎登陆":curChatroom.name}</div>
+            <div class="user">${curSession==null||curSession==""?"欢迎登陆":curSession}</div>
+            <%--todo显示最近聊天内容--%>
             <div class="more">···</div>
         </div>
         <div class="dialouges">

@@ -27,7 +27,7 @@
                         <div>
                             <span><img class="chatImg" src="${record.content}"></span>
                         </div>
-                        <img src="${imgBuf[record.user_id]}" alt="">
+                        <img src="${usersBuf[record.user_id].img_url}" alt="">
                     </div>
                 </c:when>
                 <c:otherwise><%--内容为文字--%>
@@ -50,7 +50,6 @@
                             <p>${usersBuf[record.user_id].nickname!=""?usersBuf[record.user_id].nickname:record.user}</p>
                             <span><img class="chatImg" src="${record.content}"></span>
                         </div>
-
                     </div>
                 </c:when>
                 <c:otherwise><%--内容为文字--%>
@@ -61,7 +60,6 @@
                             <p>${usersBuf[record.user_id].nickname!=""?usersBuf[record.user_id].nickname:record.user}</p>
                             <span>${record.content}</span>
                         </div>
-
                     </div>
                 </c:otherwise>
             </c:choose>

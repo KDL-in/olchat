@@ -24,7 +24,18 @@ function deleteMember(deId) {
             showOnline();
         });
 }
-
+function addNewFriend(id1, id2) {
+    $.post("visit?"+new Date().getTime(),
+        {
+            "method": "addNewFriend",
+            "user1_id":id1,
+            "user2_id":id2,
+        },
+        function (data) {
+            alert(data);
+        }
+        );
+}
 var isExistedInThisChat = true;
 
 function showOnline() {//重新加载在线学生
@@ -49,20 +60,27 @@ function showOnline() {//重新加载在线学生
             //右键菜单
             if (!isAdmin) return;
             $(li).contextmenu(function (e) {
-                var deId = $(this).find("input[name='cur_user_id']").val();
+                var selectId = $(this).find("input[name='cur_user_id']").val();
+                var myId = $("input[name='user_id']").val();
                 var menu = [
                     // '选择操作', //合理的html或纯文字
                     // 'menu2',
-                    '|', //分隔符
+                    // '|', //分隔符
                     [
                         '移除用户', //title
                         function (dom) {
                             // console.log(dom);
-                            deleteMember(deId)
+                            deleteMember(selectId)
                         } // 点击菜单项的回调
                     ],
+                    [
+                        '添加好友',
+                        function (data) {
+                            // addAsFriend();
+                            addNewFriend(myId, selectId);
+                        }
+                    ]
                 ];
-
                 // alert(test);
                 ContextMenu.render(e, menu, this, "light"); //开始渲染
             });
@@ -79,7 +97,7 @@ function showOnline() {//重新加载在线学生
 
 function prepareIntervalCall() {
     window.setInterval("updateData()", 5000);
-    window.setInterval("showOnline()", 3000);
+window.setInterval("showOnline()", 3000);
 }
 
 var isAdmin = false;

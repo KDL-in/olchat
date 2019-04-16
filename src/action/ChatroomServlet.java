@@ -1,18 +1,16 @@
 package action;
 
+import dao.UserDaoImpl;
 import entity.ChatRecord;
 import entity.Chatroom;
 import entity.User;
 import org.apache.commons.beanutils.BeanUtils;
-import service.ChatRecordService;
-import service.ChatroomService;
-import service.UserRoomService;
+import service.*;
 import utils.BaseServlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Timestamp;
@@ -34,18 +32,35 @@ public class ChatroomServlet extends BaseServlet {
     public String showRoomList(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         //用service获得所有聊天室
         ChatroomService service = new ChatroomService();
+        int user_id = Integer.parseInt(req.getParameter("user_id"));
         List<Chatroom> rooms = service.getRooms(req.getParameter("user_id"));
         req.getSession().setAttribute("roomList", rooms);
+        FriendshipService friendshipService = new FriendshipService();
+        List<User> friends = friendshipService.listFriends(user_id);
+        req.getSession().setAttribute("friends", friends);
         req.getRequestDispatcher("/showRoomList.jsp").forward(req, res);
         return null;
     }
 
     //主页点击进入相应聊天室
     public String enterChatroom(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-        ChatroomService service = new ChatroomService();
-        Chatroom room = service.getRoom(req.getParameter("room_id"));
-        req.getSession().setAttribute("curChatroom", room);
-        res.sendRedirect(req.getContextPath() + "/chatroom.jsp");
+        int type = Integer.parseInt(req.getParameter("type"));
+        //点击聊天室
+        if (type == 0) {
+            ChatroomService service = new ChatroomService();
+            Chatroom room = service.getRoom(req.getParameter("room_id"));
+            req.getSession().setAttribute("curChatroom", room);
+            req.getSession().setAttribute("curSession",room.getName());
+            res.sendRedirect(req.getContextPath() + "/chatroom.jsp");
+            return null;
+        }
+        //点击好友
+        int id = Integer.parseInt(req.getParameter("user_id"));
+        User u = new UserService().getUser(id);
+        String curSession = (u.getNickname() == null || u.getNickname().equals("")) ? u.getUser_name() : u.getNickname();
+        System.out.println(u);
+        req.getSession().setAttribute("curSession",curSession );
+        res.getWriter().println(curSession);
         return null;
     }
 
@@ -141,6 +156,14 @@ public class ChatroomServlet extends BaseServlet {
     //被t出群
     public String exitChatroom(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         req.getSession().setAttribute("curChatroom", null);
+        return null;
+    }
+
+    //添加新好友
+    public String addNewFriend(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        int user1_id = Integer.parseInt(req.getParameter("user1_id")), user2_id = Integer.parseInt(req.getParameter("user2_id"));
+        FriendshipService friendshipService = new FriendshipService();
+        res.getWriter().println(friendshipService.makeFriend(user1_id, user2_id)?"添加成功":"添加失败");
         return null;
     }
 

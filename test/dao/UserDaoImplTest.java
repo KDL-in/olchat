@@ -14,4 +14,9 @@ public class UserDaoImplTest {
         List<User> users = new UserDaoImpl().listUsers();
         System.out.println();
     }
+
+    @Test
+    public void select() {
+        System.out.println(new UserDaoImpl().select(9));
+    }
 }
