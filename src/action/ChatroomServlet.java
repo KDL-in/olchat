@@ -1,5 +1,6 @@
 package action;
 
+import com.sun.glass.ui.Size;
 import dao.UserDaoImpl;
 import entity.ChatRecord;
 import entity.Chatroom;
@@ -44,9 +45,9 @@ public class ChatroomServlet extends BaseServlet {
 
     //主页点击进入相应聊天室
     public String enterChatroom(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-        int type = Integer.parseInt(req.getParameter("type"));
+        int sendTo = Integer.parseInt(req.getParameter("sendTo"));
         //点击聊天室
-        if (type == 0) {
+        if (sendTo == 0) {
             ChatroomService service = new ChatroomService();
             Chatroom room = service.getRoom(req.getParameter("room_id"));
             req.getSession().setAttribute("curChatroom", room);
@@ -55,11 +56,13 @@ public class ChatroomServlet extends BaseServlet {
             return null;
         }
         //点击好友
-        int id = Integer.parseInt(req.getParameter("user_id"));
-        User u = new UserService().getUser(id);
-        String curSession = (u.getNickname() == null || u.getNickname().equals("")) ? u.getUser_name() : u.getNickname();
-        System.out.println(u);
+        int id = Integer.parseInt(req.getParameter("friend_id"));
+        User friend = new UserService().getUser(id);
+        String curSession = (friend.getNickname() == null || friend.getNickname().equals("")) ? friend.getUser_name() : friend.getNickname();
+//        System.out.println(u);
         req.getSession().setAttribute("curSession",curSession );
+        req.getSession().setAttribute("friend_id", friend.getId());
+        req.getSession().setAttribute("user_id", req.getParameter("user_id"));
         res.getWriter().println(curSession);
         return null;
     }
@@ -68,9 +71,19 @@ public class ChatroomServlet extends BaseServlet {
     public String showChatRecords(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         String start=req.getParameter("startDate");
         String end = req.getParameter("endDate");
-        String room_id = req.getParameter("room_id");
+        int type = Integer.parseInt(req.getParameter("type"));
+        List<ChatRecord> records;
         ChatRecordService service = new ChatRecordService();
-        List<ChatRecord> records = service.getRecordsBetween(room_id,start,end);
+        if (type < 5) {
+            String room_id = req.getParameter("room_id");
+            records = service.getRecordsBetween(room_id, start, end);
+        } else {
+            int user_id = Integer.parseInt(req.getSession().getAttribute("user_id").toString());
+            int friend_id = Integer.parseInt(req.getSession().getAttribute("friend_id").toString());
+            records = service.getRecordsBetween(user_id, friend_id, start, end);
+//            System.out.println("records:"+ records.size());
+        }
+
         req.getSession().setAttribute("records", records);
         req.getRequestDispatcher("/showChatRecords.jsp").forward(req, res);
         return null;
@@ -78,17 +91,22 @@ public class ChatroomServlet extends BaseServlet {
 
     //发送消息，插入数据库
     public String sendMessage(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        int type = Integer.parseInt(req.getParameter("type"));//消息发送类型，0 1代表发给聊天室 5 6代表发给好友
         //构造实体
-        Chatroom c= (Chatroom) req.getSession().getAttribute("curChatroom");
         User u= (User) req.getSession().getAttribute("curUser");
         ChatRecord cr = new ChatRecord();
         cr.setContent(req.getParameter("txt"));
         cr.setTime(new Timestamp(System.currentTimeMillis()));
-        cr.setRoom_id(c.getId());
         cr.setType(Integer.parseInt(req.getParameter("type")));
-        cr.setTarget_name(req.getParameter("target_name"));
         cr.setUser_id(u.getId());
         cr.setUser(u.getUser_name());
+        cr.setTarget_name(req.getParameter("target_name"));
+        if (type < 5) {//发给聊天室
+            Chatroom c = (Chatroom) req.getSession().getAttribute("curChatroom");
+            cr.setRoom_id(c.getId());
+        } else {//发给好友
+            cr.setFriend_id(Integer.parseInt(req.getSession().getAttribute("friend_id").toString()));
+        }
         //用service插入数据
         ChatRecordService service = new ChatRecordService();
         service.insertMessage(cr);

@@ -19,4 +19,10 @@ public class ChatRecordService {
         ChatRecordDao dao = new ChatRecordDaoImpl();
         return dao.insert(cr);
     }
+
+    public List<ChatRecord> getRecordsBetween(int user_id, int friend_id, String start, String end) {
+        ChatRecordDao dao = new ChatRecordDaoImpl();
+        long s = Long.parseLong(start), e = Long.parseLong(end);
+        return dao.getRecordsBetween(user_id,friend_id,new Timestamp(s),new Timestamp(e));
+    }
 }

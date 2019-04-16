@@ -4,7 +4,7 @@ function updateRoomList() {
         $(".talk").html(data);
         $(".talk>ul>li.room-li").each(function (key, li) {
             $(li).click(function () {
-                window.location.href = "visit?type=0&method=enterChatroom&room_id=" + $(this).children("input").val();
+                window.location.href = "visit?sendTo=0&method=enterChatroom&room_id=" + $(this).children("input").val();
             });
         });
         //好友点击事件
@@ -12,12 +12,16 @@ function updateRoomList() {
             $(li).click(function () {
                 $.post("visit?"+new Date().getTime(),
                     {
-                        "type": 1,
+                        "sendTo": 1,
                         "method": "enterChatroom",
-                        "user_id": $(li).children("input[name='uid']").val()
+                        "user_id":$("input[name='user_id']").val(),
+                        "friend_id": $(li).children("input.friend_id").val()
                     },
                     function (data) {
                         $("div div div.user").html(data);
+                        $("div div input[name='type']").val(5);
+                        showChatRecords();
+                        scrollBottom();
                     }
                 );
             });

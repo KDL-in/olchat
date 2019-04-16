@@ -28,7 +28,7 @@
     </c:forEach>
     <c:forEach var="friend" items="${friends}">
         <li class="friend-li">
-            <input name="uid" type="hidden" value="${friend.id}">
+            <input class="friend_id" type="hidden" value="${friend.id}">
             <a href="#"><img  src="${friend.img_url}" alt=""/></a>
             <div class="content">
                 <h3>${(friend.nickname=="")?friend.user_name:friend.nickname}</h3>

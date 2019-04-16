@@ -27,10 +27,10 @@ public class ChatRecordDaoImpl implements ChatRecordDao {
     @Override
     public boolean insert(ChatRecord cr) {
         QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
-        String sql = "INSERT INTO `chat_record` (content,time,room_id,type,target_name,user_id,user)VALUES " +
-                "(?, ?, ?,?, ?, ?, ?)";
+        String sql = "INSERT INTO `chat_record` (content,time,room_id,type,target_name,user_id,user,friend_id)VALUES " +
+                "(?, ?, ?,?, ?, ?, ?,?)";
         try {
-            queryRunner.update(sql, new Object[]{cr.getContent(), cr.getTime(), cr.getRoom_id(), cr.getType(), cr.getTarget_name(), cr.getUser_id(), cr.getUser()});
+            queryRunner.update(sql, new Object[]{cr.getContent(), cr.getTime(), cr.getRoom_id(), cr.getType(), cr.getTarget_name(), cr.getUser_id(), cr.getUser(),cr.getFriend_id()});
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -45,6 +45,21 @@ public class ChatRecordDaoImpl implements ChatRecordDao {
         List<ChatRecord> records;
         try {
             records = queryRunner.query(sql, new BeanListHandler<ChatRecord>(ChatRecord.class), start,end, room_id);
+            return records;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public List<ChatRecord> getRecordsBetween(int user_id, int friend_id, Timestamp start, Timestamp end) {
+        QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+        String sql = "SELECT * FROM  chat_record  where `time`>= ? and `time`<= ? and ((user_id=? and friend_id=?) or (friend_id=? and user_id = ? ))";
+        List<ChatRecord> records;
+        try {
+            records = queryRunner.query(sql, new BeanListHandler<ChatRecord>(ChatRecord.class), start,end, user_id,friend_id,user_id,friend_id);
+            System.out.println(user_id+" "+friend_id+"size: "+records.size());
             return records;
         } catch (SQLException e) {
             e.printStackTrace();

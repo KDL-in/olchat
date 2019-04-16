@@ -58,16 +58,19 @@ $(".send span").click(function(){
 /*custom*/
 
 function showChatRecords() {
-    var cid = $("input[name='room_id']").val();
+    var room_id = $("input[name='room_id']").val();
+    var type = $("input[name='type']").val();
+    // alert(type);
     // alert(cid);
-    if (cid == "") {
+    if (room_id == ""&&type<5) {
         return;
     }
 
     $.post("visit?" + new Date().getTime(),
         {
             "method": "showChatRecords",
-            "room_id": cid,
+            "room_id": room_id,
+            "type": type,
             "startDate":startDate.getTime(),
             "endDate":endDate.getTime()
         },
@@ -77,10 +80,11 @@ function showChatRecords() {
 }
 
 function sendMessage() {
-    if ($("input[name='room_id']").val() == "") return;
+    var type = $("input[name='type']").val();
+    if ($("input[name='room_id']").val() == ""&&type<5) return;
     if ($("#txt").val().trim() == "") {
         $("#txt").val("");
-        $("input[name='type']").val(0);
+        $("input[name='type']").val(type>=5?5:0);
         $("input[name='target_name']").val("");
         return;
     }
@@ -89,7 +93,7 @@ function sendMessage() {
         {
             "method": "sendMessage",
             "txt": $("#txt").val(),
-            "type": $("input[name='type']").val(),
+            "type": type,
             "target_name": $("input[name='target_name']").val()
         },
         function () {
@@ -97,7 +101,7 @@ function sendMessage() {
             scrollBottom();
         });
     $("#txt").val("");
-    $("input[name='type']").val(0);
+    $("input[name='type']").val(type<5?0:5);
     $("input[name='target_name']").val("");
 
 }
