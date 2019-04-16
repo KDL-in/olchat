@@ -13,4 +13,6 @@ public interface UserDao {
     List<User> listUsers();
 
     User select(int id);
+
+    List<User> find(String keyWord);
 }

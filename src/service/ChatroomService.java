@@ -34,4 +34,9 @@ public class ChatroomService {
         urs.addToChatroom(fc.getAdmin_id(), fc.getId());
         return r;
     }
+
+    public List<Chatroom> find(String keyWord) {
+        ChatroomDao dao = new ChatroomDaoImpl();
+        return dao.search(keyWord);
+    }
 }

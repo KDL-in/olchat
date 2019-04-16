@@ -19,4 +19,10 @@ public class UserDaoImplTest {
     public void select() {
         System.out.println(new UserDaoImpl().select(9));
     }
+
+    @Test
+    public void find() {
+        List<User> list = new UserDaoImpl().find("xiaohong");
+        System.out.println();
+    }
 }

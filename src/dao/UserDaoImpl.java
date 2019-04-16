@@ -64,4 +64,17 @@ public class UserDaoImpl implements UserDao {
 		return null;
 	}
 
+	@Override
+	public List<User> find(String keyWord) {
+		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+		String sql = "select * from user where user_name = ?";
+		List<User> users = null;
+		try {
+			users = queryRunner.query(sql, new BeanListHandler<>(User.class), keyWord);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return users;
+	}
+
 }

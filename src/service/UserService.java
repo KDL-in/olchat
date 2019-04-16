@@ -5,6 +5,8 @@ import dao.UserDao;
 import dao.UserDaoImpl;
 import entity.User;
 
+import java.util.List;
+
 public class UserService {
 
     public User getUser(User user) {
@@ -26,5 +28,9 @@ public class UserService {
 
     public User getUser(int id) {
         return new UserDaoImpl().select(id);
+    }
+
+    public List<User> find(String keyWord) {
+        return new UserDaoImpl().find(keyWord);
     }
 }

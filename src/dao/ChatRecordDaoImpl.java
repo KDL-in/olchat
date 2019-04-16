@@ -59,7 +59,7 @@ public class ChatRecordDaoImpl implements ChatRecordDao {
         List<ChatRecord> records;
         try {
             records = queryRunner.query(sql, new BeanListHandler<ChatRecord>(ChatRecord.class), start,end, user_id,friend_id,user_id,friend_id);
-            System.out.println(user_id+" "+friend_id+"size: "+records.size());
+//            System.out.println(user_id+" "+friend_id+"size: "+records.size());
             return records;
         } catch (SQLException e) {
             e.printStackTrace();

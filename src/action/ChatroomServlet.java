@@ -113,22 +113,20 @@ public class ChatroomServlet extends BaseServlet {
         return null;
     }
 
-    //搜索群
+    //搜索群和成员cur
     public String searchChatroom(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-        ChatroomService service = new ChatroomService();
-        Chatroom chatroom =service.search(req.getParameter("keyWord"));
-        if (chatroom != null) {
-            req.getSession().setAttribute("existRoom", chatroom);
-            res.getWriter().write("true");
-        }
-        res.getWriter().write("false");
+
+        List<Chatroom> rooms = new ChatroomService().find(req.getParameter("keyWord"));
+        List<User> users = new UserService().find(req.getParameter("keyWord"));
+        req.getSession().setAttribute("searchRooms", rooms);
+        req.getSession().setAttribute("searchUsers", users);
+        req.getRequestDispatcher("showResult.jsp").forward(req, res);
         return null;
     }
     //尝试加入群
     public String addToChatroom(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-        Chatroom existRoom = (Chatroom) req.getSession().getAttribute("existRoom");
         String psw = req.getParameter("room_psw");
-        req.getSession().setAttribute("existRoom", null);
+        Chatroom existRoom = new ChatroomService().getRoom(req.getParameter("room_id"));
         //校对密码
         if (psw.compareTo(existRoom.getPassword()) != 0) {
             res.getWriter().write("Wrong Password");

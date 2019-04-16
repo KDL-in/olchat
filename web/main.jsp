@@ -18,6 +18,13 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/room_share.css"/>
     <link rel="stylesheet" href="assets/utils/webuploader/webuploader.css" type="text/css"/>
 </head>
+<div id="search_bar" class="am-offcanvas">
+    <div class="am-offcanvas-bar">
+        <div class="am-offcanvas-content search-result-container">
+
+        </div>
+    </div>
+</div>
 <body id="chat_bg">
 <input name="room_id" type="hidden" value="${curChatroom.id}">
 <input name="user_id" type="hidden" value="${curUser.id}">

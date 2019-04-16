@@ -29,9 +29,10 @@ function updateRoomList() {
         });
     });
 }
-
+var updateRoomsHandle;
 function prepareIntervalCallOfUserRoom() {
-    window.setInterval("updateRoomList()", 10000);
+    updateRoomsHandle = window.setInterval("updateRoomList()", 1000);
+    // window.clearInterval(updateRoomsHandle);
 }
 
 function createChatroom() {

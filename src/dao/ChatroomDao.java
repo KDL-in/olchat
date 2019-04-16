@@ -12,4 +12,6 @@ public interface ChatroomDao {
     Chatroom find(String keyWord);
 
     boolean insert(Chatroom chatroom);
+
+    List<Chatroom> search(String keyWord);
 }

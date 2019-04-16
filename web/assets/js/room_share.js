@@ -56,13 +56,25 @@ $(".send span").click(function(){
 
 
 /*custom*/
+function addNewFriend(id1, id2) {
+    $.post("visit?" + new Date().getTime(),
+        {
+            "method": "addNewFriend",
+            "user1_id": id1,
+            "user2_id": id2,
+        },
+        function (data) {
+            alert(data);
+        }
+    );
+}
 
 function showChatRecords() {
     var room_id = $("input[name='room_id']").val();
     var type = $("input[name='type']").val();
     // alert(type);
     // alert(cid);
-    if (room_id == ""&&type<5) {
+    if (room_id == "" && type < 5) {
         return;
     }
 
@@ -71,8 +83,8 @@ function showChatRecords() {
             "method": "showChatRecords",
             "room_id": room_id,
             "type": type,
-            "startDate":startDate.getTime(),
-            "endDate":endDate.getTime()
+            "startDate": startDate.getTime(),
+            "endDate": endDate.getTime()
         },
         function (data) {
             $(".container").html(data);
@@ -81,10 +93,10 @@ function showChatRecords() {
 
 function sendMessage() {
     var type = $("input[name='type']").val();
-    if ($("input[name='room_id']").val() == ""&&type<5) return;
+    if ($("input[name='room_id']").val() == "" && type < 5) return;
     if ($("#txt").val().trim() == "") {
         $("#txt").val("");
-        $("input[name='type']").val(type>=5?5:0);
+        $("input[name='type']").val(type >= 5 ? 5 : 0);
         $("input[name='target_name']").val("");
         return;
     }
@@ -101,7 +113,7 @@ function sendMessage() {
             scrollBottom();
         });
     $("#txt").val("");
-    $("input[name='type']").val(type<5?0:5);
+    $("input[name='type']").val(type < 5 ? 0 : 5);
     $("input[name='target_name']").val("");
 
 }
@@ -118,26 +130,53 @@ function toggleUpload() {
     $("#uploadPanel").toggle(200);
 }
 
-function searchChatroom(o) {
+function searchChatroom(o) {//cur
+    //搜索时停止更新
+    $(".wrapper .tabs .talk").html("");
+    clearInterval(updateRoomsHandle);
     $.post("visit?" + new Date().getTime(),
-        {"method": "searchChatroom", "keyWord": $(".searchRoom").val()},
-        function (data) {
-            if (data == "false") {
-                alert("NO RESULT");
-                return;
-            }
-            var psw = prompt("Welcome to enter our chatroom : "+"\nEnter Password", "");
-            //搜索正确，加入请求
-            $.post("visit?" + new Date().getTime(),
-                {
-                    "method": "addToChatroom",
-                    "user_id": $("input[name='user_id']").val(),
-                    "room_psw": psw
-                },
-                function (data) {
-                    alert(data);
+        {
+            "method": "searchChatroom",
+            "keyWord": $(".searchRoom").val()
+        },
+        function (data) {//搜索到，直接显示，绑定事件
+            $(".wrapper .tabs .talk").html(data);
+            $(".talk>ul>li.room-li").each(function (key, li) {
+                $(li).click(function () {
+                    if (confirm("Add into chatroom ?") == true) {
+                        var psw = prompt("Welcome to enter our chatroom : " + "\nEnter Password", "");
+                        //搜索正确，加入请求
+                            $.post("visit?" + new Date().getTime(),
+                            {
+                                "method": "addToChatroom",
+                                "user_id": $("input[name='user_id']").val(),
+                                "room_id": $(this).find("input[class='room_id']").val(),
+                                "room_psw": psw
+                            },
+                            function (data) {
+                                alert(data);
+                            });
+                    }
+                    //恢复更新
                     updateRoomList();
+                    setInterval(updateRoomsHandle, 10000);
                 });
+            });
+            //好友点击事件
+            $(".talk>ul>li.friend-li").each(function (key, li) {
+                $(li).click(function () {
+                    var selectId = $(this).find("input[class='friend_id']").val();
+                    var myId = $("input[name='user_id']").val();
+                    if (confirm("Add a new friend ?") == true) {
+                        // alert(selectId + " " + myId);
+                        addNewFriend(myId, selectId);
+                    }
+                    //恢复更新
+                    updateRoomList();
+                    setInterval(updateRoomsHandle, 10000);
+                });
+
+            });
         });
     $(o).val("");
 }
@@ -145,7 +184,7 @@ function searchChatroom(o) {
 function scrollBottom() {
     var heightdis = $(".container").height() - $(".dialouges").height();
     if (heightdis >= 0) {
-        $(".dialouges").scrollTop(heightdis+100);
+        $(".dialouges").scrollTop(heightdis + 100);
     }
 }
 
@@ -180,13 +219,13 @@ $(function () {
         }
     });
     //滚动取消聊天自动滚动
-    console.log("here");
+    // console.log("here");
     $(".dialouges").mouseenter(function () {
-        console.log("enter");
+        // console.log("enter");
         window.clearInterval(scrollHandler);
     });
     $(".dialouges").mouseleave(function () {
-        console.log("leave");
+        // console.log("leave");
         scrollHandler = setInterval("scrollBottom()", 8000);
     });
 
@@ -199,6 +238,7 @@ $(document).keydown(function (event) {
         event.preventDefault();
     }
 });*/
+
 /*日期选择*/
 function getToday() {
     var today = new Date();
@@ -209,6 +249,7 @@ function getToday() {
     today.setMilliseconds(-1);
     return today;
 }
+
 var startDate = getToday();
 var endDate = getToday();
 startDate.setTime(startDate.getTime() - 7 * 24 * 60 * 60 * 1000);
@@ -238,7 +279,7 @@ $(function () {
         } else {
             $alert.hide();
             endDate = new Date(event.date);
-            endDate.setTime(endDate.getTime()+24 * 60 * 60 * 1000-1)
+            endDate.setTime(endDate.getTime() + 24 * 60 * 60 * 1000 - 1)
             $('#my-endDate').text($('#my-end').data('date'));
         }
         $(this).datepicker('close');

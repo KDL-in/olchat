@@ -42,4 +42,10 @@ public class ChatroomDaoImplTest {
         Chatroom chatroom = dao.find("案例聊天室一");
         System.out.println(chatroom);
     }
+
+    @Test
+    public void search() {
+        List<Chatroom> list = new ChatroomDaoImpl().search("学校聊天室");
+        System.out.println();
+    }
 }
