@@ -1,0 +1,266 @@
+/**
+自定义
+*/
+#signature p {
+	margin: 8px;
+	font-size: 0.8em;
+
+}
+.wrapper .tabs,#edit-area .message,#edit-area textarea{
+	background: #f8f8f8;
+}
+.wrapper .main, #edit-area, .main #moment-container{
+	background: #fdfdfd;
+}
+.main #moment-container {
+	height: 408px;
+	overflow-y: scroll;
+}
+
+.wrapper .main {
+	width: 540px;
+	float: right;
+	background: #ffffff;
+	height: 100%
+}
+
+#edit-area .doc.iconfont.icon-wenjian {
+	height: 30px;
+	padding-left: 15px;
+	line-height: 40px;
+}
+
+.images img {
+	height: 12rem;
+	margin-left: 1.7rem;
+}
+
+#edit-area .message {
+	margin: auto;
+	width: 520px;
+	height: 140px;
+	padding: 5px;
+	border: solid 1px #0dbb0b;
+}
+#edit-area .menu{
+	height: 30px;
+}
+#edit-area textarea{
+	height: 70px;
+}
+#edit-area .send{
+	height: 30px;
+}
+div#edit-area {
+	width: 100%;
+	height: 160px;
+	padding: 10px;
+}
+#edit-area .send span {
+	background: #0bbb09;
+	color: #ffffff;
+}
+/*
+ * 通用样式
+ * */
+body,div,span,dl,dd,h1,h2,h3,h4,h5,h6,p,form,ul,ol,input{
+	margin:0 auto;
+	padding:0;
+}
+
+
+/*
+ * 内容样式
+ * */
+
+.content {
+	margin-top: 1.6rem;
+	padding: 0 1.6rem 1.6rem;
+	border-bottom: 1px solid #f3f3f3;
+
+}
+
+/*头像*/
+.head_img {
+	float: left;
+	width: 4rem;
+	height: 4rem;
+	border-radius: 0.4rem;
+}
+/*说说的内容*/
+.contain {
+	margin-right: 1.6rem;
+	margin-left: 4.8rem;
+}
+
+.owner{
+	font-weight: 600;
+	font-size: 1.5rem;
+	color: #41454d;
+}
+
+.text {
+	font-size: 1.4rem;
+	margin-top: 0.2rem;
+	color: #41454d;
+}
+
+.trans {
+
+	padding: 0.6rem 0 0.6rem 0.6rem;
+	margin-top: 0.8rem;
+	height: 4rem;
+	background-color: #f7f7f7;
+	overflow-y: hidden;
+}
+
+.trans_text {
+
+	margin-left: 4.6rem;
+	margin-right: 1.6rem;
+	font-size: 1.3rem;
+	line-height: 2rem;
+}
+
+.comment {
+	margin: 1.2rem 0;
+	height: 1.7rem;
+	color: #80858c;
+}
+
+.comment div{
+	float: left;
+	font-size: 1.2rem;
+	position: relative;
+}
+
+.comment div i {
+	display: inline-block;
+	width: 1.7rem;
+	height: 1.7rem;
+}
+
+.agree{
+	background: url("../img/agree.png");
+	background-size: cover;
+}
+
+.unagree {
+	background: url("../svg/state-thumbs-up.svg");
+	background-size: cover;
+}
+
+.discuss {
+	margin-left: 5.4rem;
+	position: relative;
+}
+
+.discuss i{
+	background: url("../svg/state-comment.svg");
+	background-size: cover;
+}
+
+.dele {
+	display: block;
+	margin-left: 5.4rem;
+}
+
+.dele i{
+	background: url("../svg/state-delete.svg");
+	background-size: cover;
+}
+
+.comment div p {
+	display: inline-block;
+	width: 3rem;
+	height: 1.7rem;
+
+	position: absolute;
+	top: 0;
+	right: -3.2rem;
+}
+
+.time {
+	font-size: 0.12rem;
+	color: #acb1b7;
+}
+
+.dis_cont {
+	margin-top: 0.8rem;
+	font-size: 1.4rem;
+}
+
+.dis_cont li{
+	display: block;
+	list-style: none;
+	color: #41454d;
+}
+
+.dis_cont li:nth-child(n+2){
+	margin-top: 0.4rem;
+}
+
+.dis_cont li:nth-child(n+4){
+	display: none;
+}
+
+.dis_cont a {
+	text-decoration: none;
+	color: #5bafff;
+}
+
+.more {
+	display: none;
+	margin-top: 0.8rem;
+	font-size: 1.2rem;
+	color: #acb1b7;
+}
+
+.laydown {
+	display: inline-block;
+	width: 1.6rem;
+	height: 1.6rem;
+	margin-left: 0.4rem;
+	background: url("../svg/down.svg") 0rem 0.4rem;
+	background-size: cover;
+}
+
+.packup {
+	display: inline-block;
+	width: 1.6rem;
+	height: 1.6rem;
+	margin-left: 0.4rem;
+	background: url("../svg/UP.svg") 0rem 0.4rem;
+	background-size: cover;
+}
+
+.more span p {
+	display: inline-block;
+}
+
+.images {
+	margin-top: 0.8rem;
+}
+
+.img img {
+	float: left;
+	margin-left: 0.4rem;
+}
+
+/*作为辅助div，没有实际意义*/
+.assist {
+	float: right;
+	width: 1.6rem;
+	height: 1rem;
+}
+
+/*
+ * 底部样式
+ * */
+footer {
+	padding: 1.2rem 0 1.6rem 0;
+	font-size: 1.2rem;
+	color: #ACB1B7;
+	text-align: center;
+	line-height: 1.2rem;
+}
