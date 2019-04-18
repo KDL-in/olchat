@@ -1,6 +1,9 @@
 /**
 自定义
 */
+ul.dis_cont{
+	display: none;
+}
 #signature p {
 	margin: 8px;
 	font-size: 0.8em;

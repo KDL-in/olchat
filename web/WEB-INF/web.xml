@@ -18,7 +18,14 @@
         <servlet-name>UploadTestServlet</servlet-name>
         <servlet-class>action.UploadTestServlet</servlet-class>
     </servlet>
-
+    <servlet>
+        <servlet-name>MomentServlet</servlet-name>
+        <servlet-class>action.MomentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MomentServlet</servlet-name>
+        <url-pattern>/moment</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>

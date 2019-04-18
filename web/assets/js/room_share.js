@@ -25,6 +25,8 @@ $(".sidebar .sc").on("click", function () {
     $(this).css("color", "rgb(9,187,7)").siblings().css("color", "white");
     $(".lt").removeClass("icon-liaotian").addClass("icon-liaotian1");
     $(".txl").removeClass("icon-tongxunlu_tongxunlu").addClass("icon-tongxunlu");
+    if (!$(this).hasClass("active"))
+        window.location.href = "moment.jsp";
 })
 /*//机器人对话
 $(".send span").click(function(){
