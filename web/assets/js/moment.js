@@ -18,8 +18,7 @@
 $(function () {
     $(".sidebar .active").click();
     $("#chat_bg .offline").click(exit);
-//	评论事件
-    $(".contain .discuss").click(hideDiss);
+
 //	发送事件
     $(".message .send span").click(publicMoment);
     $(".message #txt").keydown(function (e) {
@@ -28,8 +27,21 @@ $(function () {
             e.preventDefault();
         }
     });
+//  更新动态
+    updateMoments();
 });
-
+function updateMoments() {
+    $.post("moment?" + new Date().getTime(),
+        {
+          "method":"getMomentList"
+        },
+        function (data) {
+            $("#moment-container").html(data);
+            // alert("update")
+            commentEventBinding();
+        }
+    );
+}
 function publicMoment() {
     var txt = $("#txt").val();
     $("#txt").val("");
@@ -40,12 +52,9 @@ function publicMoment() {
         //    todo img_url
         },
         function () {
-            //todo update list
+            updateMoments()
         }
         );
-}
-function hideDiss() {
-    $(".dis_cont").toggle();
 }
 
 function exit() {
@@ -108,10 +117,14 @@ function hideComm() {
     }
 }
 
-$(function () {
+function commentEventBinding() {
     //添加向下的图标
     $(".more i").addClass("laydown");
-
+//	评论事件
+    $(".contain .discuss").click(function () {
+        // $(this).parent().find(".dis_cont").toggle();
+        $(this).parent().parent().children(".dis_cont").toggle();
+    });
     hideComm();
 
     //显示更多
@@ -192,7 +205,12 @@ $(function () {
     //点赞
     var flagAgree = true;
     $(".like").on("click", function () {
-
+        var user_id = $("input[name='user_id']").val();
+        var moment_user_id = $(this).parent().parent().parent().find("input[name='moment_user_id']").val();
+        if(user_id==moment_user_id){
+            alert("不能点赞自己");
+            return;
+        }
         var agreeCount = parseInt($(this).children("p").text());
 
         if (flagAgree) {
@@ -208,9 +226,23 @@ $(function () {
 
     //自己的状态加删除操作
     $(".dele").on("click", function () {
-        $(this).parent().parent().parent().remove();
-        hideComm();
+        var content = $(this).parent().parent().parent();
+        if(confirm("Delete?")==true){
+            $.post("moment?"+new Date().getTime(),
+                {
+                    "method":"deleteMoment",
+                    "moment_id": content.find("input[name='moment_id']").val()
+                },
+                function () {
+                    // alert("删除成功");
+                }
+
+            );
+            content.remove();
+            hideComm();
+        }
+
     });
 
 
-});
+}

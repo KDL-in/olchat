@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: KundaLin
-  Date: 2019-4-18
-  Time: 20:17
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
@@ -38,8 +31,8 @@
         <div class="blog-sidebar">
             <div id = "signature" class="blog-sidebar-widget blog-bor">
                 <h2 class="blog-text-center blog-title"><span>About ME</span></h2>
-                <img src="assets/images/header/10.png" alt="about me" class="blog-entry-img">
-                <p>KDLin</p>
+                <img src="${curUser.img_url}" alt="about me" class="blog-entry-img">
+                <p>${curUser.nickname==""?curUser.name:curUser.nickname}</p>
                 <p>生活不止眼前，十年百年后，当我们死去，质疑我们的人同样死去，后人看到的是裹足不前、原地打转的你，还是一直奔跑、走到远方的我？</p>
             </div>
             <div class="blog-sidebar-widget blog-bor">

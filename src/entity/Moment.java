@@ -54,4 +54,11 @@ public class Moment {
     public void setTime(Timestamp time) {
         this.time = time;
     }
+
+    @Override
+    public String toString() {
+        String s = String.format("id: %s, content: %s, img_url: %s, time: %s, like: %d, user_id: %d",
+                id, content, img_url, time.toString(), likes, user_id);
+        return s;
+    }
 }
