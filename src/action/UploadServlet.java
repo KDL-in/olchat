@@ -15,7 +15,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-public class UploadTestServlet extends HttpServlet {
+public class UploadServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     /** 上传目录名*/
     private static final String UPLOAD_DIR = "uploadDir/img/";
@@ -31,7 +31,7 @@ public class UploadTestServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("UploadTestServlet in");
+        System.out.println("UploadServlet in");
         //设置编码格式，前端后台统一是utf-8
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/json;charset=utf-8");
@@ -75,7 +75,7 @@ public class UploadTestServlet extends HttpServlet {
                     //文件名加上UUid，可以防止重复
                     //String fileName = UUID.randomUUID().toString().replace("-", "")+"_"+item.getName();
                     String fileName = item.getName();
-                    System.out.println("UploadTestServlet file path:"+UPLOAD_DIR+fileName);
+                    System.out.println("UploadServlet file path:"+UPLOAD_DIR+fileName);
                     //判断空
                     if (fileName!=null && !"".equals(fileName)) {
                         //将文件写到硬盘
@@ -83,10 +83,10 @@ public class UploadTestServlet extends HttpServlet {
                         //将图片地址保存到request中，再转发回给jsp
                         //UPLOAD_DIR+fileName这个是相对路径，给前端页面
                         //realPath+fileName是绝对路径
-                        request.setAttribute("path", UPLOAD_DIR+fileName);
+//                        request.getSession().setAttribute("last_img_path", UPLOAD_DIR+fileName);
                         System.out.println(request.getParameter("path"));
 //                        request.getRequestDispatcher("/test/UploadTest.jsp").forward(request, response);
-//                        out.write("ok");
+                        out.write(UPLOAD_DIR+fileName);
                     }
                 } 
             }

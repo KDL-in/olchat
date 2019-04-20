@@ -1,20 +1,31 @@
-/*// 计算rem 模板宽375px
-(function(temWid){
-	resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
-	recalc = function (){
-		var cWidth = document.documentElement.clientWidth || document.body.clientWidth;
-		if (!cWidth) {
-			return;
+//图片上传部分
+// 初始化Web Uploader
+var uploader = WebUploader.create({
 
-		};
-		document.documentElement.style.fontSize = cWidth*(100/temWid) + 'px';
-	};
-	if (!document.addEventListener) {
-		return;
-	};
-	window.addEventListener(resizeEvt, recalc, false);
-    document.addEventListener('DOMContentLoaded', recalc, false);
-})(375);*/
+    // 选完文件后，是否自动上传。
+    auto: true,
+
+    resize: true,
+
+    // 文件接收服务端。
+    server: 'upload',
+
+    // 选择文件的按钮。可选。
+    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+    pick: '#picker',
+
+    // 只允许选择图片文件。
+    accept: {
+        title: 'Images',
+        extensions: 'gif,jpg,jpeg,bmp,png',
+        mimeTypes: 'image/*'
+    }
+});
+uploader.on( 'uploadSuccess', function( file ,response) {
+    // alert(response._raw);//cur
+    $("#img_url").html(response._raw);
+    $(".doc").click();
+});
 $(function () {
     $(".sidebar .active").click();
     $("#chat_bg .offline").click(exit);
@@ -30,6 +41,11 @@ $(function () {
 
 //  更新动态
     updateMoments();
+//  图片上传面板
+    $(".doc").click(function () {
+        $("#uploadPanel").toggle(200);
+    });
+    $(".doc").click();
 });
 
 function updateMoments() {
@@ -52,10 +68,11 @@ function publicMoment() {
         {
             "method": "publicMoment",
             "txt": txt,
-            //    todo img_url
+            "img_url": $("span#img_url").html(),
         },
         function () {
-            updateMoments()
+            updateMoments();
+            $("span#img_url").html("");
         }
     );
 }

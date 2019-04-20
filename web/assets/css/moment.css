@@ -1,6 +1,11 @@
 /**
 自定义
 */
+div#uploadPanel {
+	width: 150px;
+	position: absolute;
+	top: 50px;
+}
 .commentSender {
 	width: 90%;
 	padding-left: 8px;

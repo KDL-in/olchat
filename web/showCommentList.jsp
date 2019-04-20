@@ -12,12 +12,12 @@
 <li class="commentSenderLi">
 <a class="dis_name"  href="javascript:void(0)">我: </a><input type="text" placeholder="Add here!" class="commentSender" >
 </li>
-<%--<c:if test="${empty comments}">
+<c:if test="${empty comments}">
     <li>
         <em style="font-size: 0.75em; color: gray">右键添加评论？</em>
 
     </li>
-</c:if>--%>
+</c:if>
 <c:forEach items="${comments}" var="c">
 
 

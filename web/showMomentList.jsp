@@ -20,7 +20,7 @@
                 <%--todo--%>
             <p class="owner">${usersBuf[m.user_id].nickname!=""?usersBuf[m.user_id].nickname:usersBuf[m.user_id].user_name}</p>
             <p class="text">${m.content}</p>
-            <c:if test="m.img_url!=''">
+            <c:if test="${m.img_url!=''}">
                 <div class="images">
                     <img src="${m.img_url}">
                 </div>

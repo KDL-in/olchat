@@ -18,10 +18,11 @@ import java.util.List;
 public class MomentServlet extends BaseServlet {
     public String publicMoment(HttpServletRequest req, HttpServletResponse resp) {
         String txt = req.getParameter("txt");
+        String img_url = req.getParameter("img_url");
         User user = (User) req.getSession().getAttribute("curUser");
         Moment moment = new Moment();
         MomentService service = new MomentService();
-        service.addNewMoment(txt, user.getId(), new Timestamp(System.currentTimeMillis()));
+        service.addNewMoment(txt, user.getId(),img_url, new Timestamp(System.currentTimeMillis()));
         return null;
     }
 

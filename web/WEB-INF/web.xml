@@ -16,7 +16,7 @@
     </servlet>
     <servlet>
         <servlet-name>UploadTestServlet</servlet-name>
-        <servlet-class>action.UploadTestServlet</servlet-class>
+        <servlet-class>action.UploadServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>MomentServlet</servlet-name>

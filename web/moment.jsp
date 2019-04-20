@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="assets/css/moment-info.css">
     <link rel="stylesheet" href="assets/css/moment.css">
     <link rel="stylesheet" href="assets/utils/contextMenu/contextMenu.css"/>
-
+    <link rel="stylesheet" href="assets/utils/webuploader/webuploader.css" type="text/css"/>
 </head>
 
 <body id="chat_bg">
@@ -31,7 +31,7 @@
     <!-- 中间的tab栏-->
     <div class="tabs blog">
         <div class="blog-sidebar">
-            <div id = "signature" class="blog-sidebar-widget blog-bor">
+            <div id="signature" class="blog-sidebar-widget blog-bor">
                 <h2 class="blog-text-center blog-title"><span>About ME</span></h2>
                 <img src="${curUser.img_url}" alt="about me" class="blog-entry-img">
                 <p>${curUser.nickname==""?curUser.user_name:curUser.nickname}</p>
@@ -57,16 +57,17 @@
             <div class="message">
                 <div class="menu">
                     <div class="doc iconfont icon-wenjian"></div>
+                    <span id="img_url"></span>
                 </div>
-                <div id="uploadPanel" class="am-panel am-panel-success" style="display: none;">
+                <div id="uploadPanel" class="am-panel am-panel-success">
                     <div class="am-panel-hd">
                         选择图片或文件
                     </div>
                     <div class="am-panel-bd">
                         <div id="thelist" class="uploader-list"></div>
                         <div class="btns">
-                            <div id="picker" class="webuploader-container"><div class="webuploader-pick">选择文件</div><div id="rt_rt_1d8k8jpa91f59ct02ojbqu19p41" style="position: absolute; overflow: hidden; bottom: auto; right: auto; width: 93px; height: 42px; top: 0px; left: 28.52px;"><input type="file" name="file" class="webuploader-element-invisible" multiple="multiple" accept="image/*"><label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"></label></div></div>
-
+                            <div id="picker">选择文件</div>
+                            <%--<button id="ctlBtn" class="btn btn-default">开始上传</button>--%>
                         </div>
                     </div>
                 </div>
@@ -110,11 +111,21 @@
                     <ul class="dis_cont">
                         <li><a class="dis_name" href="javascript:void(0)">星星点灯</a>:风景很不错，什么时候回来！</li>
                         <li><a class="dis_name" href="javascript:void(0)">小红</a>:了解从未接触过的领域。</li>
-                        <li><a class="dis_name" href="javascript:void(0)">小明</a>回复<a class="dis_name" href="javascript:void(0)">小红</a>:有内涵~</li>
-                        <li><a class="dis_name" href="javascript:void(0)">KDLin</a>回复<a class="dis_name" href="javascript:void(0)">星星点灯</a>:还好还好！</li>
-                        <li><a class="dis_name" href="javascript:void(0)">KDLin</a>回复<a class="dis_name" href="javascript:void(0)">星星点灯</a>:还好还好！</li>
-                        <li><a class="dis_name" href="javascript:void(0)">KDLin</a>回复<a class="dis_name" href="javascript:void(0)">星星点灯</a>:还好还好！</li>
-                        <li><a class="dis_name" href="javascript:void(0)">KDLin</a>回复<a class="dis_name" href="javascript:void(0)">星星点灯</a>:还好还好！</li>
+                        <li><a class="dis_name" href="javascript:void(0)">小明</a>回复<a class="dis_name"
+                                                                                     href="javascript:void(0)">小红</a>:有内涵~
+                        </li>
+                        <li><a class="dis_name" href="javascript:void(0)">KDLin</a>回复<a class="dis_name"
+                                                                                        href="javascript:void(0)">星星点灯</a>:还好还好！
+                        </li>
+                        <li><a class="dis_name" href="javascript:void(0)">KDLin</a>回复<a class="dis_name"
+                                                                                        href="javascript:void(0)">星星点灯</a>:还好还好！
+                        </li>
+                        <li><a class="dis_name" href="javascript:void(0)">KDLin</a>回复<a class="dis_name"
+                                                                                        href="javascript:void(0)">星星点灯</a>:还好还好！
+                        </li>
+                        <li><a class="dis_name" href="javascript:void(0)">KDLin</a>回复<a class="dis_name"
+                                                                                        href="javascript:void(0)">星星点灯</a>:还好还好！
+                        </li>
                         <div class="more" style="display: block;">
                             <span>查看更多<p>1条</p>评论</span>
                             <i class="laydown"></i>
@@ -134,7 +145,8 @@
 
                     <div class="images">
                         <div class="img" style="height: 1.34rem;">
-                            <img src="assets/images/header/5.png" style="width: 1.34rem; height: 1.34rem; margin-left: 0px;">
+                            <img src="assets/images/header/5.png"
+                                 style="width: 1.34rem; height: 1.34rem; margin-left: 0px;">
                             <img src="assets/images/header/5.png" style="width: 1.34rem; height: 1.34rem;">
                         </div>
                     </div>
@@ -164,7 +176,6 @@
             </section>
 
 
-
             <footer>已显示全部内容</footer>
 
         </div>
@@ -174,6 +185,7 @@
 </body>
 <script src="assets/js/jquery-2.1.0.js"></script>
 <script type="text/javascript" src="assets/js/amazeui.js"></script>
-<script type="text/javascript" src="assets/js/moment.js" ></script>
+<script type="text/javascript" src="assets/utils/webuploader/webuploader.min.js"></script>
+<script type="text/javascript" src="assets/js/moment.js"></script>
 <script type="text/javascript" src="assets/utils/contextMenu/contextMenu.js"></script>
 </html>
