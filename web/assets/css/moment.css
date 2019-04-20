@@ -1,6 +1,11 @@
 /**
 自定义
 */
+.commentSender {
+	width: 90%;
+	padding-left: 8px;
+	background: #f8f8f8;
+}
 ul.dis_cont{
 	display: none;
 }

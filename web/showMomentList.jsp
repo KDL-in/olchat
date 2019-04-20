@@ -44,13 +44,18 @@
             </div>
             <p class="time">${m.time}</p>
             <ul class="dis_cont">
-                <li><a class="dis_name" href="javascript:void(0)">星星点灯</a>:风景很不错，什么时候回来！</li>
-                <li><a class="dis_name" href="javascript:void(0)">小红</a>:了解从未接触过的领域。</li>
-                <li><a class="dis_name" href="javascript:void(0)">小明</a>回复<a class="dis_name" href="javascript:void(0)">小红</a>:有内涵~
+                <li>
+                    <a class="dis_name" href="javascript:void(0)">我: </a><input type="text" placeholder="Add your comment here!"class="commentSender" >
                 </li>
-                <li><a class="dis_name" href="javascript:void(0)">KDLin</a>回复<a class="dis_name"
-                                                                                href="javascript:void(0)">星星点灯</a>:还好还好！
+                <li>
+                    <a class="dis_name" href="javascript:void(0)">
+                        <span>星星点灯</span>
+                    </a>
+                    <span>:风景很不错，什么时候回来！</span>
                 </li>
+                    <%--<li><a class="dis_name" href="javascript:void(0)">小红</a>:了解从未接触过的领域。</li>--%>
+                    <%--<li><a class="dis_name" href="javascript:void(0)">小明</a>回复<a class="dis_name" href="javascript:void(0)">小红</a>:有内涵~</li>--%>
+                    <%--<li><a class="dis_name" href="javascript:void(0)">KDLin</a>回复<a class="dis_name" href="javascript:void(0)">星星点灯</a>:还好还好！</li>--%>
                 <div class="more" style="display: block;">
                     <span>查看更多<p>1条</p>评论</span>
                     <i class="laydown"></i>

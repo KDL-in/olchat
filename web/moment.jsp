@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="assets/utils/webuploader/webuploader.css" type="text/css"/>
     <link rel="stylesheet" href="assets/css/moment-info.css">
     <link rel="stylesheet" href="assets/css/moment.css">
+    <link rel="stylesheet" href="assets/utils/contextMenu/contextMenu.css"/>
+
 </head>
 
 <body id="chat_bg">
@@ -32,7 +34,7 @@
             <div id = "signature" class="blog-sidebar-widget blog-bor">
                 <h2 class="blog-text-center blog-title"><span>About ME</span></h2>
                 <img src="${curUser.img_url}" alt="about me" class="blog-entry-img">
-                <p>${curUser.nickname==""?curUser.name:curUser.nickname}</p>
+                <p>${curUser.nickname==""?curUser.user_name:curUser.nickname}</p>
                 <p>生活不止眼前，十年百年后，当我们死去，质疑我们的人同样死去，后人看到的是裹足不前、原地打转的你，还是一直奔跑、走到远方的我？</p>
             </div>
             <div class="blog-sidebar-widget blog-bor">
@@ -110,6 +112,9 @@
                         <li><a class="dis_name" href="javascript:void(0)">小红</a>:了解从未接触过的领域。</li>
                         <li><a class="dis_name" href="javascript:void(0)">小明</a>回复<a class="dis_name" href="javascript:void(0)">小红</a>:有内涵~</li>
                         <li><a class="dis_name" href="javascript:void(0)">KDLin</a>回复<a class="dis_name" href="javascript:void(0)">星星点灯</a>:还好还好！</li>
+                        <li><a class="dis_name" href="javascript:void(0)">KDLin</a>回复<a class="dis_name" href="javascript:void(0)">星星点灯</a>:还好还好！</li>
+                        <li><a class="dis_name" href="javascript:void(0)">KDLin</a>回复<a class="dis_name" href="javascript:void(0)">星星点灯</a>:还好还好！</li>
+                        <li><a class="dis_name" href="javascript:void(0)">KDLin</a>回复<a class="dis_name" href="javascript:void(0)">星星点灯</a>:还好还好！</li>
                         <div class="more" style="display: block;">
                             <span>查看更多<p>1条</p>评论</span>
                             <i class="laydown"></i>
@@ -170,4 +175,5 @@
 <script src="assets/js/jquery-2.1.0.js"></script>
 <script type="text/javascript" src="assets/js/amazeui.js"></script>
 <script type="text/javascript" src="assets/js/moment.js" ></script>
+<script type="text/javascript" src="assets/utils/contextMenu/contextMenu.js"></script>
 </html>

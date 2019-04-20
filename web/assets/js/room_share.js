@@ -132,7 +132,7 @@ function toggleUpload() {
     $("#uploadPanel").toggle(200);
 }
 
-function searchChatroom(o) {//cur
+function searchChatroom(o) {
     //ËÑË÷Ê±Í£Ö¹¸üÐÂ
     $(".wrapper .tabs .talk").html("");
     clearInterval(updateRoomsHandle);
