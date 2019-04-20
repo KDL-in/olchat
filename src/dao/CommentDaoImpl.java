@@ -6,6 +6,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 import utils.JDBCUtils;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CommentDaoImpl implements CommentDao {
@@ -13,7 +14,7 @@ public class CommentDaoImpl implements CommentDao {
     public List<Comment> list(int moment_id) {
         QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
         String sql = "select * from comment where moment_id = ? order by time desc";
-        List<Comment> comments = null;
+        List<Comment> comments = new ArrayList<>();
         try {
             comments = queryRunner.query(sql, new BeanListHandler<>(Comment.class), moment_id);
         } catch (SQLException e) {

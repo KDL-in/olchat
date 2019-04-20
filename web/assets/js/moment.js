@@ -94,14 +94,15 @@ $(".sidebar .sc").on("click", function () {
 function hideComm() {
     //计算被隐藏的评论数
     var dis = $(".dis_cont");
-
     for (var i = 0; i < dis.length; i++) {
         //计算回复条数
         var len = dis[i].children.length;
+        // alert(i + " " + len);
         if (len > 4) {
             $(".more")[i].style.display = "block";
         }
         if (len - 4 < 1) {
+            // alert($(".more"));
             $(".more")[i].style.display = "none";
         }
         var p = $(".more")[i].children[0].children[0];
@@ -170,8 +171,6 @@ function rightMemuEventBinding(dis_cont) {
                                         "moment_id":moment_id
                                     },
                                     function (data) {
-                                        //todo 隐藏输入
-                                        // alert(data);
                                         senderInput.val("");
                                         $(li).parent().parent().find(".comment .discuss").click();
                                         $(li).parent().parent().find(".comment .discuss").click();
@@ -252,7 +251,6 @@ function momentEventBinding() {
             },
             function (data) {
                 dis_cont.html(data);
-                //评论区事件
                 commentEventBinding();
                 //右键点击事件
                 rightMemuEventBinding(dis_cont);
