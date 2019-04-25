@@ -11,4 +11,6 @@ public interface FriendshipDao {
     boolean insert(int user1_id, int user2_id);
 
     List<User> findFriends(int user_id);
+
+    List<Friendship> selectAll();
 }

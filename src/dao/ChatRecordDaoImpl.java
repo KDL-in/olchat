@@ -66,4 +66,18 @@ public class ChatRecordDaoImpl implements ChatRecordDao {
         }
         return null;
     }
+
+    @Override
+    public List<ChatRecord> selectAll() {
+        QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+        String sql = "SELECT * from chat_record";
+        List<ChatRecord> records;
+        try {
+            records = queryRunner.query(sql, new BeanListHandler<ChatRecord>(ChatRecord.class));
+            return records;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

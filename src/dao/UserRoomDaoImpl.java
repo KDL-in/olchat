@@ -64,4 +64,18 @@ public class UserRoomDaoImpl implements UserRoomDao {
         }
         return false;
     }
+
+    @Override
+    public List<UserRoom> selectAll() {
+        QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+        String sql = "select * from user_room";
+        List<UserRoom> userRooms = null;
+        try {
+            userRooms = queryRunner.query(sql, new BeanListHandler<>(UserRoom.class));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userRooms;
+
+    }
 }

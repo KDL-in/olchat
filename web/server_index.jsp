@@ -1,4 +1,4 @@
-<%--
+<%@ page import="entity.User" %><%--
   Created by IntelliJ IDEA.
   User: KundaLin
   Date: 2019-4-22
@@ -6,6 +6,17 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    User user = (User) session.getAttribute("curUser");
+    if (null == user) {
+        out.println("<script language='javascript'>alert('您的账户已经过期，请重新登录!');window.location='login.jsp';</script>");
+        return;
+    }
+    if (user.getType() != 2) {
+        out.print("<script language='javascript'>alert('请使用管理员账号登陆');window.location='login.jsp';</script>");
+        return;
+    }
+%>
 <!doctype html>
 <html class="no-js">
 <head>
@@ -21,7 +32,7 @@
     <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
     <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
     <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
-    <link rel="stylesheet" href="assets/css/admin.css">
+    <link rel="stylesheet" href="assets/css/ser_index.css">
     <script src="assets/js/jquery-2.1.0.js"></script>
     <script src="assets/js/app.js"></script>
 </head>
@@ -36,7 +47,8 @@
 
             <li class="am-dropdown tognzhi" data-am-dropdown>
                 <button class="am-btn am-btn-primary am-dropdown-toggle am-btn-xs am-radius am-icon-bell-o"
-                        data-am-dropdown-toggle> 首页</button>
+                        data-am-dropdown-toggle> 首页
+                </button>
                 <!--                <ul class="am-dropdown-content">
 
 
@@ -71,8 +83,8 @@
 
                     <select data-am-selected="{btnWidth: 70, btnSize: 'sm', btnStyle: 'default'}">
                         <option value="b">全部</option>
-                        <option value="o">产品</option>
-                        <option value="o">会员</option>
+                        <%--<option value="o">产品</option>--%>
+                        <%--<option value="o">会员</option>--%>
 
                     </select>
 
@@ -94,8 +106,6 @@
 <div class="am-cf admin-main">
 
     <div class="nav-navicon admin-main admin-sidebar">
-
-
         <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"> 欢迎系统管理员：Admin</div>
         <div class="sideMenu">
             <h3 class="am-icon-user"><em></em> <a href="#">用户管理</a></h3>
@@ -173,26 +183,26 @@
             <div class="admin-index">
                 <dl data-am-scrollspy="{animation: 'slide-right', delay: 100}">
                     <dt class="qs"><i class="am-icon-users"></i></dt>
-                    <dd>455</dd>
+                    <dd id="nOfUsers">${nOfUsers}</dd>
                     <dd class="f12">用户数量</dd>
                 </dl>
                 <dl data-am-scrollspy="{animation: 'slide-right', delay: 300}">
                     <dt class="cs"><i class="am-icon-area-chart"></i></dt>
-                    <dd>455</dd>
+                    <dd id="nOfImgs">${nOfImgs}</dd>
                     <dd class="f12">图片数量</dd>
                 </dl>
                 <dl data-am-scrollspy="{animation: 'slide-right', delay: 600}">
                     <dt class="hs"><i class="am-icon-comments-o"></i></dt>
-                    <dd>455</dd>
+                    <dd id="nOfRecords">${nOfRecords}</dd>
                     <dd class="f12">消息数量</dd>
                 </dl>
                 <dl data-am-scrollspy="{animation: 'slide-right', delay: 900}">
                     <dt class="ls"><i class="am-icon-university"></i></dt>
-                    <dd>455</dd>
+                    <dd id="nOfRooms">${nOfRooms}</dd>
                     <dd class="f12">聊天室数量</dd>
                 </dl>
             </div>
-            <div class="admin-biaoge">
+            <div class="initDataDiv admin-biaoge">
                 <div class="xinxitj">信息概况</div>
                 <table class="am-table">
                     <thead>
@@ -261,24 +271,23 @@
             <div class="shuju">
                 <div class="shujuone">
                     <dl>
-                        <dt>全盘收入： 1356666</dt>
-                        <dt>全盘支出： 5646465.98</dt>
-                        <dt>全盘利润： 546464</dt>
+                        <dt>你好！</dt>
+                        <dt>管理员 【${curUser.user_name}】</dt>
                     </dl>
                     <ul>
-                        <h2>26.83%</h2>
-                        <li>全盘拨出</li>
+                        <h2>欢迎使用</h2>
+                        <li>OLchatRoom后台管理系统</li>
                     </ul>
                 </div>
                 <div class="shujutow">
                     <dl>
-                        <dt>全盘收入： 1356666</dt>
-                        <dt>全盘支出： 5646465.98</dt>
-                        <dt>全盘利润： 546464</dt>
+                        <dt>管理聊天室和成员？</dt>
+                        <dt>管理聊天记录？</dt>
+                        <dt>管理个人动态？</dt>
                     </dl>
                     <ul>
-                        <h2>26.83%</h2>
-                        <li>全盘拨出</li>
+                        <h2>您想</h2>
+                        <li>完成的操作是？</li>
                     </ul>
                 </div>
 
@@ -304,4 +313,5 @@
 
 
 </body>
+<script type="text/javascript" src="assets/js/server_index.js"></script>
 </html>

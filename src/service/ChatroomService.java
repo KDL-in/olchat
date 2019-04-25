@@ -3,11 +3,17 @@ package service;
 import dao.ChatroomDao;
 import dao.ChatroomDaoImpl;
 import entity.Chatroom;
+import org.apache.commons.dbutils.QueryRunner;
 
 import java.util.List;
 import java.util.Map;
 
 public class ChatroomService {
+    ChatroomDao dao;
+
+    public ChatroomService() {
+        dao = new ChatroomDaoImpl();
+    }
 
     public List<Chatroom> getRooms(String user_id) {
         ChatroomDaoImpl dao = new ChatroomDaoImpl();
@@ -38,5 +44,15 @@ public class ChatroomService {
     public List<Chatroom> find(String keyWord) {
         ChatroomDao dao = new ChatroomDaoImpl();
         return dao.search(keyWord);
+    }
+
+    public List<Chatroom> listRooms() {
+        ChatroomDao dao = new ChatroomDaoImpl();
+        return dao.selectAll();
+    }
+
+
+    public int countRooms() {
+        return dao.selectAll().size();
     }
 }

@@ -13,4 +13,6 @@ public interface UserRoomDao {
     UserRoom select(UserRoom userRoom);
 
     boolean delete(UserRoom userRoom);
+
+    List<UserRoom> selectAll();
 }

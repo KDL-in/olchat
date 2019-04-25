@@ -48,4 +48,10 @@ public class ChatroomDaoImplTest {
         List<Chatroom> list = new ChatroomDaoImpl().search("学校聊天室");
         System.out.println();
     }
+
+    @Test
+    public void selectAll() {
+        List<Chatroom> list = new ChatroomDaoImpl().selectAll();
+        System.out.println();
+    }
 }

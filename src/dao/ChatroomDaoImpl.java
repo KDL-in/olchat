@@ -60,7 +60,7 @@ public class ChatroomDaoImpl implements ChatroomDao {
         String sql = "INSERT INTO `chatroom`(admin_id,`name`,total_num,password) VALUES " +
                 "(?, ?,?, ?)";
         try {
-            queryRunner.update(sql, new Object[]{chatroom.getAdmin_id(),chatroom.getName(),chatroom.getTotal_num(),chatroom.getPassword()});
+            queryRunner.update(sql, new Object[]{chatroom.getAdmin_id(), chatroom.getName(), chatroom.getTotal_num(), chatroom.getPassword()});
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -80,5 +80,18 @@ public class ChatroomDaoImpl implements ChatroomDao {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public List<Chatroom> selectAll() {
+        QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+        String sql = "select * from chatroom";
+        List<Chatroom> rooms = null;
+        try {
+            rooms = queryRunner.query(sql, new BeanListHandler<Chatroom>(Chatroom.class));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rooms;
     }
 }

@@ -22,6 +22,14 @@
         <servlet-name>MomentServlet</servlet-name>
         <servlet-class>action.MomentServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServerServlet</servlet-name>
+        <servlet-class>action.ServerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServerServlet</servlet-name>
+        <url-pattern>/server</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MomentServlet</servlet-name>
         <url-pattern>/moment</url-pattern>

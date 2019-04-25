@@ -8,6 +8,10 @@ import entity.User;
 import java.util.List;
 
 public class UserService {
+    private UserDao dao;
+    public UserService() {
+        dao = new UserDaoImpl();
+    }
 
     public User getUser(User user) {
         UserDao dao = new UserDaoImpl();
@@ -32,5 +36,14 @@ public class UserService {
 
     public List<User> find(String keyWord) {
         return new UserDaoImpl().find(keyWord);
+    }
+
+    public List<User> listUsers() {
+        return new UserDaoImpl().listUsers();
+    }
+
+    public int countUsers() {
+        List<User> users = dao.listUsers();
+        return users.size();
     }
 }

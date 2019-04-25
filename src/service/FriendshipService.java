@@ -36,4 +36,7 @@ public class FriendshipService {
     }
 
 
+    public List<Friendship> listFriendShips() {
+        return new FriendshipDapImpl().selectAll();
+    }
 }

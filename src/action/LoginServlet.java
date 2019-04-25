@@ -24,7 +24,7 @@ public class LoginServlet extends BaseServlet {
     /**
      * 登录
      */
-    public String login(HttpServletRequest req,HttpServletResponse resp){
+    public String login(HttpServletRequest req, HttpServletResponse resp) {
         // 接收提交数据
         Map<String, String[]> map = req.getParameterMap();
         User user = new User();
@@ -48,12 +48,16 @@ public class LoginServlet extends BaseServlet {
                 //-所以只需要，将某user的session取出清空，就可以使得它不存在而下线
                 //-不清空同账号的session的结果是，userMap中存放的是当前的user的session而，上一次的登陆的session没法操作
                 Map<User, HttpSession> userMap = (Map<User, HttpSession>) getServletContext().getAttribute("userMap");
-                if(userMap.containsKey(curUser)){
+                if (userMap.containsKey(curUser)) {
                     HttpSession session = userMap.get(curUser);
                     session.invalidate();
                 }
                 req.getSession().setAttribute("curUser", curUser);
-                resp.sendRedirect(req.getContextPath() + "/main.jsp");
+                if (curUser.getType() == 1)
+                    resp.sendRedirect(req.getContextPath() + "/main.jsp");
+                else if (curUser.getType() == 2) {
+                    resp.sendRedirect(req.getContextPath() + "/server_index.jsp");
+                }
                 return null;
             }
         } catch (Exception e) {
@@ -63,21 +67,22 @@ public class LoginServlet extends BaseServlet {
     }
 
     /**
-     *  退出聊天室
+     * 退出聊天室
      */
-    public String exit(HttpServletRequest request,HttpServletResponse response) throws IOException{
+    public String exit(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         session.invalidate();
-        response.sendRedirect(request.getContextPath()+"/login.jsp");
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
         return null;
     }
+
     /**
-     *  注册
+     * 注册
      */
-    public String register(HttpServletRequest request,HttpServletResponse response) throws IOException{
+    public String register(HttpServletRequest request, HttpServletResponse response) throws IOException {
         UserService service = new UserService();
         String img_url = String.format("assets/images/header/%d.png", new Random().nextInt(30) + 1);
-        boolean suc = service.register(request.getParameter("user_name"), request.getParameter("password"),img_url);
+        boolean suc = service.register(request.getParameter("user_name"), request.getParameter("password"), img_url);
         if (suc) {
             login(request, response);
         } else {
