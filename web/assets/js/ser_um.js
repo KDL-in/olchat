@@ -3,6 +3,8 @@ $(function () {
     initPaperDiv();
 
 });
+//批量删除
+
 //删除用户
 function deleteUser(idx) {
     $.post("server?" + new Date().getTime(), {
@@ -29,11 +31,26 @@ function usersListEventBinding() {
     $("button.deleButton").each(function (idx, bt) {
         $(bt).click(function () {
             var idx = $(bt).find("input").val();
-            deleteUser(idx);
+            if(confirm("Delete user :" + idx)){
+                deleteUser(idx);
+            }
         });
-
     });
-
+    //批量删除-全选按钮
+    $("input#selectAll").click(function () {
+        $("tbody input[type='checkbox']").each(function (idx, cb) {
+            $(cb).click();
+        })
+    });
+    //批量删除
+    $("button.mulDeleButton").click(function () {
+        if (confirm("Multiply deleting?")) {
+            $("tbody input:checked[type='checkbox']").each(function (idx, cb) {
+                var user_id = $(cb).parent().parent().find("td#idTd").html();
+                deleteUser(user_id);
+            });
+        }
+    });
 }
 //更新列表
 function updateUserListOfPage(pageNum) {

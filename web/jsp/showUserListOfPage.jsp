@@ -12,7 +12,7 @@
 <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
     <thead>
     <tr class="am-success">
-        <th class="table-check"><input type="checkbox"/></th>
+        <th class="table-check"><input type="checkbox" id="selectAll"/></th>
         <th>ID</th>
         <th>用户名</th>
         <th>昵称</th>
@@ -25,7 +25,7 @@
     <c:forEach items="${pageBean.list}" var="u">
         <tr>
             <td><input type="checkbox"/></td>
-            <td>${u.id}</td>
+            <td id="idTd">${u.id}</td>
             <td>${u.user_name}</td>
             <td>${u.nickname==""||u.nickname==null?"无":u.nickname}</td>
             <td><img src="${u.img_url}"></td>
@@ -50,7 +50,7 @@
 <%--列表内容--%>
 <div class="am-btn-group am-btn-group-xs">
     <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</button>
-    <button type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span> 删除
+    <button type="button" class="mulDeleButton am-btn am-btn-default"><span class="am-icon-trash-o"></span> 删除
     </button>
 </div>
 
@@ -87,7 +87,7 @@
 <p>
     备注：操作图标含义
     <a class="am-icon-pencil-square-o am-text-secondary" title="修改"> 修改栏目</a>
-    <a class="am-icon-trash-o am-text-danger" title="删除"> 删除栏目</a>
+    <a class=" am-icon-trash-o am-text-danger" title="删除"> 删除栏目</a>
 
 
 </p>
