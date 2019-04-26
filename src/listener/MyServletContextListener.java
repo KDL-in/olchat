@@ -21,7 +21,7 @@ public class MyServletContextListener implements ServletContextListener{
 		Map<User,HttpSession> userMap = new HashMap<User,HttpSession>();
 		sce.getServletContext().setAttribute("userMap", userMap);
 		//维护用户列表
-		List<User> users = new UserDaoImpl().listUsers();
+		List<User> users = new UserDaoImpl().selectAll();
 		Map<Integer,User> usersBuf = new HashMap<>();
 		for (User u :
 				users) {

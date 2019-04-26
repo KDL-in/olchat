@@ -10,9 +10,13 @@ public interface UserDao {
 
     boolean insert(User user);
 
-    List<User> listUsers();
+    List<User> selectAll();
 
     User select(int id);
 
     List<User> find(String keyWord);
+
+    List<User> selectAll(int startIndex, int pageSize);
+
+    void delete(int user_id);
 }

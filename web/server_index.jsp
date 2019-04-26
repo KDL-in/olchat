@@ -69,7 +69,7 @@
 
             <li class="kuanjie">
 
-                <a href="#">用户管理</a>
+                <a href="${pageContext.request.contextPath}/server_um.jsp">用户管理</a>
                 <a href="#">聊天室管理</a>
                 <a href="#">好友管理</a>
                 <a href="#">聊天记录管理</a>
@@ -313,5 +313,5 @@
 
 
 </body>
-<script type="text/javascript" src="assets/js/server_index.js"></script>
+<script type="text/javascript" src="assets/js/server.js"></script>
 </html>

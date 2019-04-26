@@ -3,6 +3,7 @@ package action;
 import com.google.gson.Gson;
 import entity.Chatroom;
 import entity.Friendship;
+import entity.PageBean;
 import entity.User;
 import service.*;
 import utils.BaseServlet;
@@ -17,6 +18,8 @@ import java.util.List;
 import java.util.Map;
 
 public class ServerServlet extends BaseServlet {
+    //首页
+    //更新首页的一些数据
     public String getInfoData(HttpServletRequest req, HttpServletResponse response) throws IOException {
 //        System.out.println("here");
         response.setContentType("text/html;charset=utf-8");
@@ -41,6 +44,7 @@ public class ServerServlet extends BaseServlet {
         response.getWriter().println(str);
         return null;
     }
+    //更新首页列表
     public String getInfoList(HttpServletRequest req, HttpServletResponse response) {
         ChatroomService roomService = new ChatroomService();
         UserRoomService urService = new UserRoomService();
@@ -54,5 +58,21 @@ public class ServerServlet extends BaseServlet {
         req.setAttribute("roomsSize", roomsSize);
 
         return "/showInfoList.jsp";
+    }
+    //用户管理页
+    //分页列表
+    public String getUserListOfPage(HttpServletRequest req, HttpServletResponse response) {
+        int pageNum = Integer.parseInt(req.getParameter("pageNum")), pageSize = 5;
+        UserService  us=new UserService();
+        PageBean pb = us.findAllUserOfPage(pageNum, pageSize);
+        req.setAttribute("pageBean", pb);
+        return "/jsp/showUserListOfPage.jsp";
+    }
+    //删除用户
+    public String deleteUser(HttpServletRequest req, HttpServletResponse response) {
+        int user_id = Integer.parseInt(req.getParameter("user_id"));
+        UserService service = new UserService();
+        service.deleteUser(user_id);
+        return null;
     }
 }

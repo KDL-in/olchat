@@ -39,7 +39,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public List<User> listUsers() {
+	public List<User> selectAll() {
 		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
 		String sql = "select * from user";
 		List<User> users = null;
@@ -75,6 +75,30 @@ public class UserDaoImpl implements UserDao {
 			e.printStackTrace();
 		}
 		return users;
+	}
+
+	@Override
+	public List<User> selectAll(int startIndex, int pageSize) {
+		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+		String sql = "SELECT * FROM `user` LIMIT ?,?";
+		List<User> users = null;
+		try {
+			users = queryRunner.query(sql, new BeanListHandler<>(User.class),startIndex,pageSize);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return users;
+	}
+
+	@Override
+	public void delete(int user_id) {
+		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+		String sql = "delete from user where id = ?";
+		try {
+			queryRunner.update(sql, user_id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

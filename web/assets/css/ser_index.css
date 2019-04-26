@@ -1,3 +1,24 @@
+/*用户管理界面*/
+div.am-popup {
+    width: 630px;
+    height: 630px;
+    left: 50%;
+    top: 50%;
+    margin-left: -315px;
+    margin-top: -315px;
+    -webkit-transform: translateY(1024px);
+    -ms-transform: translateY(1024px);
+    transform: translateY(1024px);
+}
+/*顶部选定*/
+#selectLi:after {
+    opacity: 1;
+    border-bottom-color: #666;
+}
+#selectLi{
+    background:#eee;
+}
+
 .admin-icon-yellow {
     color: #ffbe40
 }

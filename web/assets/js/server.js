@@ -1,3 +1,14 @@
+/*用户管理*/
+$(function () {
+    //首页按钮
+    $(".indexButton").click(function () {
+        window.location.href = "server_index.jsp"
+
+    });
+
+});
+
+
 function initIndex() {
     $.post("server?" + new Date().getTime(),
         {

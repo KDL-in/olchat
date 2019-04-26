@@ -3,6 +3,7 @@ package service;
 
 import dao.UserDao;
 import dao.UserDaoImpl;
+import entity.PageBean;
 import entity.User;
 
 import java.util.List;
@@ -39,11 +40,22 @@ public class UserService {
     }
 
     public List<User> listUsers() {
-        return new UserDaoImpl().listUsers();
+        return new UserDaoImpl().selectAll();
     }
 
     public int countUsers() {
-        List<User> users = dao.listUsers();
+        List<User> users = dao.selectAll();
         return users.size();
+    }
+    //取得该页的用户并且返回pagebean供使用
+    public PageBean<User> findAllUserOfPage(int pageNum, int pageSize) {
+        List<User> users = dao.selectAll();
+        PageBean<User> pb = new PageBean<User>(pageNum, pageSize, users);
+        pb.setList(dao.selectAll(pb.getStartIndex(),pb.getPageSize()));
+        return pb;
+    }
+
+    public void deleteUser(int user_id) {
+        dao.delete(user_id);
     }
 }

@@ -5,13 +5,11 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 public class UserDaoImplTest {
 
     @Test
     public void listUsers() {
-        List<User> users = new UserDaoImpl().listUsers();
+        List<User> users = new UserDaoImpl().selectAll();
         System.out.println();
     }
 
