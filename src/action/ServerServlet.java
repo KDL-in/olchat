@@ -75,4 +75,17 @@ public class ServerServlet extends BaseServlet {
         service.deleteUser(user_id);
         return null;
     }
+    //修改用户
+    public String modUser(HttpServletRequest req, HttpServletResponse response) throws IOException {
+        UserService us=new UserService();
+        req.setCharacterEncoding("utf-8");
+        int id = Integer.parseInt(req.getParameter("id")),
+            type = Integer.parseInt(req.getParameter("type"));
+        String user_name = req.getParameter("user_name"),
+                nickname = req.getParameter("nickname"),
+                img_url = req.getParameter("img_url");
+        us.modUser(id,user_name,nickname,img_url,type);
+//        response.sendRedirect(req.getContextPath()+"/server_um.jsp");
+        return null;
+    }
 }

@@ -23,18 +23,18 @@
     </thead>
     <tbody>
     <c:forEach items="${pageBean.list}" var="u">
-        <tr>
+        <tr class="recordTr">
             <td><input type="checkbox"/></td>
-            <td id="idTd">${u.id}</td>
-            <td>${u.user_name}</td>
-            <td>${u.nickname==""||u.nickname==null?"无":u.nickname}</td>
-            <td><img src="${u.img_url}"></td>
-            <td>${u.type==1?"普通用户":"超级管理员"}</td>
+            <td class="id-td">${u.id}</td>
+            <td class="user-name-td">${u.user_name}</td>
+            <td class="nickname-td">${u.nickname}</td>
+            <td class="img-url-td"><img src="${u.img_url}"></td>
+            <td class="type-td">${u.type==1?"普通用户":"超级管理员"}</td>
             <td>
                 <div class="am-btn-toolbar">
                     <div class="am-btn-group am-btn-group-xs">
-                        <a class="am-btn am-btn-default am-btn-xs am-text-success am-round am-icon-pencil-square-o"
-                           data-am-modal="{target: '#my-popup'}" title="修改"></a>
+                        <a class="modButton am-btn am-btn-default am-btn-xs am-text-success am-round am-icon-pencil-square-o"
+                            title="修改"></a>
                         <button class="deleButton am-btn am-btn-default am-btn-xs am-text-danger am-round" title="删除">
                             <input type="hidden" value="${u.id}">
                             <span class="am-icon-trash-o"></span></button>

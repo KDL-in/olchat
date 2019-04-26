@@ -10,6 +10,16 @@ div.am-popup {
     -ms-transform: translateY(1024px);
     transform: translateY(1024px);
 }
+/*-修改界面*/
+.modDiv-label {
+    display: inline-block;
+    margin: 5px;
+    font-weight: bold;
+    font-size: 0.8em;
+}
+.modDiv-input{
+    display: inline-block;
+}
 /*顶部选定*/
 #selectLi:after {
     opacity: 1;
@@ -919,13 +929,13 @@ gallery.html css
 }
 
 
-.tjlanmu {
+.modRecord {
     width: 90%;
     margin: 0 auto;
     font-size: 14px;
 }
 
-.tjlanmu .zuo {
+.modRecord .zuo {
     width: 19%;
     text-align: right;
     margin-right: 1%;
@@ -934,17 +944,17 @@ gallery.html css
     margin-bottom: 10px
 }
 
-.tjlanmu .you {
+.modRecord .you {
     width: 80%;
     float: right;
     margin-bottom: 10px
 }
 
-.tjlanmu .you .am-input-sm {
+.modRecord .you .am-input-sm {
     font-size: 1.2rem !important
 }
 
-.tjlanmu .am-form-group {
+.modRecord .am-form-group {
     margin: 2px auto
 }
 

@@ -19,4 +19,6 @@ public interface UserDao {
     List<User> selectAll(int startIndex, int pageSize);
 
     void delete(int user_id);
+
+    void update(User u);
 }

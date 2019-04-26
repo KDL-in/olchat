@@ -22,8 +22,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Amaze UI Admin index Examples</title>
-    <meta name="description" content="这是一个 index 页面">
+    <title>User Management</title>
     <meta name="keywords" content="index">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="renderer" content="webkit">
@@ -35,6 +34,11 @@
     <link rel="stylesheet" href="assets/css/ser_index.css">
     <script src="assets/js/jquery-2.1.0.js"></script>
     <script src="assets/js/app.js"></script>
+    <style>
+        div#my-popup {
+            max-height: 580px;
+        }
+    </style>
 </head>
 </head>
 
@@ -164,57 +168,46 @@
 
         <div class="am-popup am-popup-inner" id="my-popup">
             <div class="am-popup-hd">
-                <h4 class="am-popup-title">添加商品一级分类</h4>
+                <h4 class="am-popup-title">修改当前用户信息</h4>
                 <span data-am-modal-close
                       class="am-close">&times;</span></div>
             <div class="am-popup-bd">
-                <form class="am-form tjlanmu">
+                <%--修改信息--%>
+                <form class="modForm am-form">
                     <div class="am-form-group">
-                        <div class="zuo">栏目名称：</div>
-                        <div class="you">
-                            <input type="email" class="am-input-sm" id="doc-ipt-email-1" placeholder="请输入标题">
-                        </div>
+                        <span class="modDiv-label">ID</span>
+                        <input type="text" name="id-input" id="id-input" placeholder="请输入标题" disabled>
                     </div>
                     <div class="am-form-group">
-                        <div class="zuo">栏目关键词：</div>
-                        <div class="you">
-                            <input type="password" class="am-input-sm" id="doc-ipt-pwd-1" placeholder="请输入关键词">
-                        </div>
+                        <span class="modDiv-label">用户名</span>
+                        <input type="text" name="user-name-input" id="user-name-input" placeholder="请输入标题">
                     </div>
-                    <div class="am-form-group am-cf">
-                        <div class="zuo">栏目描述：</div>
-                        <div class="you">
-                            <textarea class="" rows="2" id="doc-ta-1"></textarea>
-                        </div>
+                    <div class="am-form-group">
+                        <span class="modDiv-label">昵称</span>
+                        <input type="text" name="nickname-input" id="nickname-input" placeholder="请输入昵称">
+
                     </div>
-                    <div class="am-form-group am-cf">
-                        <div class="zuo">栏目图片：</div>
-                        <div class="you" style="height: 45px;">
-                            <input type="file" id="doc-ipt-file-1">
-                            <p class="am-form-help">请选择要上传的文件...</p>
-                        </div>
+                    <div class="am-form-group">
+                        <span class="modDiv-label">头像</span>
+                        <input type="text" name="img-url-input" id="img-url-input"placeholder="请输入标题"disabled>
                     </div>
-                    <div class="am-form-group am-cf">
-                        <div class="zuo">简介：</div>
-                        <div class="you">
-                            <textarea class="" rows="2" id="doc-ta-1"></textarea>
-                        </div>
+                    <div class="am-form-group am-form-file">
+                        <button type="button" class="am-btn am-btn-default am-btn-sm">
+                            <i class="am-icon-cloud-upload"></i> 选择你的头像</button>
+                        <input type="file" multiple>
                     </div>
-                    <div class="am-form-group am-cf">
-                        <div class="zuo">状态：</div>
-                        <div class="you" style="margin-top: 3px;">
-                            <label class="am-checkbox-inline">
-                                <input type="checkbox" value="option1">
-                                显示 </label>
-                            <label class="am-checkbox-inline">
-                                <input type="checkbox" value="option2">
-                                隐藏 </label>
-                        </div>
+                    <div class="am-form-group">
+                        <span class="modDiv-label">用户类型</span>
+                        <select name="type-input" id="type-select">
+                            <option value="1">1普通用户</option>
+                            <option value="2">2超级管理员</option>
+                        </select>
                     </div>
+
                     <div class="am-form-group am-cf">
                         <div class="you">
                             <p>
-                                <button type="submit" class="am-btn am-btn-success am-radius">提交</button>
+                                <button type="submit" class="submitButton am-btn am-btn-success am-radius">提交</button>
                             </p>
                         </div>
                     </div>
@@ -234,9 +227,9 @@
 
             </div>
 
-            <form class="am-form am-g"id="listContainer">
+            <form class="am-form am-g" id="listContainer">
                 <%--列表内容--%>
-                <table width="100%"  class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
+                <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
 
                     <thead>
                     <tr class="am-success">
@@ -250,11 +243,11 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                    <tr class="recordTr">
                         <td><input type="checkbox"/></td>
                         <td>1</td>
-                        <td>kdlin</td>
-                        <td>焜达</td>
+                        <td class="user-name-td">kdlin</td>
+                        <td class="nick-name-td">焜达</td>
                         <td><img src="assets/images/header/17.png"></td>
                         <td>超级管理员</td>
 
@@ -262,8 +255,8 @@
                         <td>
                             <div class="am-btn-toolbar">
                                 <div class="am-btn-group am-btn-group-xs">
-                                    <a class="am-btn am-btn-default am-btn-xs am-text-success am-round am-icon-pencil-square-o"
-                                       data-am-modal="{target: '#my-popup'}" title="修改"></a>
+                                    <a class="modButton am-btn am-btn-default am-btn-xs am-text-success am-round am-icon-pencil-square-o"
+                                       title="修改"></a>
                                     <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round" title="删除">
                                         <span class="am-icon-trash-o"></span></button>
                                 </div>
@@ -275,7 +268,7 @@
                 </table>
 
                 <div class="am-btn-group am-btn-group-xs">
-                    <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</button>
+                    <button type="button" class="am-btn am-btn-default" ><span class="am-icon-plus"></span> 新增</button>
                     <button type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span> 删除
                     </button>
                 </div>

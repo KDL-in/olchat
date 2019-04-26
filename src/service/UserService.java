@@ -58,4 +58,14 @@ public class UserService {
     public void deleteUser(int user_id) {
         dao.delete(user_id);
     }
+
+    public void modUser(int id, String user_name, String nickname, String img_url, int type) {
+        User u = new User();
+        u.setId(id);
+        u.setUser_name(user_name);
+        u.setNickname(nickname);
+        u.setImg_url(img_url);
+        u.setType(type);
+        dao.update(u);
+    }
 }
