@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
+<%--<%
     User user = (User) session.getAttribute("curUser");
     if (null == user) {
         out.println("<script language='javascript'>alert('您的账户已经过期，请重新登录!');window.location='login.jsp';</script>");
@@ -16,13 +16,13 @@
         out.print("<script language='javascript'>alert('请使用管理员账号登陆');window.location='login.jsp';</script>");
         return;
     }
-%>
+%>--%>
 <!doctype html>
 <html class="no-js">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>User Management</title>
+    <title>Chatroom Management</title>
     <meta name="keywords" content="index">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="renderer" content="webkit">
@@ -58,8 +58,8 @@
             <%--顶栏--%>
             <li class="kuanjie">
 
-                <a href="server_um.jsp" id="selectLi">用户管理</a>
-                <a href="server_crm.jsp">聊天室管理</a>
+                <a href="server_um.jsp" >用户管理</a>
+                <a href="server_crm.jsp" id="selectLi">聊天室管理</a>
                 <a href="server_fm.jsp">好友管理</a>
                 <a href="server_rm.jsp">聊天记录管理</a>
                 <a href="server_mm.jsp">个人动态管理</a>
@@ -125,7 +125,7 @@
         <script type="text/javascript">
             jQuery(".sideMenu").slide({
                 titCell: "h3", //鼠标触发对象
-                defaultIndex:0,
+                defaultIndex:1,
                 targetCell: "ul", //与titCell一一对应，第n个titCell控制第n个targetCell的显示隐藏
                 effect: "slideDown", //targetCell下拉效果
                 delayTime: 300, //效果时间

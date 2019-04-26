@@ -69,12 +69,11 @@
 
             <li class="kuanjie">
 
-                <a href="${pageContext.request.contextPath}/server_um.jsp">用户管理</a>
-                <a href="#">聊天室管理</a>
-                <a href="#">好友管理</a>
-                <a href="#">聊天记录管理</a>
-                <a href="#">个人动态管理</a>
-                <a href="#">系统设置</a>
+                <a href="server_um.jsp">用户管理</a>
+                <a href="server_crm.jsp">聊天室管理</a>
+                <a href="server_fm.jsp">好友管理</a>
+                <a href="server_rm.jsp">聊天记录管理</a>
+                <a href="server_mm.jsp">个人动态管理</a>
             </li>
 
             <li class="soso">
@@ -106,28 +105,29 @@
 <div class="am-cf admin-main">
 
     <div class="nav-navicon admin-main admin-sidebar">
-        <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"> 欢迎系统管理员：Admin</div>
+        <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;">
+            欢迎系统管理员：${curUser.user_name}</div>
         <div class="sideMenu">
             <h3 class="am-icon-user"><em></em> <a href="#">用户管理</a></h3>
             <ul>
-                <li><a href="">用户列表</a></li>
+                <li><a href="server_um.jsp">用户列表</a></li>
             </ul>
             <h3 class="am-icon-university"><em></em> <a href="#"> 聊天室管理</a></h3>
             <ul>
-                <li>聊天室列表</li>
+                <li><a href="server_crm.jsp">聊天室列表</a></li>
             </ul>
             <h3 class="am-icon-users"><em></em> <a href="#">好友管理</a></h3>
             <ul>
-                <li>好友关系列表</li>
+                <li><a href="server_fm.jsp">好友关系列表</a></li>
             </ul>
             <h3 class="am-icon-comments-o"><em></em> <a href="#">聊天记录管理</a></h3>
             <ul>
-                <li>聊天记录</li>
+                <li><a href="server_rm.jsp">聊天记录</a></li>
             </ul>
             <h3 class="am-icon-gears"><em></em> <a href="#">个人动态管理</a></h3>
             <ul>
-                <li>个人动态</li>
-                <li>动态评论</li>
+                <li><a href="server_mm.jsp">个人动态</a></li>
+                <li><a href="server_cm.jsp">动态评论</a></li>
             </ul>
         </div>
         <!-- sideMenu End -->
@@ -152,27 +152,26 @@
         <div class="daohang">
             <ul>
                 <li>
-                    <button type="button" class="am-btn am-btn-default am-radius am-btn-xs"> 首页</button>
-                </li>
-                <li>
-                    <button type="button" class="am-btn am-btn-default am-radius am-btn-xs">帮助中心<a
-                            href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a>
-                    </button>
+                    <button type="button" class="am-btn am-btn-default am-radius am-btn-xs"><a href="server_index.jsp"></a> 首页</button>
                 </li>
                 <li>
                     <button type="button" class="am-btn am-btn-default am-radius am-btn-xs">用户管理<a
-                            href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a>
+                            href="server_um.jsp" class="am-close am-close-spin" data-am-modal-close="">×</a>
                     </button>
                 </li>
                 <li>
                     <button type="button" class="am-btn am-btn-default am-radius am-btn-xs">聊天室管理<a
-                            href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a>
+                            href="server_crm.jsp" class="am-close am-close-spin" data-am-modal-close="">×</a>
+                    </button>
+                </li>
+                <li>
+                    <button type="button" class="am-btn am-btn-default am-radius am-btn-xs">好友管理<a
+                            href="server_fm.jsp" class="am-close am-close-spin" data-am-modal-close="">×</a>
                     </button>
                 </li>
 
 
             </ul>
-
 
         </div>
 
