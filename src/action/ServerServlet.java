@@ -59,7 +59,9 @@ public class ServerServlet extends BaseServlet {
 
         return "/showInfoList.jsp";
     }
-    //用户管理页
+    /**
+     * 用户管理
+     */
     //分页列表
     public String getUserListOfPage(HttpServletRequest req, HttpServletResponse response) {
         int pageNum = Integer.parseInt(req.getParameter("pageNum")), pageSize = 5;
@@ -85,6 +87,35 @@ public class ServerServlet extends BaseServlet {
                 nickname = req.getParameter("nickname"),
                 img_url = req.getParameter("img_url");
         us.modUser(id,user_name,nickname,img_url,type);
+//        response.sendRedirect(req.getContextPath()+"/server_um.jsp");
+        return null;
+    }
+    /*
+    * 聊天室管理
+    * */
+    //分页列表
+    public String getRoomListOfPage(HttpServletRequest req, HttpServletResponse response) {
+        int pageNum = Integer.parseInt(req.getParameter("pageNum")), pageSize = 5;
+        ChatroomService  rs=new ChatroomService();
+        PageBean pb = rs.findAllUserOfPage(pageNum, pageSize);
+        req.setAttribute("pageBean", pb);
+        return "/jsp/showRoomListOfPage.jsp";
+    }
+    //删除用户
+    public String deleteRoom(HttpServletRequest req, HttpServletResponse response) {
+        int room_id = Integer.parseInt(req.getParameter("room_id"));
+        ChatroomService service = new ChatroomService();
+        service.deleteRoom(room_id);
+        return null;
+    }
+    //修改用户
+    public String modRoom(HttpServletRequest req, HttpServletResponse response) throws IOException {
+        ChatroomService s=new ChatroomService();
+        req.setCharacterEncoding("utf-8");
+        int id = Integer.parseInt(req.getParameter("id")),admin_id = Integer.parseInt(req.getParameter("admin_id"));
+        String name = req.getParameter("name"),
+                password = req.getParameter("password");
+        s.modRoom(id,name,password,admin_id);
 //        response.sendRedirect(req.getContextPath()+"/server_um.jsp");
         return null;
     }

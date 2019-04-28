@@ -94,4 +94,41 @@ public class ChatroomDaoImpl implements ChatroomDao {
         }
         return rooms;
     }
+
+    @Override
+    public List<Chatroom> selectAll(int startIndex, int pageSize) {
+        QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+        String sql = "SELECT * FROM `Chatroom` LIMIT ?,?";
+        List<Chatroom> rooms = null;
+        try {
+            rooms = queryRunner.query(sql, new BeanListHandler<>(Chatroom.class),startIndex,pageSize);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rooms;
+    }
+
+    @Override
+    public void delete(int room_id) {
+        QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+        String sql = "delete from chatroom where id = ?";
+        try {
+            queryRunner.update(sql, room_id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void update(Chatroom c) {
+        QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+        String sql = "UPDATE chatroom\n" +
+                "set  name = ? ,password=?,admin_id = ?\n" +
+                "where id = ?";
+        try {
+            queryRunner.update(sql, new Object[]{c.getName(),c.getPassword(),c.getAdmin_id(),c.getId()});
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -1,53 +1,44 @@
-
 $(function () {
-    //分页
     initPaperDiv();
     //提交按钮
     $(".modForm").submit(function (e) {
         e.preventDefault();
-        modUser();
+        modRoom();
     });
 });
-//修改用户
-function modUser() {
+function modRoom() {
     // alert($("#type-select").val());
     $.post("server?"+new Date().getTime(),
         {
-            "method": "modUser",
+            "method": "modRoom",
             "id": $("#id-input").val(),
-            "user_name":$("#user-name-input").val(),
-            "nickname":$("#nickname-input").val(),
-            "img_url":$("#img-url-input").val(),
-            "type": $("#type-select").val()
+            "name":$("#name-input").val(),
+            "password":$("#password-input").val(),
+            "admin_id": $("#admin-input").val()
         },function () {
             $("#my-popup").modal();
             var pageNum = $("input#pageNumInp").val();
             updateUserListOfPage(pageNum);
         });
 }
-
-//删除用户
-function deleteUser(idx) {
+function modDivPoping(bt) {
+    var tr = $(bt).parents(".recordTr");
+    var pop = $("#my-popup");
+    pop.find("#id-input").val(tr.find(".id-td").html());
+    pop.find("#name-input").val(tr.find(".name-td").html());
+    pop.find("#admin-input").val(tr.find(".admin-td span").html());
+    pop.find("#password-input").val(tr.find(".password-td").html());
+    pop.modal();
+}
+function deleteRoom(idx) {
     $.post("server?" + new Date().getTime(), {
-        "method": "deleteUser",
-        "user_id": idx,
+        "method": "deleteRoom",
+        "room_id": idx,
     }, function () {
         var pageNum = $("input#pageNumInp").val();
         updateUserListOfPage(pageNum);
     });
 }
-
-function modDivPoping(bt) {
-    var tr = $(bt).parents(".recordTr");
-    var pop = $("#my-popup");
-    pop.find("#id-input").val(tr.find(".id-td").html());
-    pop.find("#user-name-input").val(tr.find(".user-name-td").html());
-    pop.find("#nickname-input").val(tr.find(".nickname-td").html());
-    pop.find("#img-url-input").val(tr.find(".img-url-td img").attr("src"));
-    pop.find("#type-input").val(tr.find(".type-td").html());
-    pop.modal();
-}
-
 //分页列表事件绑定
 function usersListEventBinding() {
     //分页导航
@@ -59,16 +50,16 @@ function usersListEventBinding() {
         var pageNum = $("ul.am-pagination").find("li[class='am-active']").children("a").html();
         updateUserListOfPage(pageNum - 1);
     });
-    //删除按钮
+   //删除按钮
     $("button.deleButton").each(function (idx, bt) {
         $(bt).click(function () {
             var idx = $(bt).find("input").val();
             if(confirm("Delete user :" + idx)){
-                deleteUser(idx);
+                deleteRoom(idx);
             }
         });
     });
-    //批量删除-全选按钮
+     //批量删除-全选按钮
     $("input#selectAll").click(function () {
         $("tbody input[type='checkbox']").each(function (idx, cb) {
             $(cb).click();
@@ -78,8 +69,8 @@ function usersListEventBinding() {
     $("button.mulDeleButton").click(function () {
         if (confirm("Multiply deleting?")) {
             $("tbody input:checked[type='checkbox']").each(function (idx, cb) {
-                var user_id = $(cb).parent().parent().find("td.id-td").html();
-                deleteUser(user_id);
+                var room_id = $(cb).parent().parent().find("td.id-td").html();
+                deleteRoom(room_id);
             });
         }
     });
@@ -94,14 +85,13 @@ function usersListEventBinding() {
 function updateUserListOfPage(pageNum) {
     $.post("server?"+new Date().getTime(),
         {
-            "method":"getUserListOfPage",
+            "method":"getRoomListOfPage",
             "pageNum":pageNum
         },function (data) {
             $("#listContainer").html(data);
             usersListEventBinding();
         });
 }
-
 function initPaperDiv() {
     updateUserListOfPage(1);
 }

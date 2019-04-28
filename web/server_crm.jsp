@@ -167,7 +167,7 @@
 
         </div>
 
-        <div class="am-popup am-popup-inner" id="my-popup">
+        <div class="am-popup am-popup-inner" id="my-popup" style="max-height: 480px">
             <div class="am-popup-hd">
                 <h4 class="am-popup-title">修改当前用户信息</h4>
                 <span data-am-modal-close
@@ -180,29 +180,17 @@
                         <input type="text" name="id-input" id="id-input" placeholder="请输入标题" disabled>
                     </div>
                     <div class="am-form-group">
-                        <span class="modDiv-label">用户名</span>
-                        <input type="text" name="user-name-input" id="user-name-input" placeholder="请输入标题">
+                        <span class="modDiv-label">聊天室名</span>
+                        <input type="text" name="name-input" id="name-input" placeholder="请输入标题">
                     </div>
                     <div class="am-form-group">
-                        <span class="modDiv-label">昵称</span>
-                        <input type="text" name="nickname-input" id="nickname-input" placeholder="请输入昵称">
+                        <span class="modDiv-label">创建者</span>
+                        <input type="text" name="admin-input" id="admin-input" placeholder="请输入昵称"disabled>
 
                     </div>
                     <div class="am-form-group">
-                        <span class="modDiv-label">头像</span>
-                        <input type="text" name="img-url-input" id="img-url-input"placeholder="请输入标题"disabled>
-                    </div>
-                    <div class="am-form-group am-form-file">
-                        <button type="button" class="am-btn am-btn-default am-btn-sm">
-                            <i class="am-icon-cloud-upload"></i> 选择你的头像</button>
-                        <input type="file" multiple>
-                    </div>
-                    <div class="am-form-group">
-                        <span class="modDiv-label">用户类型</span>
-                        <select name="type-input" id="type-select">
-                            <option value="1">1普通用户</option>
-                            <option value="2">2超级管理员</option>
-                        </select>
+                        <span class="modDiv-label">密码</span>
+                        <input type="text" name="password-input" id="password-input" placeholder="请输入昵称">
                     </div>
 
                     <div class="am-form-group am-cf">
@@ -219,10 +207,10 @@
         <div class="admin-biaogelist">
             <div class="listbiaoti am-cf">
                 <ul class="am-icon-user on">
-                    用户列表
+                    聊天室列表
                 </ul>
                 <dl class="am-icon-home" style="float: right;">
-                    当前位置： 首页 > <a href="#">用户列表</a>
+                    当前位置： 首页 > <a href="#">聊天室列表</a>
                 </dl>
                 <!--data-am-modal="{target: '#my-popup'}" 弹出层 ID  弹出层 190行 开始  271行结束-->
 
@@ -312,5 +300,5 @@
 </body>
 <script type="text/javascript" src="assets/js/server.js"></script>
 <script type="text/javascript" src="assets/js/amazeui.js"></script>
-<script type="text/javascript" src="assets/js/ser_um.js"></script>
+<script type="text/javascript" src="assets/js/ser_crm.js"></script>
 </html>

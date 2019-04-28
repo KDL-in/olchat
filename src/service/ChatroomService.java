@@ -3,6 +3,7 @@ package service;
 import dao.ChatroomDao;
 import dao.ChatroomDaoImpl;
 import entity.Chatroom;
+import entity.PageBean;
 import org.apache.commons.dbutils.QueryRunner;
 
 import java.util.List;
@@ -54,5 +55,25 @@ public class ChatroomService {
 
     public int countRooms() {
         return dao.selectAll().size();
+    }
+
+    public PageBean findAllUserOfPage(int pageNum, int pageSize) {
+        List<Chatroom> chatrooms = dao.selectAll();
+        PageBean<Chatroom> pb = new PageBean<>(pageNum, pageSize, chatrooms);
+        pb.setList(dao.selectAll(pb.getStartIndex(),pb.getPageSize()));
+        return pb;
+    }
+
+    public void deleteRoom(int room_id) {
+        dao.delete(room_id);
+    }
+
+    public void modRoom(int id, String name, String password,int admin_id) {
+        Chatroom chatroom = new Chatroom();
+        chatroom.setName(name);
+        chatroom.setId(id);
+        chatroom.setPassword(password);
+        chatroom.setAdmin_id(admin_id);
+        dao.update(chatroom);
     }
 }

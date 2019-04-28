@@ -16,4 +16,10 @@ public interface ChatroomDao {
     List<Chatroom> search(String keyWord);
 
     List<Chatroom> selectAll();
+
+    List<Chatroom> selectAll(int startIndex, int pageSize);
+
+    void delete(int room_id);
+
+    void update(Chatroom c);
 }
