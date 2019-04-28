@@ -4,11 +4,17 @@ import dao.FriendshipDao;
 import dao.FriendshipDapImpl;
 import dao.UserDao;
 import entity.Friendship;
+import entity.PageBean;
 import entity.User;
 
 import java.util.List;
 
 public class FriendshipService {
+    FriendshipDao dao;
+
+    public FriendshipService() {
+        this.dao = new FriendshipDapImpl();
+    }
 
     public boolean makeFriend(int user1_id, int user2_id) {
         if (user1_id > user2_id) {
@@ -38,5 +44,16 @@ public class FriendshipService {
 
     public List<Friendship> listFriendShips() {
         return new FriendshipDapImpl().selectAll();
+    }
+
+    public PageBean findAllUserOfPage(int pageNum, int pageSize) {
+        List<Friendship> fss = dao.selectAll();
+        PageBean<Friendship> pb = new PageBean<>(pageNum, pageSize, fss);
+        pb.setList(dao.selectAll(pb.getStartIndex(), pb.getPageSize()));
+        return pb;
+    }
+
+    public void deleteFriendship(int fs_id) {
+        dao.delete(fs_id);
     }
 }

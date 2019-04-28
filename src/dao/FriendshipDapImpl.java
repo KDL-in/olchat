@@ -67,4 +67,28 @@ public class FriendshipDapImpl implements FriendshipDao {
         }
         return friendships;
     }
+
+    @Override
+    public List<Friendship> selectAll(int startIndex, int pageSize) {
+        QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+        String sql = "SELECT * FROM `friendship` LIMIT ?,?";
+        List<Friendship> fss = null;
+        try {
+            fss = queryRunner.query(sql, new BeanListHandler<>(Friendship.class),startIndex,pageSize);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return fss;
+    }
+
+    @Override
+    public void delete(int fs_id) {
+        QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+        String sql = "delete from friendship where id = ?";
+        try {
+            queryRunner.update(sql, fs_id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

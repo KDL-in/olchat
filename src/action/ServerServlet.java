@@ -119,4 +119,22 @@ public class ServerServlet extends BaseServlet {
 //        response.sendRedirect(req.getContextPath()+"/server_um.jsp");
         return null;
     }
+    /*
+    * 好友关系管理
+    * */
+    //分页列表
+    public String getFriendshipListOfPage(HttpServletRequest req, HttpServletResponse response) {
+        int pageNum = Integer.parseInt(req.getParameter("pageNum")), pageSize = 5;
+        FriendshipService s = new FriendshipService();
+        PageBean pb = s.findAllUserOfPage(pageNum, pageSize);
+        req.setAttribute("pageBean", pb);
+        return "/jsp/showFriendshipListOfPage.jsp";
+    }
+    //删除关系
+    public String deleteFriendship(HttpServletRequest req, HttpServletResponse response) {
+        int fs_id = Integer.parseInt(req.getParameter("fs_id"));
+        FriendshipService service = new FriendshipService();
+        service.deleteFriendship(fs_id);
+        return null;
+    }
 }

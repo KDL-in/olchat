@@ -42,13 +42,17 @@ function deleteRoom(idx) {
 //分页列表事件绑定
 function usersListEventBinding() {
     //分页导航
-    $("ul.am-pagination").children("li").click(function () {
+    $("ul.am-pagination").children("li:not(:first):not(:last)").click(function () {
         var pageNum = $(this).children("a").html();
         updateUserListOfPage(pageNum);
     })
     $("#lastPage").click(function () {
         var pageNum = $("ul.am-pagination").find("li[class='am-active']").children("a").html();
         updateUserListOfPage(pageNum - 1);
+    });
+    $("#nextPage").click(function () {
+        var pageNum = $("ul.am-pagination").find("li[class='am-active']").children("a").html();
+        updateUserListOfPage(pageNum + 1);
     });
    //删除按钮
     $("button.deleButton").each(function (idx, bt) {

@@ -13,4 +13,8 @@ public interface FriendshipDao {
     List<User> findFriends(int user_id);
 
     List<Friendship> selectAll();
+
+    List<Friendship> selectAll(int startIndex, int pageSize);
+
+    void delete(int fs_id);
 }
