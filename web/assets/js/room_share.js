@@ -161,7 +161,7 @@ function searchChatroom(o) {
                     }
                     //恢复更新
                     updateRoomList();
-                    setInterval(updateRoomsHandle, 10000);
+                    setInterval(updateRoomsHandle, 3000);
                 });
             });
             //好友点击事件
@@ -175,7 +175,7 @@ function searchChatroom(o) {
                     }
                     //恢复更新
                     updateRoomList();
-                    setInterval(updateRoomsHandle, 10000);
+                    setInterval(updateRoomsHandle, 3000);
                 });
 
             });

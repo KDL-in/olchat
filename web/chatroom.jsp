@@ -91,11 +91,11 @@
         </div>
         <div class="message">
             <div class="menu">
-                <div class="smile iconfont icon-biaoqing"></div>
+                <%--<div class="smile iconfont icon-biaoqing"></div>--%>
                 <div class="doc iconfont icon-wenjian"></div>
-                <div class="snap iconfont icon-jieping  "></div>
-                <div class="video iconfont icon-shipin"></div>
-                <div class="speak iconfont icon-dianhua"></div>
+                <%--<div class="snap iconfont icon-jieping  "></div>--%>
+                <%--<div class="video iconfont icon-shipin"></div>--%>
+                <%--<div class="speak iconfont icon-dianhua"></div>--%>
             </div>
             <div id="uploadPanel" class="am-panel am-panel-success">
                 <div class="am-panel-hd">

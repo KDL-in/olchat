@@ -101,9 +101,9 @@ $(function () {
         // $( '#'+file.id ).find('.progress').remove();
         /*kdl图片上传插入数据库之前做一些准备工作*/
         // $("input[name='type']").val(1);
-
+        var type = $("input[name='type']").val();
         $("#txt").val("uploadDir/img/"+file.name);
-        $("input[name='type']").val(1);
+        $("input[name='type']").val(type >= 5 ? 6 : 1);
         $("#thelist").children("*").remove();
         $(".doc").click();
     });

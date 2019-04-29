@@ -22,7 +22,7 @@
     <c:choose>
         <c:when test="${record.user_id==curUser.id}"><%--我的消息--%>
             <c:choose>
-                <c:when test="${record.type==1}"><%--内容为图片--%>
+                <c:when test="${record.type==1||record.type==6}"><%--内容为图片--%>
                     <div class="self">
                         <div>
                             <span><img class="chatImg" src="${record.content}"></span>
@@ -43,7 +43,7 @@
         </c:when>
         <c:otherwise><%--对方的消息--%>
             <c:choose>
-                <c:when test="${record.type==1}"><%--内容为图片--%>
+                <c:when test="${record.type==1||record.type==6}"><%--内容为图片--%>
                     <div class="person">
                         <img src="${usersBuf[record.user_id].img_url}" alt="">
                         <div>
@@ -56,7 +56,6 @@
                     <div class="person">
                         <img src="${usersBuf[record.user_id].img_url}" alt="">
                         <div>
-                            <%--todo 也许需要隐藏一个真实名--%>
                             <p>${usersBuf[record.user_id].nickname!=""?usersBuf[record.user_id].nickname:record.user}</p>
                             <span>${record.content}</span>
                         </div>
