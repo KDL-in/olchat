@@ -21,7 +21,7 @@
 <div class="wrapper">
     <div class="sidebar">
         <ul>
-            <li><img class="am-circle" src="assets/images/1.jpg"/></li>
+            <li><img class="am-circle" src="${curUser.img_url}"/></li>
             <li class="iconfont icon-liaotian1 lt"></li>
             <li class="iconfont icon-tongxunlu txl"></li>
             <li class="iconfont active icon-shoucang sc"></li>

@@ -62,18 +62,18 @@
                 <a href="server_crm.jsp">聊天室管理</a>
                 <a href="server_fm.jsp">好友管理</a>
                 <a href="server_rm.jsp">聊天记录管理</a>
-                <a href="server_mm.jsp">个人动态管理</a>
+                <%--<a href="server_mm.jsp">个人动态管理</a>--%>
 
             </li>
-
+<%--
             <li class="soso">
 
                 <p>
 
                     <select data-am-selected="{btnWidth: 70, btnSize: 'sm', btnStyle: 'default'}">
                         <option value="b">全部</option>
-                        <%--<option value="o">产品</option>--%>
-                        <%--<option value="o">会员</option>--%>
+                        &lt;%&ndash;<option value="o">产品</option>&ndash;%&gt;
+                        &lt;%&ndash;<option value="o">会员</option>&ndash;%&gt;
 
                     </select>
 
@@ -87,7 +87,7 @@
 
 
             <li class="am-hide-sm-only" style="float: right;"><a href="javascript:;" id="admin-fullscreen"><span
-                    class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
+                    class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>--%>
         </ul>
     </div>
 </header>
@@ -114,11 +114,11 @@
             <ul>
                 <li><a href="server_rm.jsp">聊天记录</a></li>
             </ul>
-            <h3 class="am-icon-gears"><em></em> <a href="#">个人动态管理</a></h3>
+ <%--           <h3 class="am-icon-gears"><em></em> <a href="#">个人动态管理</a></h3>
             <ul>
                 <li><a href="server_mm.jsp">个人动态</a></li>
                 <li><a href="server_cm.jsp">动态评论</a></li>
-            </ul>
+            </ul>--%>
         </div>
         <!-- sideMenu End -->
 
