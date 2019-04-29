@@ -5,6 +5,7 @@ import dao.ChatRecordDaoImpl;
 import dao.ChatroomDao;
 import dao.ChatroomDaoImpl;
 import entity.ChatRecord;
+import entity.PageBean;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -50,5 +51,23 @@ public class ChatRecordService {
             }
         }
         return count;
+    }
+
+    public PageBean findAllUserOfPage(int pageNum, int pageSize) {
+        List<ChatRecord> records = dao.selectAll();
+        PageBean<ChatRecord> pb = new PageBean<>(pageNum, pageSize, records);
+        pb.setList(dao.selectAll(pb.getStartIndex(), pb.getPageSize()));
+        return pb;
+    }
+
+    public void deleteRecord(int id) {
+        dao.delete(id);
+    }
+
+    public void modContent(int id, String content) {
+        ChatRecord record = new ChatRecord();
+        record.setId(id);
+        record.setContent(content);
+        dao.updateContent(record);
     }
 }

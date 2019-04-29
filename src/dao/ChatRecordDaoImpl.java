@@ -1,6 +1,7 @@
 package dao;
 
 import entity.ChatRecord;
+import entity.User;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import utils.JDBCUtils;
@@ -79,5 +80,42 @@ public class ChatRecordDaoImpl implements ChatRecordDao {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public List<ChatRecord> selectAll(int startIndex, int pageSize) {
+        QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+        String sql = "SELECT * FROM `chat_record` LIMIT ?,?";
+        List<ChatRecord> records = null;
+        try {
+            records = queryRunner.query(sql, new BeanListHandler<>(ChatRecord.class),startIndex,pageSize);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return records;
+    }
+
+    @Override
+    public void delete(int id) {
+        QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+        String sql = "delete from chat_record where id = ?";
+        try {
+            queryRunner.update(sql, id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void updateContent(ChatRecord record) {
+        QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+        String sql = "UPDATE chat_record\n" +
+                "set  content = ?\n" +
+                "where id = ?";
+        try {
+            queryRunner.update(sql, new Object[]{record.getContent(),record.getId()});
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

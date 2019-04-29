@@ -1,10 +1,7 @@
 package action;
 
 import com.google.gson.Gson;
-import entity.Chatroom;
-import entity.Friendship;
-import entity.PageBean;
-import entity.User;
+import entity.*;
 import service.*;
 import utils.BaseServlet;
 
@@ -135,6 +132,33 @@ public class ServerServlet extends BaseServlet {
         int fs_id = Integer.parseInt(req.getParameter("fs_id"));
         FriendshipService service = new FriendshipService();
         service.deleteFriendship(fs_id);
+        return null;
+    }
+    /*
+    * 聊天记录管理
+    * */
+    public String getRecorrdListOfPage(HttpServletRequest req, HttpServletResponse response) {
+        int pageNum = Integer.parseInt(req.getParameter("pageNum")), pageSize = 5;
+        ChatRecordService  rs=new ChatRecordService();
+        PageBean pb = rs.findAllUserOfPage(pageNum, pageSize);
+        req.setAttribute("pageBean", pb);
+        return "/jsp/showRecordListOfPage.jsp";
+    }
+    //删除关系
+    public String deleteRecord(HttpServletRequest req, HttpServletResponse response) {
+        int id = Integer.parseInt(req.getParameter("record_id"));
+        ChatRecordService service = new ChatRecordService();
+        service.deleteRecord(id);
+        return null;
+    }
+    //修改用户
+    public String modRecordContent(HttpServletRequest req, HttpServletResponse response) throws IOException {
+        ChatRecordService s=new ChatRecordService();
+        req.setCharacterEncoding("utf-8");
+        int id = Integer.parseInt(req.getParameter("id"));
+        String content = req.getParameter("content");
+        s.modContent(id,content);
+//        response.sendRedirect(req.getContextPath()+"/server_um.jsp");
         return null;
     }
 }

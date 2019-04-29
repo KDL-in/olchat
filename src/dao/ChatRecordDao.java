@@ -14,4 +14,10 @@ public interface ChatRecordDao {
     List<ChatRecord> getRecordsBetween(int user_id, int friend_id, Timestamp timestamp, Timestamp timestamp1);
 
     List<ChatRecord> selectAll();
+
+    List<ChatRecord> selectAll(int startIndex, int pageSize);
+
+    void delete(int id);
+
+    void updateContent(ChatRecord record);
 }
