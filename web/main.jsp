@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/font/iconfont.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/room_share.css"/>
+    <link rel="stylesheet" href="assets/utils/contextMenu/contextMenu.css"/>
+
     <link rel="stylesheet" href="assets/utils/webuploader/webuploader.css" type="text/css"/>
 </head>
 <body id="chat_bg">
@@ -129,9 +131,10 @@
 </body>
 <script src="${pageContext.request.contextPath}/assets/js/jquery-2.1.0.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/room_share.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/userRoom.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
 <script type="text/javascript" src="assets/utils/webuploader/webuploader.js"></script>
 <script type="text/javascript" src="assets/utils/webuploader/webuploader.min.js"></script>
 <script type="text/javascript" src="assets/js/upload.js"></script>
 <script type="text/javascript" src="assets/js/amazeui.js"></script>
+<script type="text/javascript" src="assets/utils/contextMenu/contextMenu.js"></script>
 </html>

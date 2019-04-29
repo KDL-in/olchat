@@ -76,4 +76,6 @@ public class ChatroomService {
         chatroom.setAdmin_id(admin_id);
         dao.update(chatroom);
     }
+
+
 }

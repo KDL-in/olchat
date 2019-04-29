@@ -5,6 +5,7 @@ import dao.UserDaoImpl;
 import entity.ChatRecord;
 import entity.Chatroom;
 import entity.User;
+import entity.UserRoom;
 import org.apache.commons.beanutils.BeanUtils;
 import service.*;
 import utils.BaseServlet;
@@ -180,6 +181,30 @@ public class ChatroomServlet extends BaseServlet {
         int user1_id = Integer.parseInt(req.getParameter("user1_id")), user2_id = Integer.parseInt(req.getParameter("user2_id"));
         FriendshipService friendshipService = new FriendshipService();
         res.getWriter().println(friendshipService.makeFriend(user1_id, user2_id)?"添加成功":"添加失败");
+        return null;
+    }
+
+    //退出群
+    public String exitFromChatroom(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        int user_id = Integer.parseInt(req.getParameter("user_id"));
+        int room_id = Integer.parseInt(req.getParameter("room_id"));
+        UserRoomService service = new UserRoomService();
+        service.delete(user_id, room_id);
+        return null;
+    }
+    //删除群
+    public String deleteChatroom(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        int room_id = Integer.parseInt(req.getParameter("room_id"));
+        ChatroomService service = new ChatroomService();
+        service.deleteRoom(room_id);
+        return null;
+    }
+    //删除关系
+    public String deleteFriendship(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        int user1_id = Integer.parseInt(req.getParameter("user1_id"));
+        int user2_id = Integer.parseInt(req.getParameter("user2_id"));
+        FriendshipService service = new FriendshipService();
+        service.deleteFriendship(user1_id,user2_id);
         return null;
     }
 

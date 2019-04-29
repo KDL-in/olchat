@@ -11,9 +11,14 @@ import java.util.List;
 import java.util.Map;
 
 public class UserRoomService {
+    private UserRoomDao dao;
     public List<User> getMembers(String cid) {
         UserRoomDao dao = new UserRoomDaoImpl();
         return dao.getMembers(cid);
+    }
+
+    public UserRoomService() {
+        dao = new UserRoomDaoImpl();
     }
 
     public boolean addToChatroom(int user_id, int room_id) {
@@ -58,5 +63,12 @@ public class UserRoomService {
 
     private List<UserRoom> listUserRooms() {
         return new UserRoomDaoImpl().selectAll();
+    }
+
+    public void delete(int user_id, int room_id) {
+        UserRoom userRoom = new UserRoom();
+        userRoom.setUser_id(user_id);
+        userRoom.setRoom_id(room_id);
+        dao.delete(userRoom);
     }
 }

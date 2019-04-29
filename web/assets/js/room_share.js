@@ -156,6 +156,7 @@ function searchChatroom(o) {
                                 "room_psw": psw
                             },
                             function (data) {
+                                updateRoomList();
                                 alert(data);
                             });
                     }

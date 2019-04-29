@@ -58,7 +58,7 @@ function showOnline() {//重新加载在线学生
                 $("#txt").val(str);
             });
             //右键菜单
-            if (!isAdmin) return;
+            // if (!isAdmin) return;
             $(li).contextmenu(function (e) {
                 var selectId = $(this).find("input[name='cur_user_id']").val();
                 var myId = $("input[name='user_id']").val();
@@ -70,6 +70,10 @@ function showOnline() {//重新加载在线学生
                         '移除用户', //title
                         function (dom) {
                             // console.log(dom);
+                            if(!isAdmin){
+                                alert("不是管理员");
+                                return;
+                            }
                             deleteMember(selectId)
                         } // 点击菜单项的回调
                     ],

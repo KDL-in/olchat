@@ -18,21 +18,22 @@
         %>
         <li class="room-li">
             <input name="cid" type="hidden" value="${room.id}">
+            <input name="admin_id" type="hidden"value="${room.admin_id}">
             <a href="#"><img class="am-radius" src="<%=img_url%>" alt=""/></a>
             <div class="content">
                 <h3>${room.name}</h3>
                 <%--todo z最近聊天记录--%>
-                <p>：[动画表情]</p>
+                <p>：[详细]</p>
             </div>
         </li>
     </c:forEach>
     <c:forEach var="friend" items="${friends}">
         <li class="friend-li">
-            <input class="friend_id" type="hidden" value="${friend.id}">
+            <input name="friend_id"class="friend_id" type="hidden" value="${friend.id}">
             <a href="#"><img  src="${friend.img_url}" alt=""/></a>
             <div class="content">
-                <h3>${(friend.nickname=="")?friend.user_name:friend.nickname}</h3>
-                <p>：[动画表情]</p>
+                <h3>${(friend.nickname==""||friend.nickname==null)?friend.user_name:friend.nickname}</h3>
+                <p>：[详细]</p>
             </div>
         </li>
     </c:forEach>

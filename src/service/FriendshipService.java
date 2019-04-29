@@ -56,4 +56,9 @@ public class FriendshipService {
     public void deleteFriendship(int fs_id) {
         dao.delete(fs_id);
     }
+
+    public void deleteFriendship(int user1_id, int user2_id) {
+        Friendship friendship = find(user1_id, user2_id);
+        dao.delete(friendship.getId());
+    }
 }
