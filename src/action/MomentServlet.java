@@ -44,7 +44,11 @@ public class MomentServlet extends BaseServlet {
         req.setAttribute("moments", moments);
         return "/showMomentList.jsp";
     }
-
+    public String getMomentListOf(HttpServletRequest req, HttpServletResponse resp) {
+        List<Moment> moments = new MomentService().listMomentsOf(Integer.parseInt(req.getParameter("cur_user_id")));
+        req.setAttribute("moments", moments);
+        return "/showMomentList.jsp";
+    }
     public String getCommentList(HttpServletRequest req, HttpServletResponse resp) {
         int id = Integer.parseInt(req.getParameter("moment_id"));
         List<Comment> comments = new CommentService().listComments(id);

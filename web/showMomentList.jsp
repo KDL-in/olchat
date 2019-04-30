@@ -10,7 +10,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <body>
-
+<%
+    System.out.println("here");
+%>
 <c:forEach var="m" items="${moments}">
     <section class="content">
         <input type="hidden" name="moment_id" value="${m.id}">

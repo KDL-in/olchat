@@ -1,59 +1,22 @@
-//图片上传部分
-// 初始化Web Uploader
-var uploader = WebUploader.create({
 
-    // 选完文件后，是否自动上传。
-    auto: true,
-
-    resize: true,
-
-    // 文件接收服务端。
-    server: 'upload',
-
-    // 选择文件的按钮。可选。
-    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
-    pick: '#picker',
-
-    // 只允许选择图片文件。
-    accept: {
-        title: 'Images',
-        extensions: 'gif,jpg,jpeg,bmp,png',
-        mimeTypes: 'image/*'
-    }
-});
-uploader.on('uploadSuccess', function (file, response) {
-    // alert(response._raw);//cur
-    $("#img_url").html(response._raw);
-    $(".doc").click();
-});
 $(function () {
     $(".sidebar .active").click();
     $("#chat_bg .offline").click(exit);
 
-//	发送事件
-    $(".message .send span").click(publicMoment);
-    $(".message #txt").keydown(function (e) {
-        if (e.keyCode == 13) {
-            $(".message .send span").click();
-            e.preventDefault();
-        }
-    });
 
 //  更新动态
     updateMoments();
-//  图片上传面板
-    $(".doc").click(function () {
-        $("#uploadPanel").toggle(200);
+//  点击返回个人动态
+    $("li.moment").click(function () {
+        window.location.href = "moment.jsp";
     });
-    $(".doc").click();
-
-
 });
-
 function updateMoments() {
+    console.log($("input[name='cur_user_id']").val());
     $.post("moment?" + new Date().getTime(),
         {
-            "method": "getMomentList"
+            "method": "getMomentListOf",
+            "cur_user_id": $("input[name='cur_user_id']").val()
         },
         function (data) {
             $("#moment-container").html(data);
@@ -63,21 +26,6 @@ function updateMoments() {
     );
 }
 
-function publicMoment() {
-    var txt = $("#txt").val();
-    $("#txt").val("");
-    $.post("moment?" + new Date().getTime(),
-        {
-            "method": "publicMoment",
-            "txt": txt,
-            "img_url": $("span#img_url").html(),
-        },
-        function () {
-            updateMoments();
-            $("span#img_url").html("");
-        }
-    );
-}
 
 function exit() {
     window.location.href = "login?" + new Date().getTime() + "&method=exit";
@@ -183,11 +131,11 @@ function rightMemuEventBinding(dis_cont) {
                             if (e.keyCode == 13) {
                                 $.post("moment?" + new Date().getTime(),
                                     {
-                                        "method": "publicComment",
+                                        "method":"publicComment",
                                         "content": senderInput.val().toString().trim(),
-                                        "user_id": user_id,
-                                        "reply_id": user_id,
-                                        "moment_id": moment_id
+                                        "user_id":user_id,
+                                        "reply_id":user_id,
+                                        "moment_id":moment_id
                                     },
                                     function (data) {
                                         senderInput.val("");
@@ -205,17 +153,17 @@ function rightMemuEventBinding(dis_cont) {
                         var reply_id = $(li).find("input[name='cmt_user_id']").val();
                         var reply_name = $(li).find("input[name='cmt_user_name']").val();
                         senderLi.show();
-                        senderInput.val("@" + reply_name + ": ");
+                        senderInput.val("@"+reply_name+": ");
                         senderInput.focus();
                         senderInput.keydown(function (e) {
                             if (e.keyCode == 13) {
                                 $.post("moment?" + new Date().getTime(),
                                     {
-                                        "method": "publicComment",
+                                        "method":"publicComment",
                                         "content": senderInput.val().toString().split(":")[1].trim(),
-                                        "user_id": user_id,
-                                        "reply_id": reply_id,
-                                        "moment_id": moment_id
+                                        "user_id":user_id,
+                                        "reply_id":reply_id,
+                                        "moment_id":moment_id
                                     },
                                     function (data) {
                                         //todo 隐藏输入
@@ -319,13 +267,6 @@ function momentEventBinding() {
         }
 
     });
-    //  头像点击事件绑定
-    $(".head_img,.contain .owner").each(function (idx, ele) {
-        $(ele).click(function () {
-            var content = $(ele).parents(".content");
-            var user_id = $(content).find("input[name='moment_user_id']").val();
-            window.location.href = "moment_of.jsp?" + new Date().getTime() + "&user_id="+user_id;
-        });
-    });
+
 
 }

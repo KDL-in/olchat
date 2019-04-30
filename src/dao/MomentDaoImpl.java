@@ -23,7 +23,7 @@ public class MomentDaoImpl implements MomentDao {
     }
 
     @Override
-    public List<Moment> findMomentBy(int user_id) {
+    public List<Moment> selectAllRelated(int user_id) {
         QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
         String sql = "SELECT * FROM moment\n" +
                 "WHERE user_id in(\n" +
@@ -52,5 +52,18 @@ public class MomentDaoImpl implements MomentDao {
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public List<Moment> selectAllBy(int cur_user_id) {
+        QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+        String sql = "SELECT * FROM moment WHERE user_id =?";
+        List<Moment> moments = null;
+        try {
+            moments = queryRunner.query(sql, new BeanListHandler<>(Moment.class), cur_user_id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return moments;
     }
 }
