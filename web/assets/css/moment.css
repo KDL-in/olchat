@@ -1,6 +1,30 @@
 /**
 自定义
 */
+p#intro-name{
+    font-weight: bold;
+}
+p#intro{
+	min-height: 80px;
+}
+textarea#intro {
+    font-size: 13px;
+    height: 150px;
+    border: none;
+    outline: none;
+    resize: none;
+    overflow: hidden;
+    font-family: "microsoft Yahei";
+    text-indent: 10px;
+    line-height: 21px;
+    padding: 5px;
+    background: #f8f8f8;
+}
+
+textarea#intro:focus {
+    background: #fdfdfd;
+}
+span#img_url {font-size: 5px;padding: 6px;color: green;}
 div#uploadPanel {
 	width: 150px;
 	position: absolute;

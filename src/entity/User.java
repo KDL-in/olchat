@@ -12,6 +12,15 @@ public class User implements HttpSessionBindingListener {
     private String img_url;
     private int type;
     private String nickname;
+    private String intro;
+
+    public String getIntro() {
+        return intro;
+    }
+
+    public void setIntro(String intro) {
+        this.intro = intro;
+    }
 
     public String getNickname() {
         return nickname;

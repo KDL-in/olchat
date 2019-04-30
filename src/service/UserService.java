@@ -68,4 +68,11 @@ public class UserService {
         u.setType(type);
         dao.update(u);
     }
+
+    public void modIntro(int id, String intro) {
+        User u = new User();
+        u.setId(id);
+        u.setIntro(intro);
+        dao.updateIntro(u);
+    }
 }

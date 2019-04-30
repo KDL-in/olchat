@@ -46,9 +46,41 @@ $(function () {
         $("#uploadPanel").toggle(200);
     });
     $(".doc").click();
-
+//    个人签名修改
+    $("#intro").keydown(function (e) {
+        if (e.keyCode == 13) {
+            // alert("keydown");
+            sendIntro($(this).val());
+            e.preventDefault();
+        }
+    });
+//    一些按钮
+    $("#qq-span").click(function () {
+        alert("QQ: 925-------8")
+    });
+    $("#blog-span").click(function () {
+        window.open('https://github.com/KDL-in/olchat');
+    });
+    $("#weibo-span").click(function () {
+        alert("微博: KDL----@sina.com")
+    });
+    $("#weixin-span").click(function () {
+        alert("微信: 134------52")
+    });
 
 });
+
+function sendIntro(intro) {
+    // alert(intro+" "+$("input[name='user_id']").val());
+    $.post("moment?" + new Date().getTime(), {
+        "method": "sendIntro",
+        "intro": intro,
+        "user_id": $("input[name='user_id']").val()
+    }, function () {
+        alert("修改成功");
+        $("#intro").blur();
+    })
+}
 
 function updateMoments() {
     $.post("moment?" + new Date().getTime(),
@@ -324,7 +356,7 @@ function momentEventBinding() {
         $(ele).click(function () {
             var content = $(ele).parents(".content");
             var user_id = $(content).find("input[name='moment_user_id']").val();
-            window.location.href = "moment_of.jsp?" + new Date().getTime() + "&user_id="+user_id;
+            window.location.href = "moment_of.jsp?" + new Date().getTime() + "&user_id=" + user_id;
         });
     });
 

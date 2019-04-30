@@ -5,6 +5,7 @@ import entity.Moment;
 import entity.User;
 import service.CommentService;
 import service.MomentService;
+import service.UserService;
 import utils.BaseServlet;
 
 import javax.servlet.ServletException;
@@ -12,8 +13,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 public class MomentServlet extends BaseServlet {
     public String publicMoment(HttpServletRequest req, HttpServletResponse resp) {
@@ -67,6 +70,18 @@ public class MomentServlet extends BaseServlet {
         int comment_id = Integer.parseInt(req.getParameter("comment_id"));
         CommentService service = new CommentService();
         service.deleteComment(comment_id);
+        return null;
+    }
+
+    public String sendIntro(HttpServletRequest req, HttpServletResponse resp) throws UnsupportedEncodingException {
+        req.setCharacterEncoding("utf-8");
+        String intro = req.getParameter("intro");
+        int id = Integer.parseInt(req.getParameter("user_id"));
+        UserService service = new UserService();
+        service.modIntro(id, intro);
+        User u = (User) req.getSession().getAttribute("curUser");
+        u.setIntro(intro);
+        req.getSession().setAttribute("curUser", u);
         return null;
     }
 }

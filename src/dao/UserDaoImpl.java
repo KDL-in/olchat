@@ -114,4 +114,15 @@ public class UserDaoImpl implements UserDao {
 		}
 	}
 
+	@Override
+	public void updateIntro(User u) {
+		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+		String sql = "UPDATE user set intro=? where id = ?";
+		try {
+			queryRunner.update(sql, new Object[]{u.getIntro(),u.getId()});
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 }

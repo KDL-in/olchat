@@ -34,17 +34,17 @@
             <div id="signature" class="blog-sidebar-widget blog-bor">
                 <h2 class="blog-text-center blog-title"><span>About ME</span></h2>
                 <img src="${curUser.img_url}" alt="about me" class="blog-entry-img">
-                <p>${curUser.nickname==""?curUser.user_name:curUser.nickname}</p>
-                <p>生活不止眼前，十年百年后，当我们死去，质疑我们的人同样死去，后人看到的是裹足不前、原地打转的你，还是一直奔跑、走到远方的我？</p>
+                <p id="intro-name">${curUser.nickname==""?curUser.user_name:curUser.nickname}</p>
+                <textarea id="intro">${curUser.intro==null||curUser.intro==""?'编辑你的个性签名':curUser.intro}</textarea>
+
             </div>
             <div class="blog-sidebar-widget blog-bor">
                 <h2 class="blog-text-center blog-title"><span>Contact ME</span></h2>
                 <p>
-                    <a href=""><span class="am-icon-qq am-icon-fw am-primary blog-icon"></span></a>
-                    <a href=""><span class="am-icon-github am-icon-fw blog-icon"></span></a>
-                    <a href=""><span class="am-icon-weibo am-icon-fw blog-icon"></span></a>
-                    <a href=""><span class="am-icon-reddit am-icon-fw blog-icon"></span></a>
-                    <a href=""><span class="am-icon-weixin am-icon-fw blog-icon"></span></a>
+                    <a href=""><span id="qq-span" class="am-icon-qq am-icon-fw am-primary blog-icon"></span></a>
+                    <a href=""><span id="blog-span" class="am-icon-github am-icon-fw blog-icon"></span></a>
+                    <a href=""><span id="weibo-span"class="am-icon-weibo am-icon-fw blog-icon"></span></a>
+                    <a href=""><span id="weixin-span" class="am-icon-weixin am-icon-fw blog-icon"></span></a>
                 </p>
             </div>
 
