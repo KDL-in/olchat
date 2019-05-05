@@ -198,9 +198,9 @@ $(function () {
     //进入加载最近聊天记录
     showChatRecords();
     //长时间线程更新当前聊天
-    window.setInterval("showChatRecords()", 8000);
+    window.setInterval("showChatRecords()", 3000);
     //长时间线程滚动底部
-    scrollHandler = window.setInterval("scrollBottom()", 8000);
+    scrollHandler = window.setInterval("scrollBottom()", 3000);
     //发送消息
     $(".send span").click(sendMessage);
     //注销绑定
@@ -229,7 +229,7 @@ $(function () {
     });
     $(".dialouges").mouseleave(function () {
         // console.log("leave");
-        scrollHandler = setInterval("scrollBottom()", 8000);
+        scrollHandler = setInterval("scrollBottom()", 3000);
     });
 
 

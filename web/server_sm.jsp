@@ -22,7 +22,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>User Management</title>
+    <title>statistics</title>
     <meta name="keywords" content="index">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="renderer" content="webkit">
@@ -37,6 +37,11 @@
     <style>
         div#my-popup {
             max-height: 580px;
+        }
+        div#container{
+            height: 620px;
+            background: #eee;
+            padding: 20px;
         }
     </style>
 </head>
@@ -116,8 +121,8 @@
             </ul>
             <h3 class="am-icon-gears"><em></em> <a href="#">统计管理</a></h3>
             <ul>
-                <li><a href="server_sm.jsp">分布统计</a></li>
-                <li><a href="server_sm.jsp">性别</a></li>
+                <li id="comeFrom"><a href="#">分布统计</a></li>
+                <li id="sexual"><a href="#">性别</a></li>
             </ul>
         </div>
         <!-- sideMenu End -->
@@ -125,7 +130,7 @@
         <script type="text/javascript">
             jQuery(".sideMenu").slide({
                 titCell: "h3", //鼠标触发对象
-                defaultIndex:0,
+                defaultIndex:4,
                 targetCell: "ul", //与titCell一一对应，第n个titCell控制第n个targetCell的显示隐藏
                 effect: "slideDown", //targetCell下拉效果
                 delayTime: 300, //效果时间
@@ -217,7 +222,7 @@
         </div>
 
         <div class="admin-biaogelist">
-            <div class="listbiaoti am-cf">
+<%--            <div class="listbiaoti am-cf">
                 <ul class="am-icon-user on">
                     用户列表
                 </ul>
@@ -226,72 +231,11 @@
                 </dl>
                 <!--data-am-modal="{target: '#my-popup'}" 弹出层 ID  弹出层 190行 开始  271行结束-->
 
+            </div>--%>
+
+            <div id="container">
+
             </div>
-
-            <form class="am-form am-g" id="listContainer">
-                <%--列表内容--%>
-                <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
-
-                    <thead>
-                    <tr class="am-success">
-                        <th class="table-check"><input type="checkbox"/></th>
-                        <th>ID</th>
-                        <th>用户名</th>
-                        <th>昵称</th>
-                        <th>头像</th>
-                        <th>用户类型</th>
-                        <th width="163px" class="table-set">操作</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr class="recordTr">
-                        <td><input type="checkbox"/></td>
-                        <td>1</td>
-                        <td class="user-name-td">kdlin</td>
-                        <td class="nick-name-td">焜达</td>
-                        <td><img src="assets/images/header/17.png"></td>
-                        <td>超级管理员</td>
-
-
-                        <td>
-                            <div class="am-btn-toolbar">
-                                <div class="am-btn-group am-btn-group-xs">
-                                    <a class="modButton am-btn am-btn-default am-btn-xs am-text-success am-round am-icon-pencil-square-o"
-                                       title="修改"></a>
-                                    <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round" title="删除">
-                                        <span class="am-icon-trash-o"></span></button>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-
-                    </tbody>
-                </table>
-
-                <div class="am-btn-group am-btn-group-xs">
-                    <button type="button" class="am-btn am-btn-default" ><span class="am-icon-plus"></span> 新增</button>
-                    <button type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span> 删除
-                    </button>
-                </div>
-                <ul class="am-pagination am-fr">
-                    <li class="am-disabled"><a href="#">«</a></li>
-                    <li class="am-active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">»</a></li>
-                </ul>
-                <hr/>
-                <p>
-                    备注：操作图标含义
-                    <a class="am-icon-pencil-square-o am-text-secondary" title="修改"> 修改栏目</a>
-                    <a class="am-icon-copy am-text-warning" title="复制"> 复制栏目</a>
-                    <a class="am-icon-trash-o am-text-danger" title="删除"> 删除栏目</a>
-
-
-                </p>
-            </form>
 
             <div class="foods">
                 <ul>
@@ -310,7 +254,10 @@
 
 
 </body>
+
 <script type="text/javascript" src="assets/js/server.js"></script>
+<script type="text/javascript" src="assets/js/echarts.js"></script>
+<script type="text/javascript" src="assets/js/china.js"></script>
 <script type="text/javascript" src="assets/js/amazeui.js"></script>
-<script type="text/javascript" src="assets/js/ser_um.js"></script>
+<script type="text/javascript" src="assets/js/ser_sm.js"></script>
 </html>

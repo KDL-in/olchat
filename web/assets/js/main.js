@@ -116,7 +116,7 @@ function updateRoomList() {
 }
 var updateRoomsHandle;
 function prepareIntervalCallOfUserRoom() {
-    updateRoomsHandle = window.setInterval("updateRoomList()", 10000);
+    updateRoomsHandle = window.setInterval("updateRoomList()", 4000);
     // window.clearInterval(updateRoomsHandle);
 }
 

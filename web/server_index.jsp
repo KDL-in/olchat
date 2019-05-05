@@ -73,7 +73,8 @@
                 <a href="server_crm.jsp">聊天室管理</a>
                 <a href="server_fm.jsp">好友管理</a>
                 <a href="server_rm.jsp">聊天记录管理</a>
-                <%--<a href="server_mm.jsp">个人动态管理</a>--%>
+                <a href="server_sm.jsp">统计管理</a>
+
             </li>
 
 <%--            <li class="soso">
@@ -124,11 +125,11 @@
             <ul>
                 <li><a href="server_rm.jsp">聊天记录</a></li>
             </ul>
-            <%--<h3 class="am-icon-gears"><em></em> <a href="#">个人动态管理</a></h3>--%>
-            <%--<ul>--%>
-                <%--<li><a href="server_mm.jsp">个人动态</a></li>--%>
-                <%--<li><a href="server_cm.jsp">动态评论</a></li>--%>
-            <%--</ul>--%>
+            <h3 class="am-icon-gears"><em></em> <a href="#">统计管理</a></h3>
+            <ul>
+                <li><a href="server_sm.jsp">分布统计</a></li>
+                <li><a href="server_sm.jsp">性别</a></li>
+            </ul>
         </div>
         <!-- sideMenu End -->
 

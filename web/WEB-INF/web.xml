@@ -7,6 +7,10 @@
         <listener-class>listener.MyServletContextListener</listener-class>
     </listener>
     <servlet>
+        <servlet-name>StatisticsServlet</servlet-name>
+        <servlet-class>action.StatisticsServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>action.LoginServlet</servlet-class>
     </servlet>
@@ -45,6 +49,10 @@
     <servlet-mapping>
         <servlet-name>UploadTestServlet</servlet-name>
         <url-pattern>/upload</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StatisticsServlet</servlet-name>
+        <url-pattern>/statistics</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>
