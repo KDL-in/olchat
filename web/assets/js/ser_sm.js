@@ -1,7 +1,7 @@
 var myChart = echarts.init(document.getElementById('container'));
-
 //显示城市统计结果
 function showCitiesStatistic(cities) {
+    myChart.clear();
     var name_title = "用户分布统计"
     var subname = '显示Top 10城市'
     var nameColor = " rgb(55, 75, 113)"
@@ -348,6 +348,74 @@ function placeStatistic() {
         showCitiesStatistic(arr);
     },'json');
 }
+//显示性别统计
+function showSexStatistic(arr) {
+    myChart.clear();
+    var data = arr;
+    option = {
+        title : {
+            text: '男女性别占比',
+            subtext: '',
+            x:'center'
+        },
+        color: ['#4c8edb', '#d23f52'],
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            data: ['男','女']
+        },
+        series : [
+            {
+                name: '',
+                type: 'pie',
+                radius : '55%',
+                center: ['50%', '46%'],
+                label: {
+                    normal: {
+                        formatter: '{b}：{d}%',
+                    },
+                    emphasis: {
+                        show: true,
+                        textStyle: {
+                            fontSize: '14',
+                            fontWeight: 'bold'
+                        }
+                    }
+                },
+                data:data,
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
+    myChart.setOption(option);
+}
+
+//性别统计
+function sexualStatistic() {
+    $.post("statistics?" + new Date(),{
+        "method":"sexualStatistic"
+    },function (objs) {
+        //数据格式转换
+        var arr = new Array();
+        for (var key in objs) {
+            var t = {};
+            t.name = key;
+            t.value = objs[key];
+            arr.push(t);
+        }
+        showSexStatistic(arr);
+    },'json');
+}
 
 $(function () {
     //统计对象事件绑定
@@ -355,7 +423,7 @@ $(function () {
         placeStatistic();
     });
     $("li#sexual").click(function () {
-        // sexualStatistic();
+        sexualStatistic();
     });
     //初始化显示
     $("li#comeFrom").click();

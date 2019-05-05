@@ -65,4 +65,19 @@ public class UserInfoService {
         return dao.selectAll();
     }
 
+    public Map<String, Integer> countSex() {
+        List<UserInfo> list = listInfo();
+        Map<String, Integer> map = new HashMap<>();
+        map.put("男", 0);
+        map.put("女", 0);
+        for (UserInfo f :
+                list) {
+            if (f.getSex() == 0) {
+                map.put("男", map.get("男") + 1);
+            } else {
+                map.put("女", map.get("女") + 1);
+            }
+        }
+        return map;
+    }
 }
