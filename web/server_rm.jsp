@@ -109,11 +109,8 @@
             <ul>
                 <li><a href="server_rm.jsp">聊天记录</a></li>
             </ul>
-            <h3 class="am-icon-gears"><em></em> <a href="#">统计管理</a></h3>
-            <ul>
-                <li><a href="server_sm.jsp">分布统计</a></li>
-                <li><a href="server_sm.jsp">性别</a></li>
-            </ul>
+            <h3 class="am-icon-gears"><em></em> <a href="server_sm.jsp">统计管理</a></h3>
+
         </div>
         <!-- sideMenu End -->
 

@@ -123,6 +123,7 @@
             <ul>
                 <li id="comeFrom"><a href="#">分布统计</a></li>
                 <li id="sexual"><a href="#">性别</a></li>
+                <li id="friendship"><a href="#">关系</a></li>
             </ul>
         </div>
         <!-- sideMenu End -->

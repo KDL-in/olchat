@@ -1,7 +1,9 @@
 package action;
 
 import com.google.gson.Gson;
+import entity.FNode;
 import entity.UserInfo;
+import service.FriendshipService;
 import service.UserInfoService;
 import utils.BaseServlet;
 
@@ -32,6 +34,17 @@ public class StatisticsServlet extends BaseServlet {
         Gson gson = new Gson();
         rep.getWriter().println(gson.toJson(sexToNum));
 
+        return null;
+    }
+
+    public String friendshipStatistic(HttpServletRequest req, HttpServletResponse rep) throws IOException {
+        System.out.println("here");
+        rep.setCharacterEncoding("utf-8");
+        FriendshipService service = new FriendshipService();
+        List<FNode> g = service.getFriendshipGraph();
+        Gson gson = new Gson();
+        rep.getWriter().println(gson.toJson(g));
+        System.out.println("here2");
         return null;
     }
 }

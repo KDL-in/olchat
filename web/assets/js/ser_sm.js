@@ -1,4 +1,5 @@
 var myChart = echarts.init(document.getElementById('container'));
+
 //显示城市统计结果
 function showCitiesStatistic(cities) {
     myChart.clear();
@@ -10,52 +11,50 @@ function showCitiesStatistic(cities) {
     var name_fontSize = 18
     var mapName = 'china'
     var data = cities
-/*
-    var data = [
-        {name:"北京",value:1},
-        {name:"天津",value:0},
-        {name:"河北",value:0},
-        {name:"山西",value:0},
-        {name:"内蒙古",value:0},
-        {name:"辽宁",value:0},
-        {name:"吉林",value:0},
-        {name:"黑龙江",value:0},
-        {name:"上海",value:1},
-        {name:"江苏",value:3},
-        {name:"浙江",value:0},
-        {name:"安徽",value:0},
-        {name:"福建",value:0},
-        {name:"江西",value:1},
-        {name:"山东",value:0},
-        {name:"河南",value:0},
-        {name:"湖北",value:0},
-        {name:"湖南",value:0},
-        {name:"重庆",value:0},
-        {name:"四川",value:0},
-        {name:"贵州",value:0},
-        {name:"云南",value:0},
-        {name:"西藏",value:0},
-        {name:"陕西",value:0},
-        {name:"甘肃",value:0},
-        {name:"青海",value:0},
-        {name:"宁夏",value:0},
-        {name:"新疆",value:0},
-        {name:"广东",value:7},
-        {name:"广西",value:0},
-        {name:"海南",value:0},
-    ];
-*/
+    /*
+        var data = [
+            {name:"北京",value:1},
+            {name:"天津",value:0},
+            {name:"河北",value:0},
+            {name:"山西",value:0},
+            {name:"内蒙古",value:0},
+            {name:"辽宁",value:0},
+            {name:"吉林",value:0},
+            {name:"黑龙江",value:0},
+            {name:"上海",value:1},
+            {name:"江苏",value:3},
+            {name:"浙江",value:0},
+            {name:"安徽",value:0},
+            {name:"福建",value:0},
+            {name:"江西",value:1},
+            {name:"山东",value:0},
+            {name:"河南",value:0},
+            {name:"湖北",value:0},
+            {name:"湖南",value:0},
+            {name:"重庆",value:0},
+            {name:"四川",value:0},
+            {name:"贵州",value:0},
+            {name:"云南",value:0},
+            {name:"西藏",value:0},
+            {name:"陕西",value:0},
+            {name:"甘肃",value:0},
+            {name:"青海",value:0},
+            {name:"宁夏",value:0},
+            {name:"新疆",value:0},
+            {name:"广东",value:7},
+            {name:"广西",value:0},
+            {name:"海南",value:0},
+        ];
+    */
 
     var geoCoordMap = {};
-    var toolTipData = [
-
-    ];
+    var toolTipData = [];
 
     /*获取地图数据*/
     myChart.showLoading();
     var mapFeatures = echarts.getMap(mapName).geoJson.features;
     myChart.hideLoading();
-    mapFeatures.forEach(function(v) {
+    mapFeatures.forEach(function (v) {
         // 地区名称
         var name = v.properties.name;
         // 地区经纬度
@@ -73,7 +72,7 @@ function showCitiesStatistic(cities) {
     var maxSize4Pin = 100,
         minSize4Pin = 20;
 
-    var convertData = function(data) {
+    var convertData = function (data) {
         var res = [];
         for (var i = 0; i < data.length; i++) {
             var geoCoord = geoCoordMap[data[i].name];
@@ -96,21 +95,21 @@ function showCitiesStatistic(cities) {
                 fontFamily: name_fontFamily,
                 fontSize: name_fontSize
             },
-            subtextStyle:{
-                fontSize:subname_fontSize,
-                fontFamily:name_fontFamily
+            subtextStyle: {
+                fontSize: subname_fontSize,
+                fontFamily: name_fontFamily
             }
         },
         tooltip: {
             trigger: 'item',
-            formatter: function(params) {
-                if (typeof(params.value)[2] == "undefined") {
+            formatter: function (params) {
+                if (typeof (params.value)[2] == "undefined") {
                     var toolTiphtml = ''
-                    for(var i = 0;i<toolTipData.length;i++){
-                        if(params.name==toolTipData[i].name){
-                            toolTiphtml += toolTipData[i].name+':<br>'
-                            for(var j = 0;j<toolTipData[i].value.length;j++){
-                                toolTiphtml+=toolTipData[i].value[j].name+':'+toolTipData[i].value[j].value+"<br>"
+                    for (var i = 0; i < toolTipData.length; i++) {
+                        if (params.name == toolTipData[i].name) {
+                            toolTiphtml += toolTipData[i].name + ':<br>'
+                            for (var j = 0; j < toolTipData[i].value.length; j++) {
+                                toolTiphtml += toolTipData[i].value[j].name + ':' + toolTipData[i].value[j].value + "<br>"
                             }
                         }
                     }
@@ -119,11 +118,11 @@ function showCitiesStatistic(cities) {
                     return toolTiphtml;
                 } else {
                     var toolTiphtml = ''
-                    for(var i = 0;i<toolTipData.length;i++){
-                        if(params.name==toolTipData[i].name){
-                            toolTiphtml += toolTipData[i].name+':<br>'
-                            for(var j = 0;j<toolTipData[i].value.length;j++){
-                                toolTiphtml+=toolTipData[i].value[j].name+':'+toolTipData[i].value[j].value+"<br>"
+                    for (var i = 0; i < toolTipData.length; i++) {
+                        if (params.name == toolTipData[i].name) {
+                            toolTiphtml += toolTipData[i].name + ':<br>'
+                            for (var j = 0; j < toolTipData[i].value.length; j++) {
+                                toolTiphtml += toolTipData[i].value[j].name + ':' + toolTipData[i].value[j].value + "<br>"
                             }
                         }
                     }
@@ -207,12 +206,12 @@ function showCitiesStatistic(cities) {
             type: 'scatter',
             coordinateSystem: 'geo',
             data: convertData(data),
-            symbolSize: function(val) {
+            symbolSize: function (val) {
                 return 4;
             },
             label: {
                 normal: {
-                    fontSize:10,
+                    fontSize: 10,
                     formatter: '{b}',
                     position: 'right',
                     show: true
@@ -290,11 +289,11 @@ function showCitiesStatistic(cities) {
                 name: 'Top 5',
                 type: 'effectScatter',
                 coordinateSystem: 'geo',
-                data: convertData(data.sort(function(a, b) {
+                data: convertData(data.sort(function (a, b) {
                     return b.value - a.value;
                 }).slice(0, 5)),
-                symbolSize: function(val) {
-                    return (val[2]+10) / 1;
+                symbolSize: function (val) {
+                    return (val[2] + 10) / 1;
                 },
                 showEffectOn: 'render',
                 rippleEffect: {
@@ -306,7 +305,7 @@ function showCitiesStatistic(cities) {
 
                         textBorderColor: "grey",
                         textBorderWidth: 3,
-                        fontSize:16,
+                        fontSize: 16,
                         formatter: '{b}',
                         position: 'right',
                         show: true
@@ -331,48 +330,50 @@ function showCitiesStatistic(cities) {
     myChart.setOption(option);
 
 }
+
 //用户发布统计
 function placeStatistic() {
-    $.post("statistics?" + new Date(),{
-        "method":"placeStatistic"
-    },function (objs) {
+    $.post("statistics?" + new Date(), {
+        "method": "placeStatistic"
+    }, function (objs) {
         //转换格式
         var arr = [];
         for (var city in objs) {
-            var t ={};
+            var t = {};
             t.name = city;
             t.value = objs[city];
             arr.push(t);
         }
         // console.log(objs);
         showCitiesStatistic(arr);
-    },'json');
+    }, 'json');
 }
+
 //显示性别统计
 function showSexStatistic(arr) {
     myChart.clear();
     var data = arr;
     option = {
-        title : {
+        title: {
             text: '男女性别占比',
             subtext: '',
-            x:'center'
+            x: 'center'
         },
         color: ['#4c8edb', '#d23f52'],
-        tooltip : {
+        tooltip: {
             trigger: 'item',
             formatter: "{a} <br/>{b} : ({d}%)"
         },
         legend: {
             orient: 'vertical',
             left: 'left',
-            data: ['男','女']
+            data: ['男', '女']
         },
-        series : [
+        series: [
             {
                 name: '',
                 type: 'pie',
-                radius : '55%',
+                radius: '55%',
                 center: ['50%', '46%'],
                 label: {
                     normal: {
@@ -386,7 +387,7 @@ function showSexStatistic(arr) {
                         }
                     }
                 },
-                data:data,
+                data: data,
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -402,9 +403,9 @@ function showSexStatistic(arr) {
 
 //性别统计
 function sexualStatistic() {
-    $.post("statistics?" + new Date(),{
-        "method":"sexualStatistic"
-    },function (objs) {
+    $.post("statistics?" + new Date().getTime(), {
+        "method": "sexualStatistic"
+    }, function (objs) {
         //数据格式转换
         var arr = new Array();
         for (var key in objs) {
@@ -414,7 +415,179 @@ function sexualStatistic() {
             arr.push(t);
         }
         showSexStatistic(arr);
-    },'json');
+    }, 'json');
+}
+//显示朋友关系统计图
+function showFriendshipStatistic(arr) {
+    myChart.clear();
+    var myGraphData = arr;
+
+    function setNodeData(arr, m, n ,listdata) {
+        var size = 33;
+        for(var i=0; i<arr.length; i++){
+            listdata.push({
+                id : m++,
+                category: n,
+                name: arr[i],
+                symbolSize: size,
+                draggable: "true"
+            });
+        }
+    }
+
+    function setLinkData(sourceList, m, links) {
+        for(var i=0; i<sourceList.length; i++){
+            links.push({
+                "source": sourceList[i],
+                "target": m,
+                lineStyle: {
+                    normal: {
+                        color: 'source',
+                    }
+                }
+            })
+        }
+    }
+
+    var listdata = [];
+    var linksdata = [];
+
+    var nodeData = myGraphData;
+    var m = 0;
+    var source = [];
+    for(var i=1; i < nodeData.length; i++){
+        var node = nodeData[i].parentNode;
+        var tx = [node];
+        setNodeData( tx, m, 1, listdata);
+        source.push(m);
+
+        var Data = nodeData[i].childNodes;
+        setNodeData( Data, m+1, 2, listdata);
+
+        var sourceList = [];
+        for(var n = m+1; n < m + Data.length + 1; n++){
+            sourceList.push(n);
+        }
+        setLinkData( sourceList, m, linksdata);
+        m = m + Data.length + 1;
+    }
+
+    var tx7 = [];
+    tx7.push(nodeData[0].parentNode);
+    setNodeData(tx7, m, 0, listdata);
+    setLinkData(source, m, linksdata);
+
+    option = {
+        title: {
+            text: "朋友和他朋友的朋友",
+            top: "top",
+            left: "left",
+            textStyle: {
+                color: '#292421'
+            }
+        },
+        tooltip: {
+            formatter: '{b}'
+        },
+        backgroundColor: '#FFFFFF',
+        legend: {
+            show : true,
+            data : [ {
+                name : '父节点',
+                icon : 'rect'
+            },
+                {
+                    name : '层级二',
+                    icon : 'roundRect'
+                }, {
+                    name : '层级三',
+                    icon : 'circle'
+                } ],
+            textStyle: {
+                color: '#292421'
+            },
+            icon: 'circle',
+            type: 'scroll',
+            orient: 'horizontal',
+            left: 10,
+            top: 20,
+            bottom: 20,
+            itemWidth: 10,
+            itemHeight: 10
+        },
+        animationDuration: 0,
+        animationEasingUpdate: 'quinticInOut',
+        series: [{
+            name: '知识图谱',
+            type: 'graph',
+            layout: 'force',
+            force: {
+                repulsion: 300,
+                gravity: 0.1,
+                edgeLength: 15,
+                layoutAnimation: true,
+            },
+            data: listdata,
+            links: linksdata,
+            categories:[
+                {
+                    name : '父节点',
+                    symbol : 'rect',
+                    label : {
+                    }
+                }, {
+                    name : '层级二',
+                    symbol : 'rect'
+                }, {
+                    name : '层级三',
+                    symbol : 'roundRect'
+                }],
+            roam: true,
+            label: {
+                normal: {
+                    show: true,
+                    position: 'bottom',
+                    formatter: '{b}',
+                    fontSize: 10,
+                    fontStyle: '600',
+                }
+            },
+            lineStyle: {
+                normal: {
+                    opacity: 0.9,
+                    width: 1.5,
+                    curveness: 0
+                }
+            }
+        }]
+    };
+    myChart.setOption(option);
+}
+
+//关系统计
+function friendshipStatistic() {
+    $.post("statistics?" + new Date().getTime(), {
+            "method": "friendshipStatistic"
+        }, function (objs) {
+            // console.log(objs);
+            //转换数据格式
+            var arr = [];
+            for (var idx in objs) {
+                o = objs[idx];
+                t = {};
+                t.parentNode = o.data;
+                t2 = new Array();
+                while (o.next != null) {
+                    o = o.next;
+                    t2.push(o.data);
+                }
+                t.childNodes = t2;
+                arr.push(t);
+            }
+            showFriendshipStatistic(arr);
+            // console.log(arr);
+        }, 'json'
+    );
 }
 
 $(function () {
@@ -424,6 +597,9 @@ $(function () {
     });
     $("li#sexual").click(function () {
         sexualStatistic();
+    });
+    $("li#friendship").click(function () {
+        friendshipStatistic();
     });
     //初始化显示
     $("li#comeFrom").click();

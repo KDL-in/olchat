@@ -2,12 +2,15 @@ package service;
 
 import dao.FriendshipDao;
 import dao.FriendshipDapImpl;
-import dao.UserDao;
+import entity.FNode;
 import entity.Friendship;
 import entity.PageBean;
 import entity.User;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FriendshipService {
     FriendshipDao dao;
@@ -61,4 +64,48 @@ public class FriendshipService {
         Friendship friendship = find(user1_id, user2_id);
         dao.delete(friendship.getId());
     }
+
+    public List<FNode> getFriendshipGraph() {
+        List<Friendship> list = dao.selectAll();
+        List<User> users = new UserService().listUsers();
+        //user_id to user_name
+        Map<Integer, String> userIdToName = new HashMap<>();
+        for (User u :
+                users) {
+            userIdToName.put(u.getId(), u.getUser_name());
+        }
+        //建立邻接链表
+        Map<String, Integer> nameToIdx = new HashMap<>();
+        List<FNode> g = new ArrayList();
+        for (Friendship f :
+                list) {
+            int id1 = f.getUser1_id(), id2 = f.getUser2_id();
+            String name1 = userIdToName.get(id1), name2 = userIdToName.get(id2);
+            if (!nameToIdx.containsKey(name1)) {
+                addToMap(name1, g, nameToIdx);
+            }
+            if (!nameToIdx.containsKey(name2)) {
+                addToMap(name2, g, nameToIdx);
+            }
+            addToGraph(nameToIdx.get(name1), name2,g);
+            addToGraph(nameToIdx.get(name2), name1,g);
+        }
+        return g;
+    }
+
+    private void addToGraph(int idx, String name, List<FNode> g) {
+        FNode fNode = new FNode(name);
+        FNode head = g.get(idx);
+        fNode.next = head.next;
+        head.next = fNode;
+    }
+
+    private void addToMap(String name, List<FNode> g, Map<String, Integer> nameToIdx) {
+        FNode head = new FNode(name);
+        g.add(head);
+        nameToIdx.put(name, g.size() - 1);
+    }
+
+
+
 }
