@@ -162,7 +162,7 @@ function searchChatroom(o) {
                     }
                     //恢复更新
                     updateRoomList();
-                    setInterval(updateRoomsHandle, 3000);
+                    updateRoomsHandle =setInterval("updateRoomList()", 3000);
                 });
             });
             //好友点击事件
@@ -176,7 +176,7 @@ function searchChatroom(o) {
                     }
                     //恢复更新
                     updateRoomList();
-                    setInterval(updateRoomsHandle, 3000);
+                    updateRoomsHandle =setInterval("updateRoomList()", 3000);
                 });
 
             });
@@ -192,13 +192,14 @@ function scrollBottom() {
 }
 
 var scrollHandler;
+var lock = false;
 $(function () {
     // 默认选中
     $(".sidebar .active").click();
     //进入加载最近聊天记录
     showChatRecords();
     //长时间线程更新当前聊天
-    window.setInterval("showChatRecords()", 3000);
+    window.setInterval("showChatRecords()", 4000);
     //长时间线程滚动底部
     scrollHandler = window.setInterval("scrollBottom()", 3000);
     //发送消息
@@ -212,6 +213,13 @@ $(function () {
     $('.searchRoom').on('keypress', function (event) {
         if (event.keyCode == 13) {
             searchChatroom(this);
+        }
+    });
+    $('.searchRoom').on('keyup', function (event) {
+        if (event.keyCode == 27) {
+            //恢复更新
+            updateRoomList();
+            updateRoomsHandle =setInterval("updateRoomList()", 3000);
         }
     });
     //enter 发送

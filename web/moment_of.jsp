@@ -53,7 +53,7 @@
                 <p>
                     <a href=""><span id="qq-span" class="am-icon-qq am-icon-fw am-primary blog-icon"></span></a>
                     <a href=""><span id="blog-span" class="am-icon-github am-icon-fw blog-icon"></span></a>
-                    <a href=""><span id="weibo-span"class="am-icon-weibo am-icon-fw blog-icon"></span></a>
+                    <a href=""><span id="weibo-span" class="am-icon-weibo am-icon-fw blog-icon"></span></a>
                     <a href=""><span id="weixin-span" class="am-icon-weixin am-icon-fw blog-icon"></span></a>
                 </p>
             </div>
@@ -162,8 +162,6 @@
 
                 <div class="assist"></div>
             </section>
-
-
             <footer>已显示全部内容</footer>
 
         </div>

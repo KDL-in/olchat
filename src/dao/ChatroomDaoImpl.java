@@ -69,12 +69,13 @@ public class ChatroomDaoImpl implements ChatroomDao {
     }
 
     @Override
-    public List<Chatroom> search(String keyWord) {
+    public List<Chatroom> search(String word) {
+        String keyWord = "%" + word + "%";
         QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
-        String sql = "select * from chatroom where name=?";
+        String sql = "select * from chatroom where name like ?";
         List<Chatroom> rooms;
         try {
-            rooms = queryRunner.query(sql, new BeanListHandler<Chatroom>(Chatroom.class), keyWord);
+            rooms = queryRunner.query(sql, new BeanListHandler<Chatroom>(Chatroom.class),keyWord);
             return rooms;
         } catch (SQLException e) {
             e.printStackTrace();
