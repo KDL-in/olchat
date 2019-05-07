@@ -1,7 +1,38 @@
 /**
 自定义
 */
-p#intro-name{
+p#contact span {
+	border-color: #cbcbcb;
+
+}
+div#signature {border-color: #cbcbcb;}
+
+div.blog-siderbar span {
+	background-color: #eee;
+}
+
+.blog-sidebar-widget.blog-bor {
+	border-color: #cbcbcb;
+}
+textarea#intro-name:focus {
+	background-color: white;
+}
+textarea#intro-name {
+	font-weight: bold;
+	font-size: 14px;
+	text-align: center;
+	height: 30px;
+	outline: none;
+	resize: none;
+	overflow: hidden;
+	font-family: "microsoft Yahei";
+	/* text-indent: 10px; */
+	line-height: 30px;
+	/* padding: 5px; */
+	background: #f8f8f8;
+	border-color: #f8f8f8;
+}
+textarea#intro-name{
     font-weight: bold;
 }
 p#intro{
@@ -22,7 +53,7 @@ textarea#intro {
 }
 
 textarea#intro:focus {
-    background: #fdfdfd;
+    background: #fff;
 }
 span#img_url {font-size: 5px;padding: 6px;color: green;}
 div#uploadPanel {

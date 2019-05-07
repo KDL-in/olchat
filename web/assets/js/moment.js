@@ -54,6 +54,13 @@ $(function () {
             e.preventDefault();
         }
     });
+//    个人昵称修改
+    $("textarea#intro-name").keydown(function (e) {
+        if (e.keyCode == 13) {
+            modNickname($(this).val());
+            e.preventDefault();
+        }
+    });
 //    一些按钮
     $("#qq-span").click(function () {
         alert("QQ: 925-------8")
@@ -69,7 +76,17 @@ $(function () {
     });
 
 });
-
+function modNickname(nickname) {
+    // alert(intro+" "+$("input[name='user_id']").val());
+    $.post("moment?" + new Date().getTime(), {
+        "method": "modNickname",
+        "nickname": nickname,
+        "user_id": $("input[name='user_id']").val()
+    }, function () {
+        alert("修改成功");
+        $("textarea#intro-name").blur();
+    })
+}
 function sendIntro(intro) {
     // alert(intro+" "+$("input[name='user_id']").val());
     $.post("moment?" + new Date().getTime(), {

@@ -25,7 +25,7 @@ public class MomentServlet extends BaseServlet {
         User user = (User) req.getSession().getAttribute("curUser");
         Moment moment = new Moment();
         MomentService service = new MomentService();
-        service.addNewMoment(txt, user.getId(),img_url, new Timestamp(System.currentTimeMillis()));
+        service.addNewMoment(txt, user.getId(), img_url, new Timestamp(System.currentTimeMillis()));
         return null;
     }
 
@@ -47,11 +47,13 @@ public class MomentServlet extends BaseServlet {
         req.setAttribute("moments", moments);
         return "/showMomentList.jsp";
     }
+
     public String getMomentListOf(HttpServletRequest req, HttpServletResponse resp) {
         List<Moment> moments = new MomentService().listMomentsOf(Integer.parseInt(req.getParameter("cur_user_id")));
         req.setAttribute("moments", moments);
         return "/showMomentList.jsp";
     }
+
     public String getCommentList(HttpServletRequest req, HttpServletResponse resp) {
         int id = Integer.parseInt(req.getParameter("moment_id"));
         List<Comment> comments = new CommentService().listComments(id);
@@ -81,6 +83,18 @@ public class MomentServlet extends BaseServlet {
         service.modIntro(id, intro);
         User u = (User) req.getSession().getAttribute("curUser");
         u.setIntro(intro);
+        req.getSession().setAttribute("curUser", u);
+        return null;
+    }
+
+    public String modNickname(HttpServletRequest req, HttpServletResponse resp) throws UnsupportedEncodingException {
+        req.setCharacterEncoding("utf-8");
+        String nickname = req.getParameter("nickname");
+        int id = Integer.parseInt(req.getParameter("user_id"));
+        UserService service = new UserService();
+        service.modNickname(id, nickname);
+        User u = (User) req.getSession().getAttribute("curUser");
+        u.setNickname(nickname);
         req.getSession().setAttribute("curUser", u);
         return null;
     }

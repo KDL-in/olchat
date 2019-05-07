@@ -309,13 +309,13 @@ a {
 }
 .blog-sidebar {
     margin-top:3rem;
-    padding:0 1.5rem 0 3rem;
+    padding:0 1.5rem 0 1.5rem;
 }
 .blog-title {
     margin-top:-1.5rem;
 }
 .blog-title span{
-    background-color:#fff;
+    background-color: #f8f8f8;
     padding:0 1.5rem;
 }
 .blog-sidebar-widget {

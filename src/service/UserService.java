@@ -75,4 +75,8 @@ public class UserService {
         u.setIntro(intro);
         dao.updateIntro(u);
     }
+
+    public void modNickname(int id, String nickname) {
+        dao.updateNickname(id,nickname);
+    }
 }

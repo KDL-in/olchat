@@ -23,4 +23,6 @@ public interface UserDao {
     void update(User u);
 
     void updateIntro(User u);
+
+    void updateNickname(int id, String nickname);
 }
