@@ -134,57 +134,7 @@ function toggleUpload() {
     $("#uploadPanel").toggle(200);
 }
 
-function searchChatroom(o) {
-    //搜索时停止更新
-    $(".wrapper .tabs .talk").html("");
-    clearInterval(updateRoomsHandle);
-    $.post("visit?" + new Date().getTime(),
-        {
-            "method": "searchChatroom",
-            "keyWord": $(".searchRoom").val()
-        },
-        function (data) {//搜索到，直接显示，绑定事件
-            $(".wrapper .tabs .talk").html(data);
-            $(".talk>ul>li.room-li").each(function (key, li) {
-                $(li).click(function () {
-                    if (confirm("Add into chatroom ?") == true) {
-                        var psw = prompt("Welcome to enter our chatroom : " + "\nEnter Password", "");
-                        //搜索正确，加入请求
-                            $.post("visit?" + new Date().getTime(),
-                            {
-                                "method": "addToChatroom",
-                                "user_id": $("input[name='user_id']").val(),
-                                "room_id": $(this).find("input[class='room_id']").val(),
-                                "room_psw": psw
-                            },
-                            function (data) {
-                                updateRoomList();
-                                alert(data);
-                            });
-                    }
-                    //恢复更新
-                    updateRoomList();
-                    updateRoomsHandle =setInterval("updateRoomList()", 3000);
-                });
-            });
-            //好友点击事件
-            $(".talk>ul>li.friend-li").each(function (key, li) {
-                $(li).click(function () {
-                    var selectId = $(this).find("input[class='friend_id']").val();
-                    var myId = $("input[name='user_id']").val();
-                    if (confirm("Add a new friend ?") == true) {
-                        // alert(selectId + " " + myId);
-                        addNewFriend(myId, selectId);
-                    }
-                    //恢复更新
-                    updateRoomList();
-                    updateRoomsHandle =setInterval("updateRoomList()", 3000);
-                });
 
-            });
-        });
-    $(o).val("");
-}
 
 function scrollBottom() {
     var heightdis = $(".container").height() - $(".dialouges").height();

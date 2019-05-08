@@ -27,7 +27,7 @@
             <%--<h3>${user.user_name}</h3>--%>
             <h3>${(user.nickname=="")?user.user_name:user.nickname}</h3>
             <input type="hidden" value="${user.user_name}">
-            <p>：[动画表情]</p>
+            <p>：[${userMap.containsKey(user)?"在线":"离线"}]</p>
         </div>
         </li>
     </c:forEach>

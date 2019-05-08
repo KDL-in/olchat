@@ -2,10 +2,7 @@ package action;
 
 import com.sun.glass.ui.Size;
 import dao.UserDaoImpl;
-import entity.ChatRecord;
-import entity.Chatroom;
-import entity.User;
-import entity.UserRoom;
+import entity.*;
 import org.apache.commons.beanutils.BeanUtils;
 import service.*;
 import utils.BaseServlet;
@@ -221,5 +218,15 @@ public class ChatroomServlet extends BaseServlet {
         resp.getWriter().println(flag?"修改成功":"修改失败");
         return null;
     }
+    //添加一个朋友
+    public String addFriendTo(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        int user_id = Integer.parseInt(req.getParameter("user_id")),
+                room_id = Integer.parseInt(req.getParameter("room_id"));
+        UserRoomService service = new UserRoomService();
+        service.addToChatroom(user_id, room_id);
+        return null;
+    }
+
+
 
 }

@@ -4,7 +4,47 @@ function updateData() {//定时调用从数据库更新数据
     // alert($(".data[name='cid']").val());
     $.post("visit?" + new Date().getTime(), {'room_id': $("input[name='room_id']").val(), "method": "updateData"});
 }
+function addFriendTo(user_id, room_id) {
+    $.post("visit?"+new Date().getTime(),{
+        "method":"addFriendTo",
+        "user_id":user_id,
+        "room_id":room_id
+    },function () {
+        updateData();
+        showOnline();
+    });
+}
+var updateHandle;
+function searchChatroom(o) {
+    //搜索时停止更新
+    $(".wrapper .tabs .talk").html("");
+    clearInterval(updateHandle);
+    $.post("visit?" + new Date().getTime(),
+        {
+            "method": "searchChatroom",
+            "keyWord": $(".searchRoom").val()
+        },
+        function (data) {//搜索到，直接显示，绑定事件
+            $(".wrapper .tabs .talk").html(data);
 
+            //好友点击事件
+            $(".talk>ul>li.friend-li").each(function (key, li) {
+                $(li).click(function () {
+                    var selectId = $(this).find("input[class='friend_id']").val();
+                    var roomId = $("input[name='room_id']").val();
+                    if (confirm("Add him/her ?") == true) {
+                        // alert(selectId + " " + myId);
+                        addFriendTo(selectId, roomId);
+                    }
+                    //恢复更新
+
+                    updateHandle =setInterval("showOnline()", 5000);
+                });
+
+            });
+        });
+    $(o).val("");
+}
 
 function deleteMember(deId) {
     //删除的不能是自己
@@ -101,7 +141,7 @@ function showOnline() {//重新加载在线学生
 
 function prepareIntervalCall() {
     window.setInterval("updateData()", 5000);
-window.setInterval("showOnline()", 3000);
+    updateHandle = window.setInterval("showOnline()", 5000);
 }
 
 var isAdmin = false;
