@@ -122,7 +122,7 @@ function prepareIntervalCallOfUserRoom() {
 }
 
 function createChatroom() {
-    var name = prompt("Your chatroom name", "");
+    var name = prompt("Your chatroom name", "").trim();
     if(name=="") {
         alert("Empty name!");
         return;

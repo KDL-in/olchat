@@ -23,7 +23,7 @@
             <div class="content">
                 <h3>${room.name}</h3>
                 <%--todo z最近聊天记录--%>
-                <p>：[详细]${room.id}</p>
+                <p>：[详细]</p>
             </div>
         </li>
     </c:forEach>

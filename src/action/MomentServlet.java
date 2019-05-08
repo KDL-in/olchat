@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -93,9 +94,14 @@ public class MomentServlet extends BaseServlet {
         int id = Integer.parseInt(req.getParameter("user_id"));
         UserService service = new UserService();
         service.modNickname(id, nickname);
+        //同步缓存
         User u = (User) req.getSession().getAttribute("curUser");
         u.setNickname(nickname);
         req.getSession().setAttribute("curUser", u);
-        return null;
+
+        Map<Integer, User> usersBuf = (Map<Integer, User>) req.getServletContext().getAttribute("usersBuf");
+        usersBuf.put(u.getId(), u);
+        req.getServletContext().setAttribute("usersBuf", usersBuf);
+        return "/moment.jsp?"+new Date().getTime();
     }
 }
