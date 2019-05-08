@@ -22,4 +22,6 @@ public interface ChatroomDao {
     void delete(int room_id);
 
     void update(Chatroom c);
+
+    boolean update(int room_id, String name);
 }

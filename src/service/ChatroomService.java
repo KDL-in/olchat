@@ -4,10 +4,8 @@ import dao.ChatroomDao;
 import dao.ChatroomDaoImpl;
 import entity.Chatroom;
 import entity.PageBean;
-import org.apache.commons.dbutils.QueryRunner;
 
 import java.util.List;
-import java.util.Map;
 
 public class ChatroomService {
     ChatroomDao dao;
@@ -80,4 +78,7 @@ public class ChatroomService {
     }
 
 
+    public boolean modRoom(int room_id, String name) {
+        return dao.update(room_id, name);
+    }
 }

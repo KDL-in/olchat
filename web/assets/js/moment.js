@@ -83,7 +83,7 @@ function modNickname(nickname) {
         "nickname": nickname,
         "user_id": $("input[name='user_id']").val()
     }, function () {
-        alert("修改成功");
+        location.reload();
         $("textarea#intro-name").blur();
     })
 }
@@ -94,7 +94,6 @@ function sendIntro(intro) {
         "intro": intro,
         "user_id": $("input[name='user_id']").val()
     }, function () {
-        alert("修改成功");
         $("#intro").blur();
     })
 }

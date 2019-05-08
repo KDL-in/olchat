@@ -1,12 +1,9 @@
 package dao;
 
-import action.ChatroomServlet;
 import entity.Chatroom;
-import entity.User;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
-import org.apache.commons.dbutils.handlers.ScalarHandler;
 import utils.JDBCUtils;
 
 import java.sql.SQLException;
@@ -132,5 +129,20 @@ public class ChatroomDaoImpl implements ChatroomDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public boolean update(int room_id, String name) {
+        QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+        String sql = "UPDATE chatroom\n" +
+                "set  name = ?" +
+                "where id = ?";
+        try {
+            int id = queryRunner.update(sql, new Object[]{name,room_id});
+            return id == 0 ? false : true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

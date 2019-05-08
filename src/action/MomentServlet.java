@@ -3,6 +3,7 @@ package action;
 import entity.Comment;
 import entity.Moment;
 import entity.User;
+import service.ChatroomService;
 import service.CommentService;
 import service.MomentService;
 import service.UserService;
@@ -102,6 +103,7 @@ public class MomentServlet extends BaseServlet {
         Map<Integer, User> usersBuf = (Map<Integer, User>) req.getServletContext().getAttribute("usersBuf");
         usersBuf.put(u.getId(), u);
         req.getServletContext().setAttribute("usersBuf", usersBuf);
-        return "/moment.jsp?"+new Date().getTime();
+        return null;
     }
+
 }

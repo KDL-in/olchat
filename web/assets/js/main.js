@@ -31,6 +31,19 @@ function deleteFriendship(li) {
         updateRoomList();
     });
 }
+//修改聊天室名
+function modRoomName(li,nName) {
+    $.post("visit?" + new Date().getTime(),
+        {
+            "method": "modRoomName",
+            "room_id": $(li).find("input[name='cid']").val(),
+            "name": nName
+        }, function (data) {
+            alert(data);
+            updateRoomList();
+        });
+}
+
 function rightMenuEventBinding() {
     //聊天室右键
     $(".room-li").each(function (idx, li) {
@@ -57,6 +70,15 @@ function rightMenuEventBinding() {
                         if (confirm("Delete the chatroom?")) {
                             deleteChatroom(li);
                         }
+                    }
+                ],[
+                    '修改聊天室名',
+                    function (dom) {
+                        var nName = prompt("New Name is?");
+                        if (nName.trim() == "") {
+                            alert("不能为空");
+                        }
+                        modRoomName(li,nName);
                     }
                 ]
             ];

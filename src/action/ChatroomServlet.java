@@ -210,4 +210,16 @@ public class ChatroomServlet extends BaseServlet {
         return null;
     }
 
+    //修改聊天室名
+    public String modRoomName(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        req.setCharacterEncoding("utf-8");
+        String name = req.getParameter("name");
+        int room_id = Integer.parseInt(req.getParameter("room_id"));
+        ChatroomService service  = new ChatroomService();
+        boolean flag = service.modRoom(room_id,name);
+        resp.setCharacterEncoding("utf-8");
+        resp.getWriter().println(flag?"修改成功":"修改失败");
+        return null;
+    }
+
 }
