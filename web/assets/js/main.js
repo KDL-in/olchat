@@ -12,6 +12,7 @@ function exitFromChatroom(li) {
 }
 //删除解散聊天室
 function deleteChatroom(li) {
+    // alert($(li).find("input[name='cid']").val());
     $.post("visit?"+new Date().getTime(),
         {
             "method":"deleteChatroom",
@@ -136,7 +137,7 @@ function createChatroom() {
             "admin_id":$("input[name='user_id']").val(),
         },
         function (data) {
-            alert("success");
+            alert(data);
             updateRoomList();
         });
 }

@@ -149,18 +149,20 @@ public class ChatroomServlet extends BaseServlet {
     public String createChatroom(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         //创建实体,创建群
         Chatroom chatroom = new Chatroom();
+        res.setCharacterEncoding("utf-8");
         Map<String, String[]> map = req.getParameterMap();
+        boolean flag = false;
         try {
             BeanUtils.populate(chatroom,map);
             ChatroomService service = new ChatroomService();
-            service.create(chatroom);
+            flag = service.create(chatroom);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
+//            System.out.println(1);
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
-
-
+        res.getWriter().println(flag?"创建成功":"创建失败");
         return null;
     }
     //踢出用户
