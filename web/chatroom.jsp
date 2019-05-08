@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="safe.jsp"%>
+<%@ include file="safe.jsp" %>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/room_share.css"/>
     <link rel="stylesheet" href="assets/utils/webuploader/webuploader.css" type="text/css"/>
     <link rel="stylesheet" href="assets/utils/contextMenu/contextMenu.css"/>
+    <link rel="stylesheet" href="assets/css/jquery.qqface.css"/>
 
 </head>
 <body id="chat_bg">
@@ -77,7 +78,7 @@
                     </div>
                 </div>
             </div>
-            <div class="container">
+            <div id="container" class="container">
 
             </div>
             <!--<div class="person">-->
@@ -91,7 +92,7 @@
         </div>
         <div class="message">
             <div class="menu">
-                <%--<div class="smile iconfont icon-biaoqing"></div>--%>
+                <div id="face" class="smile iconfont icon-biaoqing"></div>
                 <div class="doc iconfont icon-wenjian"></div>
                 <%--<div class="snap iconfont icon-jieping  "></div>--%>
                 <%--<div class="video iconfont icon-shipin"></div>--%>
@@ -123,6 +124,7 @@
 </body>
 </html>
 <script src="${pageContext.request.contextPath}/assets/js/jquery-2.1.0.js"></script>
+<script type="text/javascript" src="assets/js/jquery.qqface.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/room_share.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/chatroom.js"></script>
 <script type="text/javascript" src="assets/utils/webuploader/webuploader.js"></script>

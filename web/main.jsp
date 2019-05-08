@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/room_share.css"/>
     <link rel="stylesheet" href="assets/utils/contextMenu/contextMenu.css"/>
+    <link rel="stylesheet" href="assets/css/jquery.qqface.css"/>
 
     <link rel="stylesheet" href="assets/utils/webuploader/webuploader.css" type="text/css"/>
 </head>
@@ -71,7 +72,7 @@
                     </div>
                 </div>
             </div>
-            <div class="container">
+            <div class="container" id="container">
                 <%--             <div class="person">
                                  <img src="assets/images/1.jpg" alt="">
                                  <div>
@@ -99,7 +100,7 @@
         </div>--%>
         <div class="message">
             <div class="menu">
-                <%--<div class="smile iconfont icon-biaoqing"></div>--%>
+                <div id = "face"class="smile iconfont icon-biaoqing"></div>
                 <div class="doc iconfont icon-wenjian"></div>
                 <%--<div class="snap iconfont icon-jieping  "></div>--%>
                 <%--<div class="video iconfont icon-shipin"></div>--%>
@@ -130,6 +131,7 @@
 </div>
 </body>
 <script src="${pageContext.request.contextPath}/assets/js/jquery-2.1.0.js"></script>
+<script type="text/javascript" src="assets/js/jquery.qqface.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/room_share.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
 <script type="text/javascript" src="assets/utils/webuploader/webuploader.js"></script>
